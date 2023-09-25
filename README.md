@@ -10,10 +10,10 @@ This repo also includes some code used to generate figures.
 
 ## Build locally
 
-To build this locally, follow the [jekyll setup
-instructions](https://jekyllrb.com/docs/#instructions). Run `jekyll new
-test_site` and then copy over the `Gemfile` and `Gemfile.lock` files into this
-directory, then run `bundle exec jekyll serve` to run locally.
+To build this locally, [install Ruby](https://jekyllrb.com/docs/installation/),
+then run `bundle exec jekyll serve` to build and serve the website locally. In
+your browser, navigate to the address shown in the terminal (probably
+`localhost:4000/plenoptic_presentations/`)
 
 ## Licensing
 
