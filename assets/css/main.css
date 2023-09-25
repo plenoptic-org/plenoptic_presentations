@@ -2102,10 +2102,10 @@ input[type="radio"] + label:before {
 
 /* Icon */
 
-.icon {
-  text-decoration: none;
-  border-bottom: none;
-  position: relative;
+/* to make svg approximately match the font awesome icons */
+.icon img {
+  width: 25;
+  filter: invert(35%) sepia(31%) saturate(0%) hue-rotate(221deg) brightness(108%) contrast(100%);
 }
 
 .icon:before {
@@ -2213,7 +2213,6 @@ input[type="radio"] + label:before {
 }
 
 .image img {
-  border-radius: 0.35em;
   display: block;
 }
 
