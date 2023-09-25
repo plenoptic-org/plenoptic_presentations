@@ -4,5 +4,5 @@
 tmp/
 
 # these are for building jekyll, only need locally
-Gemfile*
+Gemfile.lock
 _site/
