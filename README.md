@@ -8,6 +8,13 @@ the website built using github pages.
 
 This repo also includes some code used to generate figures.
 
+## Build locally
+
+To build this locally, follow the [jekyll setup
+instructions](https://jekyllrb.com/docs/#instructions). Run `jekyll new
+test_site` and then copy over the `Gemfile` and `Gemfile.lock` files into this
+directory, then run `bundle exec jekyll serve` to run locally.
+
 ## Licensing
 
 The code found in this repo is licensed the [MIT License](./LICENSE-CODE) while
