@@ -10,11 +10,10 @@ This repo also includes some code used to generate figures.
 
 ## Licensing
 
-The code found in this repo is licensed under plenoptic's [MIT
-License](https://github.com/LabForComputationalVision/plenoptic/blob/main/LICENSE),
-while all text and images found in the presentations, as well as the
-presentations themselves are licensed under
-[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) (you are free to
-copy and reuse any components, including the whole presentations, as long as you
-credit the original authors and share your material under the same (or a
-compatible) license).
+The code found in this repo is licensed the [MIT License](./LICENSE-CODE) while
+all text and images found in the presentations, as well as the presentations
+themselves are licensed under [CC-BY-SA 4.0](./LICENSE-TEXT) (see
+[here](https://creativecommons.org/licenses/by-sa/4.0/) for human-readable
+summary, but in essence, you are free to copy and reuse any components,
+including the whole presentations, as long as you credit the original authors
+and share your material under the same (or a compatible) license).
