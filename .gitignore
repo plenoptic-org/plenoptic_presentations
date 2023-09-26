@@ -6,3 +6,13 @@ tmp/
 # these are for building jekyll, only need locally
 Gemfile.lock
 _site/
+
+# for uploading from the OSF (downloading doesn't require authentication)
+.osfcli.config
+
+# don't include assets, upload them to OSF instead
+*.svg
+*.png
+*.mp4
+*.jpg
+*.tar.gz
