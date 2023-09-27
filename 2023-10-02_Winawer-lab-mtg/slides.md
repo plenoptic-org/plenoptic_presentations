@@ -7,13 +7,15 @@
 
 ![](assets/plen-1.0.1-intro-1.svg)
 
-#note: so I'm going to talk about plenoptic, which is a python library that performs "model-based synthesis of perceptual stimuli" to help better understand those computational models. I'm going to briefly describe what that means. key word is "synthesis"...
+#note: so I'm going to talk about plenoptic, which is a python library that performs "model-based synthesis of perceptual stimuli" to help better understand those computational models. I'm going to briefly describe what that means. key word is "synthesis"
+
+but before I go on, summarizing the contents of plenoptic is like summarizing the work of at least 5 grad students and 2 postdocs from Eero's lab. I'm focusing on the high level idea of what do these methods *do* and how can they be used, but it's a lot of material and this is my first attempt at doing this so ... thanks for being guinea pigs! and please interrupt me with questions if something isn't clear. I'm hoping on giving variants of this talk over and over to different vision scientists, so any feedback on how to improve it are much appreciated. and it's why I'm starting here.
 
 ---
 
 ![](assets/plen-1.0.1-intro-2.svg)
 
-#note: ... which we've represented with this little abstract logo. This represents the relationship between computational models, their inputs, outputs, and parameters.
+#note: we've represented synthesis with this little abstract logo. This represents the relationship between computational models, their inputs, outputs, and parameters.
 
 ---
 
@@ -242,7 +244,147 @@ if we have a model, we can ask what changes *the model* thinks are easy or hard 
 - Maximally Differentiating (MAD) Competition: efficiently compare two visual models.
 - Representation geodesic: in a movie, what does the model think the most likely next frame is? <!-- .element: style="color: #bebebe" -->
 
-#note: now let's talk about MAD Competition. So far, I've talked a bit about comparing models to each other, but it's always been a bit implicit.
+#note: now let's talk about MAD Competition. So far, I've talked a bit about comparing models to each other, but it's always been a bit implicit. what if you have two models that perform really similar to each other. for example, you're fitting pRFs and trying to decide whether they can be linear or whether you should add a compressive nonlinearity, like a power-law, on the end. for many images, the predictions of those two models are going to be relatively similar, and you really want to exaggerate them, to find the stimuli where their predictions will *really* differ. you can think carefully about the two models, how they differ, and try to build the proper stimuli by hand, but that's hard, and will  get harder and harder as your models get more complex. 
+
+or ... you could use MAD competition, who generates a set of stimuli that have *maximally different* predictions for the two models. let's step through how that works
+
+---
+## Simple MAD Competition
+![img](assets/simple-mad.svg)
+
+#note:
+with a super simple example: we'll take a two-pixel image, each has value .5,
+and add some noise, then run MAD Competition between the L1 and L2 norms. so the
+L1 model thinks you can tell how different two points are by taking the absolute
+value of the difference of x and y and summing them, while the L2 takes the
+Euclidean norm of their difference, taking the difference between x and y,
+squaring that, summing them, and taking the square root.
+
+with this simple one first because we can actually plot it, with pixel 1 on the
+x-axis and pixel 2 on the y, and we can also plot the level sets of our two
+metrics.
+
+- so we start with a reference point, in red
+- we add some nosie to it, to get our initial point
+- and the diamond and the circle give us the level sets of L1 and L2. that is,
+  the L1 model thinks that all points which lie on the blue diamond are all *as
+  different* from the red point as the black one. if you were to run this
+  through psychophysics, L1 predicts the discrimination performance of every
+  point on the diamond is the same
+- L2 thinks that about the circle.
+- makes sense?
+
+---
+## Simple MAD Competition
+![img](assets/simple-mad-1.svg)
+
+#note:
+- this then is one MAD image, where we've maximized L2 norm while keeping L1
+  constant
+- that is, L1 thinks the black and blue points are just as different from the
+  red point, whereas L2 thinks the blue is *as different as possible*
+- this puts it "along the axis", so that one pixel has the same value as our
+  reference image, and the other is as extremal as possible
+- the other corners of the diamond would also satisfy this, and the fact that we
+  ended up here is because it's closer to our initial image and we used
+  iterative optimization.
+
+---
+## Simple MAD Competition
+![img](assets/simple-mad-2.svg)
+
+
+#note:
+- we can similarly max the L1 norm, which moves us along the L2 level set and
+  moves us as far away from reference image as possible
+- this puts it "on the diagonal", so that neither pixel has the same value as in
+  the reference, but they individually have the same difference (about .07)
+- again, other diagonals would also have worked, but this is the one we were
+  closest to
+
+
+---
+## Simple MAD Competition
+![img](assets/simple-mad-all.svg)
+
+#note:
+- now add the final two dots, corresponding to minimizing L1 and L2,
+  respectively
+- we see that they move along their respective level sets, ending up in the same
+  two positions, along the axes and diagonal, but with lower overall value
+- and note that they're swapped: max L1 puts you along the diagonal, minimizing
+  it puts you along the axes, for analogous reasons -- you have to stay along L2
+  level set and the place that does that and minimizes L1 is along the axis,
+  where pixel 1 has no difference and pixel 2 has the minimum possible
+  difference, given our L2 level set
+- analogously for min L2.
+- does that make sense? we've generated a set of points where the predictions of
+  the two models disagree *as much as possible*
+- this then allows us to efficiently compare the two models
+
+---
+## MAD Competition
+![img](assets/mad-checkerboard.svg)
+   
+#note:
+- so now let's do it an actual image
+- the top left here is what we were looking at before
+- and the right is MAD competition between L1 and L2 norm, as before, but now on
+  top of a full-sized checkerboard image.
+- the red-bordered image is our reference image, which we've added some gaussian
+  noise to to get our initial image
+- and then the four different MAD competition images are arranged around it,
+  like in our image in the top left: horizontal shows fixing L2 norm and min and
+  max L1; vertical shows fixing L1 norm and min and max L2
+- the inset is the difference between the MAD image and the reference
+- I'm going to blow these up so we can see them better
+
+---
+## MAD Competition
+![img](assets/mad-checkerboard-1.svg)
+
+#note:
+- if we look at min L1 and max L2 we can see that they're "on the axes" like
+  predicted: most pixels are the same as before, and then some have been moved
+  to extremal values (white on the black parts, black on the white parts). and
+  we have more and more extremal values in the max L2 image than the min L1, as
+  we can see in the 2d plot
+
+---
+## MAD Competition
+![img](assets/mad-checkerboard-2.svg)
+   
+#note:
+- similarly, for min L2 and max L1, we're on the diagonals: no pixels have the
+  same value as the reference image, all are distributed above or below the
+  reference image values by the same amount, so we have different grayish
+  values. and the difference is greater for max L1 than it is for min L2, though
+  that's hard to see here, I checked (on image going from 0 to 255, min L2 has
+  +-15, while max L1 has +- 18)
+- thus, in this example, we can see that L2 is a better perceptual metric than
+  L1: L2 predicts the two blue-outlined figures are as different as possible,
+  while L1 predicts the two orange-outlined ones are. to me, these two orange
+  ones aren't that different (and, if anything, the rightmost image is better
+  than the left), while the bottom blue one here is notably worse than the top.
+
+---
+## MAD Competition
+![image](assets/mad-mse-ssim.svg)
+
+#note: back in 2008, Eero did this work with a postdoc called Zhou Wang, comparing mean-squared error with SSIM, the strucural similarity metric, which was their proposed way of measuring how different two images are
+
+this has the same layout as the last slide, with the reference image up here, which they added noise to, and then held either MSE or SSIM constant while changing the other as much or as little as possible. all of these look bad to me except this top one, so when holding MSE constant, you get two bad and one good image, while holding SSIM constant, you get three pretty bad images.
+
+Eero, Zhou, and their collaborators won an Emmy for their work on SSIM, as an aside. because it was so useful to the television and movie industries, as a way of measuring the effects of compression (I think)
+
+---
+## More synthesis!
+
+- Eigendistortion: most and least noticeable changes to an image. <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Maximally Differentiating (MAD) Competition: efficiently compare two visual models. <!-- .element: style="color: #bebebe" -->
+- Representation geodesic: in a movie, what does the model think the most likely next frame is? 
+
+#note: and the last one: geodesic. geodesic is about prediction. 
 
 ---
 ## Contents
