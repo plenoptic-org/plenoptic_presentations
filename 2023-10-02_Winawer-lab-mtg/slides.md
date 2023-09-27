@@ -88,7 +88,13 @@ Physically distinct stimuli that are perceptually identical (to a computational 
 ## Texture model metamers
 ![contents](assets/texture-model-2.svg)
 
-#note: The question that Eero and Javier faced was: we developed this model that we think captures an images "texturiness", how do we demonstrate that it does a good job? The solution they came up with was: well let's take a texture image...
+#note: The question that Eero and Javier faced was: we developed this model that we think captures an images "texturiness", how do we demonstrate that it does a good job? 
+
+they first thought, let's try classification. let's see if our model can distinguish this basket from this grain of wood. and it did *phenomenally*, performance was at ceiling on the database of ~30 textures they had (this was in the late 90s). 
+
+but then they said wait, let's compare it against a simple spectral model as well, just measuring the energy at several spatial frequencies and orientations. and it did just as well.
+
+so clearly the test was too easy. they came up with another solution: let's take a texture image...
 
 ---
 ## Texture model metamers
@@ -123,6 +129,12 @@ let's watch
 ![contents](assets/texture-model-5.svg)
 
 #note: ... it works for other textures, like this wood grain
+
+---
+## Texture model metamers
+![image](assets/texture-model-5a.svg)
+
+#note: while it did really well on those first two, there are some textures it has a bit more trouble on. here we can see it struggles to break these tiles up into discrete units. it has trouble capturing perfectly straight lines like this.
 
 ---
 ## Texture model metamers
@@ -234,8 +246,9 @@ if we have a model, we can ask what changes *the model* thinks are easy or hard 
 
 ---
 ## Contents
-
 ![contents](assets/plen-contents-2.svg)
+
+#note:
 
 ---
 ## Status and Roadmap
