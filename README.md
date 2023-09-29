@@ -10,10 +10,20 @@ This repo also includes some code used to generate figures.
 
 ## Build locally
 
-To build this locally, [install Ruby](https://jekyllrb.com/docs/installation/),
-then run `bundle exec jekyll serve` to build and serve the website locally. In
-your browser, navigate to the address shown in the terminal (probably
-`localhost:4000/plenoptic_presentations/`)
+This repository uses `jekyll` to build `reveal.js` presentations from markdown
+files and svg images. You will need to install `jekyll` locally (see below), and
+`reveal.js` just needs to be present where expected. To do so, you can clone
+this repository with `git clone --recurse-submodules
+git@github.com:LabForComputationalVision/plenoptic_presentations.git`. If you've
+already cloned this repository, run `git submodule init; git submodule update`
+to check out the proper version.
+
+For `jekyll`, [install Ruby](https://jekyllrb.com/docs/installation/), then run
+`bundle install` from this directory to install `jekyll` and all necessary
+components (if you get an error when doing this, run `gem install bundler`
+first), then run `bundle exec jekyll serve` to build and serve the website
+locally. In your browser, navigate to the address shown in the terminal
+(probably `localhost:4000/plenoptic_presentations/`)
 
 ## Assets
 
