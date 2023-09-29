@@ -1,5 +1,9 @@
 # plenoptic_presentations
 
+TODO:
+- [ ] update flatiron css for new branding
+- [ ] there appear to be some screen sizes which will cause elements of an svg to just ... not show up. look into that
+
 Presentations about the
 [plenoptic](https://github.com/LabForComputationalVision/plenoptic/) software
 package. These presentations are all [reveal.js](https://revealjs.com/)
@@ -46,8 +50,8 @@ PRESENTATION_DIR/assets.tar.gz`) to make sure it contains what you expected.
 
 To upload, run `python osf_files.py upload PRESENTATION_DIR/assets.tar.gz`.
 Depending on how you configured the OSF client, it may ask for your password (or
-give you permission denied if you do not have upload permissions to the projct).
-(This will *not* delete the tarball afterwards.)
+give you permission denied if you do not have upload permissions for the
+project). (This will *not* delete the tarball afterwards.)
 
 ### Download
 
@@ -55,7 +59,11 @@ Anyone can download the assets and it does not require the `osfclient` being set
 up.
 
 To do so, run `python osf_files.py download PRESENTATION_DIR`, which will
-download the tarball, extract its contents, and then delete it.
+download the tarball, extract its contents, and then delete it. If you have a
+local `assets/` directory with the same name as those you're downloading and a
+more recent modification date, the script will ask if you'd like to extract the
+contents (potentially overwriting local changes). If you choose not to, the
+tarball will be left locally for you to examine.
 
 You may also run `python osf_files.py download all`, which will download and
 extract all tarballs.
