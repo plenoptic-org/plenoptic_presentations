@@ -40,9 +40,10 @@
           data-separator-notes="^#note:"></section>
       </div>
     </div>
+    <script src="{{ site.baseurl }}/reveal.js/plugin/zoom/zoom.js"></script>
     <script>
      Reveal.initialize({
-         plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax2, RevealLoadContent, RevealAnimate],
+         plugins: [RevealMarkdown, RevealZoom, RevealHighlight, RevealNotes, RevealMath.MathJax2, RevealLoadContent, RevealAnimate],
          animate: {
              auto: true
          },
@@ -56,6 +57,7 @@
          minScale: 0.50,
          maxScale: 2.50,
          fragmentInURL: true,
+         zoomLevel: 3,
          center: false,
          touch: true,
          transition: 'none',
