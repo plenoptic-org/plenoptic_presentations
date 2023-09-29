@@ -324,51 +324,6 @@ metrics.
 
 ---
 ## MAD Competition
-![img](assets/mad-checkerboard.svg)
-   
-#note:
-- so now let's do it an actual image
-- the top left here is what we were looking at before
-- and the right is MAD competition between L1 and L2 norm, as before, but now on
-  top of a full-sized checkerboard image.
-- the red-bordered image is our reference image, which we've added some gaussian
-  noise to to get our initial image
-- and then the four different MAD competition images are arranged around it,
-  like in our image in the top left: horizontal shows fixing L2 norm and min and
-  max L1; vertical shows fixing L1 norm and min and max L2
-- the inset is the difference between the MAD image and the reference
-- I'm going to blow these up so we can see them better
-
----
-## MAD Competition
-![img](assets/mad-checkerboard-1.svg)
-
-#note:
-- if we look at min L1 and max L2 we can see that they're "on the axes" like
-  predicted: most pixels are the same as before, and then some have been moved
-  to extremal values (white on the black parts, black on the white parts). and
-  we have more and more extremal values in the max L2 image than the min L1, as
-  we can see in the 2d plot
-
----
-## MAD Competition
-![img](assets/mad-checkerboard-2.svg)
-   
-#note:
-- similarly, for min L2 and max L1, we're on the diagonals: no pixels have the
-  same value as the reference image, all are distributed above or below the
-  reference image values by the same amount, so we have different grayish
-  values. and the difference is greater for max L1 than it is for min L2, though
-  that's hard to see here, I checked (on image going from 0 to 255, min L2 has
-  +-15, while max L1 has +- 18)
-- thus, in this example, we can see that L2 is a better perceptual metric than
-  L1: L2 predicts the two blue-outlined figures are as different as possible,
-  while L1 predicts the two orange-outlined ones are. to me, these two orange
-  ones aren't that different (and, if anything, the rightmost image is better
-  than the left), while the bottom blue one here is notably worse than the top.
-
----
-## MAD Competition
 ![image](assets/mad-mse-ssim.svg)
 
 #note: back in 2008, Eero did this work with a postdoc called Zhou Wang, comparing mean-squared error with SSIM, the strucural similarity metric, which was their proposed way of measuring how different two images are
