@@ -177,18 +177,18 @@ they can be used for:
 ---
 ## But wait there's more!
 
-- Eigendistortion: most and least noticeable changes to an image. <!-- .element: class="margin-top" -->
-- Maximally Differentiating (MAD) Competition: efficiently compare two visual models.
-- Representation geodesic: in a movie, what does the model think the most likely next frame is?
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: class="margin-top" -->
+- Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models?
+- Representation geodesic: what does the model think is the most likely sequence of images?
 
 #note: in addition to metamers, there are three other synthesis methods found in plenoptic, all based on research done in Eero's lab over the years. I'll describe each of them in a bit more detail, but they're all attempts to interrogate how visual models understand images and how we can compare them to biological perception in new ways.
 
 ---
 ## But wait there's more!
 
-- Eigendistortion: most and least noticeable changes to an image. <!-- .element: class="margin-top" -->
-- Maximally Differentiating (MAD) Competition: efficiently compare two visual models. <!-- .element: style="color: #bebebe" -->
-- Representation geodesic: in a movie, what does the model think the most likely next frame is? <!-- .element: style="color: #bebebe" -->
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: class="margin-top" -->
+- Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models? <!-- .element: style="color: #bebebe" -->
+- Representation geodesic: what does the model think is the most likely sequence of images? <!-- .element: style="color: #bebebe" -->
 
 #note: let's talk about eigendistortions first.
 
@@ -200,7 +200,8 @@ they can be used for:
 {"element": "#g11795", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]},
 {"element": "#g11801", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
 {"element": "#g11807", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
-{"element": "#g1453", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "3"} ]}
+{"element": "#g5889", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "3"} ]},
+{"element": "#g6029", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "5"} ]}
 ]} -->
 </div>
 
@@ -212,9 +213,11 @@ they can be used for:
 
 *CLICK* should I concentrate my changes in just a portion of the image? all three of these pixels have the same MSE with the original image, but we've spent that pixel budget in different ways. and so discriminating these images apart from the original has different difficulties: we're very good at detecting these contrast edges, but not so good at an overall shift in luminance. and the noise is fairly noticeable as well.
 
-if we have a model, we can ask what changes *the model* thinks are easy or hard to detect, and use them in a human experiment.
+*CLICK* can we do this sort of exploration in a principled way? at the very least, we know that humans have the contrast response function, and so are more sensitive to some frequencies than others. but because of Weber's law, we know this is adaptive: how sensitive we are to a change in luminance depends on the contrast, if nothing else.
 
-*CLICK* this is important because we know from adversarial examples that just because a model seems to behave similar to human perception (here, classifying images into different categories), that does not mean that they'll agree what changes are obvious. This model thinks this noise pattern is enough to switch the image category from a dog to an ostrich, but humans find it indetectable.
+if we have a computational model of some kind, we can ask what changes *the model* thinks are easy or hard to detect, and use them in a human experiment.
+
+*CLICK* from a model building perspective, this is important because we know from adversarial examples that just because a model seems to behave similar to human perception (here, classifying images into different categories), that does not mean that they'll agree what changes are obvious. This model thinks this noise pattern is enough to switch the image category from a dog to an ostrich, but humans find it indetectable.
 
 ---
 ## Eigendistortions
@@ -232,17 +235,42 @@ if we have a model, we can ask what changes *the model* thinks are easy or hard 
 ---
 ## More synthesis!
 
-- Eigendistortion: most and least noticeable changes to an image. <!-- .element: class="margin-top" style="color: #bebebe" -->
-- Maximally Differentiating (MAD) Competition: efficiently compare two visual models.
-- Representation geodesic: in a movie, what does the model think the most likely next frame is? <!-- .element: style="color: #bebebe" -->
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models?
+- Representation geodesic: what does the model think is the most likely sequence of images? <!-- .element: style="color: #bebebe" -->
 
 #note: now let's talk about MAD Competition. So far, I've talked a bit about comparing models to each other, but it's always been a bit implicit. what if you have two models that perform really similar to each other. for example, you're fitting pRFs and trying to decide whether they can be linear or whether you should add a compressive nonlinearity, like a power-law, on the end. for many images, the predictions of those two models are going to be relatively similar, and you really want to exaggerate them, to find the stimuli where their predictions will *really* differ. you can think carefully about the two models, how they differ, and try to build the proper stimuli by hand, but that's hard, and will  get harder and harder as your models get more complex. 
 
 or ... you could use MAD competition, who generates a set of stimuli that have *maximally different* predictions for the two models. let's step through how that works
 
 ---
+## MAD Competition
+<div data-animate data-load="assets/simple-mad-setup.svg">
+<!-- {"setup": [
+{"element": "#path101175-3-2", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]},
+{"element": "#g15349", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
+{"element": "#g1959", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
+{"element": "#g3787", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "3"} ]}
+]} -->
+</div>
 
-## Simple MAD Competition
+#note: MAD competition takes advantage of the fact that model's implicitly define a perceptual distance: we can say how different a model says two images are by taking the distance in their representational space. let's take a simple example. if we're comparing these two points, how do we measure the distance between them.
+
+*CLICK* the most natural way might be to use the Euclidean (or L2) distance, the square root of the sum of squares. this is distance "as the crow flies"
+
+*CLICK* but what if I told you that the red dot is Flatiron and the black dot is Meyer? I'm not spiderman, I can't move through Manhattan as the crow flies, I have to follow the street grid. then we should use what's called Manhattan distance, or the L1 distance instead (sum of the absolute values)
+
+so we have two different possibilities for how to consider distance. how do we figure which is better?
+
+*CLICK* we could randomly grab points, see what each model predicts, and then compare that to reality, but that seems slow.
+
+*CLICK* for some of these points, like this one, their predictions will be identical, and for others they'll be similar. 
+
+with MAD, we'll grab the set of points where the predictions are *as different as possible*
+
+---
+
+## MAD Competition
 
 <div data-animate data-load="assets/simple-mad-all.svg">
 <!-- {"setup": [
@@ -253,27 +281,11 @@ or ... you could use MAD competition, who generates a set of stimuli that have *
 ]} -->
 </div>
 
-#note:
-with a super simple example: we'll take a two-pixel image, each has value .5,
-and add some noise, then run MAD Competition between the L1 and L2 norms. so the
-L1 model thinks you can tell how different two points are by taking the absolute
-value of the difference of x and y and summing them, while the L2 takes the
-Euclidean norm of their difference, taking the difference between x and y,
-squaring that, summing them, and taking the square root.
+#note: let's see what that means. we can take those distances from before, and transform them into their level set. this circle and this diamond define all the points that each model thinks are equally distant from the red dot.
 
-with this simple one first because we can actually plot it, with pixel 1 on the
-x-axis and pixel 2 on the y, and we can also plot the level sets of our two
-metrics.
+in psychophysical terms, the Manhattan distance model thinks that every point on this diamond is has equal discriminability from the red dot. Euclidean thinks the same about the circle
 
-- so we start with a reference point, in red
-- we add some nosie to it, to get our initial point
-- and the diamond and the circle give us the level sets of L1 and L2. that is,
-  the L1 model thinks that all points which lie on the blue diamond are all *as
-  different* from the red point as the black one. if you were to run this
-  through psychophysics, L1 predicts the discrimination performance of every
-  point on the diamond is the same
-- L2 thinks that about the circle.
-- makes sense?
+makes sense?
 
 *CLICK*
 - this then is one MAD image, where we've maximized L2 norm while keeping L1
@@ -322,17 +334,84 @@ Eero, Zhou, and their collaborators won an Emmy for their work on SSIM, as an as
 ---
 ## More synthesis!
 
-- Eigendistortion: most and least noticeable changes to an image. <!-- .element: class="margin-top" style="color: #bebebe" -->
-- Maximally Differentiating (MAD) Competition: efficiently compare two visual models. <!-- .element: style="color: #bebebe" -->
-- Representation geodesic: in a movie, what does the model think the most likely next frame is? 
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models? <!-- .element: style="color: #bebebe" -->
+- Representation geodesic: what does the model think is the most likely sequence of images?
 
-#note: and the last one: geodesic. geodesic is about prediction. 
+#note: and the last one: representational geodesics. geoesics are about prediction: what is the most likely sequence of images? this is tied to an old idea in perception, that the visual system structures its representations in order to be useful.
+
+---
+## Representational untangling
+![image](assets/geodesic_1.svg)
+
+#note: the structure that exists in the world is not readily available from the signal that enters our eyes. If we take pictures of two objects from a bunch of different views and under many different lighting conditions, and then plot the pixel values in that high dimensional space, the manifolds representing these two objects will be all intermixed. that is, determining whether a picture is of this mug or of this cup is very difficult in pixel space. the idea is that one of the functions of the visual system is to untangle these representations such that, at the end of the ventral stream, it is very easy to determine whether we're looking at the cup or the mug
+
+DiCarlo and Cox call this the untangling manifolds hypothesis
+
+---
+## Representational straightening
+![image](assets/geodesic_2.svg)
+
+#note: but organisms don't just look at static images, we have to make sense of a moving world. it's not enough to tell whether you're looking at a cup or a mug, but if that cup is moving towards you, you want to be able to predict where it will end up.
+
+similar to the object identity idea, if you look at the trajectories of sequences of images (i.e., movies) in pixel space, they'll be very curved, all over the place. the hypothesis, then, is that the visual system straightens out likely sequences of images, likely videos, such that it is easy to predict what will happen next, because the difference between time t and t+1 will be every similar to the difference between time t and t-1, in representational space.
+
+does that make sense?
+
+Olivier Henaff has a handful of papers investigating whether this hypothesis holds up in human perception and macaque visual cortex, if you're interested.
+
+---
+## VGG geodesic
+
+<div data-animate data-load="assets/geodesic_boat.svg">
+<!-- {"setup": [
+{"element": "#g3725", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
+{"element": "#g3819", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
+{"element": "#g3913", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "3"} ]}
+]} -->
+</div>
+
+#note: but again, the idea with plenoptic is to enable the investigation of this in computational models.
+
+so we have this image of a boat that we're going to shift to the left by a small amount. this is probably hard to see, but if you look in the top left, you can see the rope shifting out of frame. so this is the actual sequence of images that happen, this is the ground truth
+
+*CLICK* as a point of comparison, a very implausible sequence of images is a pixel fade, where you take a weighted sum of the end points, transitioning from the first to the last frame. this is equivalent to the boat phasing out of existence at one location and phasing back in at the other -- something we don't see in the real world
+
+*CLICK* Olivier then asked, for a VGG deep net (standard object recognition neural network), what does it think the most likely sequence of images are? you get something weird and staticy, like this. This was very odd, but Olivier hypothesized that this might have to do with a detail of the construction of the network. these networks are series of convolutions, followed by nonlinearities, and one of those nonlinearities is what they call "max pooling", where they downsample an image by taking the largest value in each spatial region of the previous layers output
+
+this is a good way to get some wild aliasing, which Olivier hypothesized is
+responsible for this sequence of images. so they replaced the max pooling with a
+blur pooling step, where they blurred the image (throwing out the high
+frequencies that could alias) before downsampling.
+
+*CLICK* when you do that, you end up with a smoother transition, with less of the noticeable artifacts from the max pooling, though still clearly different from translation
+
+and they did some psychophysics that showed observers found the middle two sequences to be the least perceptually straight, then the bottom, the top (that is, they ran an ABX task where they had observers do an ABX task on sequences of frames to assess discriminability)
 
 ---
 ## Contents
-![contents](assets/plen-contents-2.svg)
+<div class="column" style="float:left; width:50%; margin-top:5%">
 
-#note:
+### Synthesize
+- Metamer: identical images
+- Eigendistortion: most and least noticeable changes
+- Maximally Differentiating (MAD) Competition: efficient model comparison
+- Representation geodesic: most likely image sequence
+
+</div>
+<div class="column" style="float:right; width:50%; margin-top:5%">
+
+### Synthesize
+- Portilla-Simoncelli texture statistics
+- Steerable pyramid
+- Laplacian pyramid
+- Front end models (Berardino et al., 2017)
+- Structural Similarity Inde (SSIM) and Multi-Scale SSIM (MS-SSIM)
+- Normalized Laplacian Pyramid Distance (NLPD)
+
+</div>
+
+#note: okay, so that was a lot. I've shown you ... (go through slide)
 
 ---
 ## Status and Roadmap
