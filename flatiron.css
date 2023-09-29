@@ -424,3 +424,32 @@ div.two-column {
 .big-math > span {
   font-size: 100% !important;
 }
+
+/*********************************************
+ * Fragments
+ *********************************************/
+
+.reveal .fragment.appear-disappear {
+	opacity: 0;
+	display: none;
+}
+.reveal h2.fragment.appear-disappear.current-fragment {
+	display: block;
+}
+.reveal .fragment.appear-disappear.current-fragment {
+	opacity: 1;
+	display: inline;
+}
+.reveal .fragment.disappear {
+  opacity: 1;
+  display: inline;
+  visibility: inherit;
+}
+.reveal h2.fragment.disappear {
+	display: block;
+}
+.reveal .fragment.disappear.visible {
+  opacity: 0;
+  display: none;
+  visibility: hidden;
+}

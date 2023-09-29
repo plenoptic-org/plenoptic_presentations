@@ -3,4 +3,4 @@
 	url = git@github.com:hakimel/reveal.js.git
 [submodule "reveal.js-plugins"]
 	path = reveal.js-plugins
-	url = git@github.com:rajgoel/reveal.js-plugins.git
+	url = git@github.com:billbrod/reveal.js-plugins.git

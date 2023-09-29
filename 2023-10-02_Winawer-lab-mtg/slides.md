@@ -5,42 +5,40 @@
 
 ---
 
-![](assets/plen-1.0.1-intro-1.svg)
+<div data-animate data-load="assets/plen-1.0.1-intro-2.svg">
+<!-- {"setup": [
+{"element": "#rect4749", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]}
+]} -->
+</div>
 
 #note: so I'm going to talk about plenoptic, which is a python library that performs "model-based synthesis of perceptual stimuli" to help better understand those computational models. I'm going to briefly describe what that means. key word is "synthesis"
 
 but before I go on, summarizing the contents of plenoptic is like summarizing the work of at least 5 grad students and 2 postdocs from Eero's lab. I'm focusing on the high level idea of what do these methods *do* and how can they be used, but it's a lot of material and this is my first attempt at doing this so ... thanks for being guinea pigs! and please interrupt me with questions if something isn't clear. I'm hoping on giving variants of this talk over and over to different vision scientists, so any feedback on how to improve it are much appreciated. and it's why I'm starting here.
 
----
-
-![](assets/plen-1.0.1-intro-2.svg)
-
-#note: we've represented synthesis with this little abstract logo. This represents the relationship between computational models, their inputs, outputs, and parameters.
+we've represented synthesis with this little abstract logo. This represents the relationship between computational models, their inputs, outputs, and parameters.
 
 ---
 
-![](assets/plen-synth-1.svg)
+<h2 class="fragment disappear" data-fragment-index=0>Visual model</h2>
+<h2 class="fragment appear-disappear" data-fragment-index=0>Simulate responses</h2>
+<h2 class="fragment appear-disappear" data-fragment-index=1>Fit parameters</h2>
+<h2 class="fragment appear-disappear" data-fragment-index=2>Synthesize stimuli</h2>
+
+<div data-animate data-load="assets/plen-synth-4.svg">
+<!-- {"setup": [
+{"element": "#rect6595-6", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
+{"element": "#rect6595-7", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "1"} ]},
+{"element": "#rect6595", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "2"} ]}
+]} -->
+</div>
 
 #note: To make that slightly less abstract, here is a diagram of a model in visual neuroscience. it accepts some stimuli s, often for us images, as inputs, and based on some parameters theta, returns some responses r. these responses can be anything of interst to the experimenter, such as predicted spike rates or image class, if this were doing image net
 
----
+- now the way that models are most commonly used, is that we feed them an input and some parameter values and we simulate the responses.
 
-## Simulate responses
-![](assets/plen-synth-2.svg)
+- we often pretty regularly fix the responses for a set of stimuli and use backpropagation to fit the parameters
 
-#note: now the way that models are most commonly used, is that we feed them an input and some parameter values and we simulate the responses.
-
----
-## Fit parameters
-![](assets/plen-synth-3.svg)
-
-#note: we often pretty regularly fix the responses for a set of stimuli and use backpropagation to fit the parameters
-
----
-## Synthesize stimuli
-![](assets/plen-synth-4.svg)
-
-#note: but there's nothing special about the stimuli. we can similarly hold both the responses and parameters constant and use back propagation to generate novel stimuli. 
+- but there's nothing special about the stimuli. we can similarly hold both the responses and parameters constant and use back propagation to generate novel stimuli. 
 
 this is what we call synthesis -- updating the pixel values of an image based on a model with set parameter values and some intended output.
 
@@ -82,15 +80,24 @@ Physically distinct stimuli that are perceptually identical (to a computational 
 
 ---
 ## Texture model metamers
-![contents](assets/texture-model-1.svg)
+
+<div data-animate data-load="assets/texture-model-3.svg">
+<!-- {"setup": [
+{"element": "#image1696", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#image300", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
+{"element": "#image2014", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#image2403", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image2618", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image268", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#g2940", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image2780", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image2768", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]}
+]} -->
+</div>
 
 #note: some examples of this from Eero's lab include the texture model, which he developed with Javier Portilla in the late 90s. The goal of this model was to develop a set of statistical properties that adequately capture what makes a visual texture a texture (not a vision science goal, more engineering). That model is built off the steerable pyramid, a multi-scale, multi-orientation filter bank, which we can think of as "V1 like receptive fields", as shown here. the model measures the cross-correlations and auto-correlations of the responses of these receptive fields, as well as some marginal pixel statistics.
 
----
-## Texture model metamers
-![contents](assets/texture-model-2.svg)
-
-#note: The question that Eero and Javier faced was: we developed this model that we think captures an images "texturiness", how do we demonstrate that it does a good job? 
+*CLICK* The question that Eero and Javier faced was: we developed this model that we think captures an images "texturiness", how do we demonstrate that it does a good job? 
 
 they first thought, let's try classification. let's see if our model can distinguish this basket from this grain of wood. and it did *phenomenally*, performance was at ceiling on the database of ~30 textures they had (this was in the late 90s). 
 
@@ -98,11 +105,7 @@ but then they said wait, let's compare it against a simple spectral model as wel
 
 so clearly the test was too easy. they came up with another solution: let's take a texture image...
 
----
-## Texture model metamers
-![contents](assets/texture-model-3.svg)
-
-#note: and a patch of white noise and let's adjust the pixels in the white noise image so that, eventually, it has the same texture statistics as the texture image. if our model is good, then the output of that process will look perceptually similar to the original image. That is, if we generate a metamer for our texture model, the human should believe it belongs to the same category.
+*CLICK* and a patch of white noise and let's adjust the pixels in the white noise image so that, eventually, it has the same texture statistics as the texture image. if our model is good, then the output of that process will look perceptually similar to the original image. That is, if we generate a metamer for our texture model, the human should believe it belongs to the same category.
 
 let's watch
 
@@ -122,33 +125,29 @@ let's watch
 
 ---
 ## Texture model metamers
-![contents](assets/texture-model-4.svg)
+
+<div data-animate data-load="assets/texture-model-3.svg">
+<!-- {"setup": [
+{"element": "#image1696", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image300", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image2014", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image2618", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]},
+{"element": "#image268", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
+{"element": "#g2940", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "3"} ]},
+{"element": "#image2780", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
+{"element": "#image2768", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]}
+]} -->
+</div>
 
 #note: so this works for the basket...
 
----
-## Texture model metamers
-![contents](assets/texture-model-5.svg)
+*CLICK* ... it works for other textures, like this wood grain
 
-#note: ... it works for other textures, like this wood grain
+*CLICK* while it did really well on those first two, there are some textures it has a bit more trouble on. here we can see it struggles to break these tiles up into discrete units. it has trouble capturing perfectly straight lines like this.
 
----
-## Texture model metamers
-![image](assets/texture-model-5a.svg)
+*CLICK* and it allows you to do other intersting things, like extrapolating a texture beyond its borders or mixing two textures together
 
-#note: while it did really well on those first two, there are some textures it has a bit more trouble on. here we can see it struggles to break these tiles up into discrete units. it has trouble capturing perfectly straight lines like this.
-
----
-## Texture model metamers
-![contents](assets/texture-model-6.svg)
-
-#note: and it allows you to do other intersting things, like extrapolating a texture beyond its borders or mixing two textures together
-
----
-## Texture model metamers
-![contents](assets/texture-model-7.svg)
-
-#note: but it's a texture model, so it doesn't work for arbtirary images. this portrait of Einstein isn't a texture, so the texture metamer (predictably) looks nothing like the original image. so this is one sort of thing that can be done with model metamers: validating whether this image-computable model adequately captures the appearance of textures.
+*CLICK* but it's a texture model, so it doesn't work for arbtirary images. this portrait of Einstein isn't a texture, so the texture metamer (predictably) looks nothing like the original image. so this is one sort of thing that can be done with model metamers: validating whether this image-computable model adequately captures the appearance of textures.
 
 ---
 ## More model metamers!
@@ -195,47 +194,40 @@ they can be used for:
 
 ---
 ## How to noticeably change an image?
-![contents](assets/eigendist-intro-1.svg)
+
+<div data-animate data-load="assets/eigendist-intro-5.svg">
+<!-- {"setup": [
+{"element": "#g11795", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]},
+{"element": "#g11801", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
+{"element": "#g11807", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
+{"element": "#g1453", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "3"} ]}
+]} -->
+</div>
 
 #note: this starts with a seemingly simple question: if you have an image and a pixel budget, how can you most, or least, noticeably change that image. That is, if I have this picture of a parrot, and I can change the pixel values so that I end up with an image whose mean-squared error with the original is .01, what should I do?
 
----
-## How to noticeably change an image?
-![contents](assets/eigendist-intro-2.svg)
+*CLICK* should I spread that as noise everywhere across the image?
 
-#note: should I spread that as noise everywhere across the image?
+*CLICK* should I uniformly increase the value of all the pixels?
 
----
-## How to noticeably change an image?
-![contents](assets/eigendist-intro-3.svg)
-
-#note: should I uniformly increase the value of all the pixels?
-
----
-## How to noticeably change an image?
-![contents](assets/eigendist-intro-4.svg)
-
-#note: should I concentrate my changes in just a portion of the image? all three of these pixels have the same MSE with the original image, but we've spent that pixel budget in different ways. and so discriminating these images apart from the original has different difficulties: we're very good at detecting these contrast edges, but not so good at an overall shift in luminance. and the noise is fairly noticeable as well.
+*CLICK* should I concentrate my changes in just a portion of the image? all three of these pixels have the same MSE with the original image, but we've spent that pixel budget in different ways. and so discriminating these images apart from the original has different difficulties: we're very good at detecting these contrast edges, but not so good at an overall shift in luminance. and the noise is fairly noticeable as well.
 
 if we have a model, we can ask what changes *the model* thinks are easy or hard to detect, and use them in a human experiment.
 
----
-## How to noticeably change an image?
-![contents](assets/eigendist-intro-5.svg)
-
-#note: this is important because we know from adversarial examples that just because a model seems to behave similar to human perception (here, classifying images into different categories), that does not mean that they'll agree what changes are obvious. This model thinks this noise pattern is enough to switch the image category from a dog to an ostrich, but humans find it indetectable.
+*CLICK* this is important because we know from adversarial examples that just because a model seems to behave similar to human perception (here, classifying images into different categories), that does not mean that they'll agree what changes are obvious. This model thinks this noise pattern is enough to switch the image category from a dog to an ostrich, but humans find it indetectable.
 
 ---
 ## Eigendistortions
-![contents](assets/eigendistortions-1.svg)
+
+<div data-animate data-load="assets/eigendistortions.svg">
+<!-- {"setup": [
+{"element": "#g9885", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]}
+]} -->
+</div>
 
 #note: you can do this for two possible models of the human visual system, one a simple 4-layer convolutional neural network, and one a physiologically-inspired on-off model with contrast and luminance normalization. you can see that the OnOff model thinks that, to make changes noticeable, you should make high contrast, localized changes, and do the opposite to make them invisible, spread them out and make them low contrast. the CNN, on the other hand, thinks that uniform noise is not noticeable, and does something somewhat similar to the On Of to make it noticeable, though less localized and less contrast.
 
----
-## Eigendistortions
-![contents](assets/eigendistortions.svg)
-
-#note: you can run a psyhophysics experiment to see how human perception aligns, and use that to compare the models. they ran more models than this, but let's just focus on these two. on the y-axis is the threshold for detection: what value did they need to multiply the eigndistortion on the top by before humans noticed it. in the examples here, the most noticeable has been multiplied by 4, the bottom by 30. so the further apart these two dots are, the more the human agrees with the model.
+*CLICK* you can run a psyhophysics experiment to see how human perception aligns, and use that to compare the models. they ran more models than this, but let's just focus on these two. on the y-axis is the threshold for detection: what value did they need to multiply the eigndistortion on the top by before humans noticed it. in the examples here, the most noticeable has been multiplied by 4, the bottom by 30. so the further apart these two dots are, the more the human agrees with the model.
 
 ---
 ## More synthesis!
@@ -249,8 +241,17 @@ if we have a model, we can ask what changes *the model* thinks are easy or hard 
 or ... you could use MAD competition, who generates a set of stimuli that have *maximally different* predictions for the two models. let's step through how that works
 
 ---
+
 ## Simple MAD Competition
-![img](assets/simple-mad.svg)
+
+<div data-animate data-load="assets/simple-mad-all.svg">
+<!-- {"setup": [
+{"element": "#use101147", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]},
+{"element": "#use101155", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
+{"element": "#path101141", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
+{"element": "#path101138", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]}
+]} -->
+</div>
 
 #note:
 with a super simple example: we'll take a two-pixel image, each has value .5,
@@ -274,11 +275,7 @@ metrics.
 - L2 thinks that about the circle.
 - makes sense?
 
----
-## Simple MAD Competition
-![img](assets/simple-mad-1.svg)
-
-#note:
+*CLICK*
 - this then is one MAD image, where we've maximized L2 norm while keeping L1
   constant
 - that is, L1 thinks the black and blue points are just as different from the
@@ -289,12 +286,7 @@ metrics.
   ended up here is because it's closer to our initial image and we used
   iterative optimization.
 
----
-## Simple MAD Competition
-![img](assets/simple-mad-2.svg)
-
-
-#note:
+*CLICK*
 - we can similarly max the L1 norm, which moves us along the L2 level set and
   moves us as far away from reference image as possible
 - this puts it "on the diagonal", so that neither pixel has the same value as in
@@ -302,12 +294,7 @@ metrics.
 - again, other diagonals would also have worked, but this is the one we were
   closest to
 
-
----
-## Simple MAD Competition
-![img](assets/simple-mad-all.svg)
-
-#note:
+*CLICK*
 - now add the final two dots, corresponding to minimizing L1 and L2,
   respectively
 - we see that they move along their respective level sets, ending up in the same
