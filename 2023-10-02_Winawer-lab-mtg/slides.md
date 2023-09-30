@@ -147,13 +147,15 @@ let's watch
 
 *CLICK* and it allows you to do other intersting things, like extrapolating a texture beyond its borders or mixing two textures together
 
-*CLICK* but it's a texture model, so it doesn't work for arbtirary images. this portrait of Einstein isn't a texture, so the texture metamer (predictably) looks nothing like the original image. so this is one sort of thing that can be done with model metamers: validating whether this image-computable model adequately captures the appearance of textures.
+*CLICK* but it's a texture model, so it doesn't work for arbtirary images. this portrait of Einstein isn't a texture, so the texture metamer (predictably) looks nothing like the original image. 
+
+so this is one sort of thing that can be done with model metamers: validating whether this image-computable model adequately captures the appearance of textures.
 
 ---
 ## More model metamers!
-![contents](assets/fovmet.png) <!-- .element: style="height:950px;width:auto" -->
+![contents](assets/fovmet.svg)
 
-#note: and as another example, these may look familiar to some of you. I built foveated models of the early visual system, which computed the local luminance or spectral energy in receptive-field like regions, which grew with eccentricity across the image. I then generated model metamers for different sizes of these images and showed them to humans in a psychophysics experiment (which, those who took part can attest, was super fun). I used these to find the parameter value for which the models and the humans agreed on which images were indistinguishable. that is, we used this metamer framework to find the size of the regions wherein humans would be insensitive to changes in either luminance or spectral energy
+#note: and as another example, these may look familiar to some of you. I built foveated models of the early visual system, which computed the local luminance or spectral energy in receptive-field like regions, which grew with eccentricity across the image. I then generated model metamers for different sizes of these regions and showed them to humans in a psychophysics experiment (which, those who took part can attest, was super fun). I used these to find the parameter value for which the models and the humans agreed on which images were indistinguishable. that is, we used this metamer framework to find the size of the regions wherein humans would be insensitive to changes in either luminance or spectral energy
 
 ---
 ## Why do this?
@@ -161,6 +163,7 @@ let's watch
 - Improve understanding of computational models <!-- .element: class="fragment margin-top" data-fragment-index="1" -->
 - Image space is vast! <!-- .element: class="fragment" data-fragment-index="2" -->
 - Better understand single model or compare between competing models <!-- .element: class="fragment" data-fragment-index="3" -->
+- Take models seriously as objects of scientific inquiry <!-- .element: class="fragment" data-fragment-index="4" -->
 
 #note: For those of you who haven't heard of this approach, you might wonder, why do
 this?
@@ -170,25 +173,28 @@ the goal is to improve our understanding of how our computational models make se
 image space is vast, so any possible dataset is a tiny sample of it, and the methods in plenoptic provide a different and targeted way of exploring this space.
 
 they can be used for:
-- improving understanding of a given model -- for example, fit a model to a visual neuron, then generate some stimuli with plenoptic and use it in a new experiment
-- another way of comparing models: many models can do equivalently (or near equivalently) well on a given benchmark, and plenoptic's methods provide a complementary approach for comparing them.
+- improving understanding of a given model -- for example, fit a model to prediction BOLD responses in V1, then generate some stimuli with plenoptic and use it in a new experiment
+- another way of comparing models: many models can do equivalently (or near equivalently) well on a given dataset, and plenoptic's methods provide a complementary approach for comparing them.
 
+and the real point here is that we should take our models seriously as objects of scientific inquiry. if we think that we have a good model for V1 responses, we should seriously test that model, to get a better sense for when its assumptions break down, the contexts in which it makes sense and the phenomena it can't explain.
 
 ---
 ## But wait there's more!
 
-- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: class="margin-top" -->
+- Metamer: what images does the model think are identical? <!-- .element: class="margin-top" -->
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image?
 - Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models?
-- Representation geodesic: what does the model think is the most likely sequence of images?
+- Representational geodesic: what does the model think is the most likely sequence of images?
 
 #note: in addition to metamers, there are three other synthesis methods found in plenoptic, all based on research done in Eero's lab over the years. I'll describe each of them in a bit more detail, but they're all attempts to interrogate how visual models understand images and how we can compare them to biological perception in new ways.
 
 ---
 ## But wait there's more!
 
-- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: class="margin-top" -->
+- Metamer: what images does the model think are identical? <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image? 
 - Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models? <!-- .element: style="color: #bebebe" -->
-- Representation geodesic: what does the model think is the most likely sequence of images? <!-- .element: style="color: #bebebe" -->
+- Representational geodesic: what does the model think is the most likely sequence of images? <!-- .element: style="color: #bebebe" -->
 
 #note: let's talk about eigendistortions first.
 
@@ -232,16 +238,23 @@ if we have a computational model of some kind, we can ask what changes *the mode
 
 *CLICK* you can run a psyhophysics experiment to see how human perception aligns, and use that to compare the models. they ran more models than this, but let's just focus on these two. on the y-axis is the threshold for detection: what value did they need to multiply the eigndistortion on the top by before humans noticed it. in the examples here, the most noticeable has been multiplied by 4, the bottom by 30. so the further apart these two dots are, the more the human agrees with the model.
 
+in this case, we see that the human agrees more with OnOff model than the deep net, despite the fact that the deep net can perform an image classification task really well. the fact that a model can perform one task or fit one data set very well does not mean that it will perform well in other contexts. these tools are ways of exploring different aspects of a model's representation, its understanding of an image.
+
 ---
 ## More synthesis!
 
-- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Metamer: what images does the model think are identical? <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: style="color: #bebebe" -->
 - Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models?
-- Representation geodesic: what does the model think is the most likely sequence of images? <!-- .element: style="color: #bebebe" -->
+- Representational geodesic: what does the model think is the most likely sequence of images? <!-- .element: style="color: #bebebe" -->
 
-#note: now let's talk about MAD Competition. So far, I've talked a bit about comparing models to each other, but it's always been a bit implicit. what if you have two models that perform really similar to each other. for example, you're fitting pRFs and trying to decide whether they can be linear or whether you should add a compressive nonlinearity, like a power-law, on the end. for many images, the predictions of those two models are going to be relatively similar, and you really want to exaggerate them, to find the stimuli where their predictions will *really* differ. you can think carefully about the two models, how they differ, and try to build the proper stimuli by hand, but that's hard, and will  get harder and harder as your models get more complex. 
+#note: now let's talk about MAD Competition. So far, I've talked a bit about comparing models to each other, but it's always been a bit implicit. what if you have two models that perform really similar to each other. 
 
-or ... you could use MAD competition, who generates a set of stimuli that have *maximally different* predictions for the two models. let's step through how that works
+for example, say you're fitting the responses of BOLD V1 and you want to see if divisive normalization is necessary. Now if you're only showing sine gratings (each of which has a single orientation and spatial frequency), the responses of the model with and without normalization are probably going to be relatively similar.
+
+in order to distinguish between them, you really want to exaggerate their differences, to find the stimuli where their predictions will *really* differ. you can think carefully about the two models, how they differ, and try to build the proper stimuli by hand and you could probably do that in this case, but in general that's hard, and will  get harder and harder as your models get more complex or you apply them to areas less wel understood than V1.
+
+so instead of doing this by hand, you could use MAD competition, which generates a set of stimuli that have *maximally different* predictions for the two models. let's step through how that works
 
 ---
 ## MAD Competition
@@ -254,11 +267,13 @@ or ... you could use MAD competition, who generates a set of stimuli that have *
 ]} -->
 </div>
 
-#note: MAD competition takes advantage of the fact that model's implicitly define a perceptual distance: we can say how different a model says two images are by taking the distance in their representational space. let's take a simple example. if we're comparing these two points, how do we measure the distance between them.
+#note: MAD competition takes advantage of the fact that model's implicitly define a perceptual distance: we can say how different a model says two images are by taking the distance in their representational space.
 
-*CLICK* the most natural way might be to use the Euclidean (or L2) distance, the square root of the sum of squares. this is distance "as the crow flies"
+to get a sense for what that looks like, we're going to get more abstract first and take a simple 2d example. if we're comparing these two points, how do we measure the distance between them. we want to know how long it would take me to get from the black point to the red point.
 
-*CLICK* but what if I told you that the red dot is Flatiron and the black dot is Meyer? I'm not spiderman, I can't move through Manhattan as the crow flies, I have to follow the street grid. then we should use what's called Manhattan distance, or the L1 distance instead (sum of the absolute values)
+*CLICK* the most natural way might be to use the Euclidean (or L2) distance, the square root of the sum of squared differences. this is distance "as the crow flies"
+
+*CLICK* but what if I told you that the red dot is Flatiron and the black dot is Meyer? I'm not spiderman, I can't move through Manhattan as the crow flies, I have to follow the street grid. then we should use what's called Manhattan distance, or the L1 distance instead (sum of the absolute differences)
 
 so we have two different possibilities for how to consider distance. how do we figure which is better?
 
@@ -334,9 +349,10 @@ Eero, Zhou, and their collaborators won an Emmy for their work on SSIM, as an as
 ---
 ## More synthesis!
 
-- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Metamer: what images does the model think are identical? <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: style="color: #bebebe" -->
 - Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models? <!-- .element: style="color: #bebebe" -->
-- Representation geodesic: what does the model think is the most likely sequence of images?
+- Representational geodesic: what does the model think is the most likely sequence of images?
 
 #note: and the last one: representational geodesics. geoesics are about prediction: what is the most likely sequence of images? this is tied to an old idea in perception, that the visual system structures its representations in order to be useful.
 
@@ -396,7 +412,7 @@ and they did some psychophysics that showed observers found the middle two seque
 - Metamer: identical images
 - Eigendistortion: most and least noticeable changes
 - Maximally Differentiating (MAD) Competition: efficient model comparison
-- Representation geodesic: most likely image sequence
+- Representational geodesic: most likely image sequence
 
 </div>
 <div class="column" style="float:right; width:50%; margin-top:5%">
@@ -406,7 +422,7 @@ and they did some psychophysics that showed observers found the middle two seque
 - Steerable pyramid
 - Laplacian pyramid
 - Front end models (Berardino et al., 2017)
-- Structural Similarity Inde (SSIM) and Multi-Scale SSIM (MS-SSIM)
+- Structural Similarity Index (SSIM) and Multi-Scale SSIM (MS-SSIM)
 - Normalized Laplacian Pyramid Distance (NLPD)
 
 </div>
@@ -452,3 +468,26 @@ At this point, I'm happy to work with anyone who wants to use plenoptic. I know 
 #note: I'm not just interested in more users, but in new contributors as well.
 
 We're about to finish merging our first substantial PR from someone outside the lab! Daniel Herrera from Johannes Burges's lab
+
+---
+## Contents
+<div class="column" style="float:left; width:50%; margin-top:5%">
+
+### Synthesize
+- Metamer: identical images
+- Eigendistortion: most and least noticeable changes
+- Maximally Differentiating (MAD) Competition: efficient model comparison
+- Representational geodesic: most likely image sequence
+
+</div>
+<div class="column" style="float:right; width:50%; margin-top:5%">
+
+### Synthesize
+- Portilla-Simoncelli texture statistics
+- Steerable pyramid
+- Laplacian pyramid
+- Front end models (Berardino et al., 2017)
+- Structural Similarity Index (SSIM) and Multi-Scale SSIM (MS-SSIM)
+- Normalized Laplacian Pyramid Distance (NLPD)
+
+</div>
