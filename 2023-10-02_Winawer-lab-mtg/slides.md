@@ -384,7 +384,25 @@ Eero, Zhou, and their collaborators won an Emmy for their work on SSIM, as an as
 - Maximally Differentiating (MAD) Competition: efficiently compare two visual models. <!-- .element: style="color: #bebebe" -->
 - Representation geodesic: in a movie, what does the model think the most likely next frame is? 
 
-#note: and the last one: geodesic. geodesic is about prediction. 
+#note: and the last one: geodesic. geodesic is about prediction: what is the most likely sequence of images? that is, if I'm watching a short movie and I stop suddenly, what happens next? if I'm shifting from left to right and I stop here, what is likely to happen next?
+
+---
+## Representations must be useful
+![image](assets/geodesic_1.svg)
+
+#note: This is is related to the long standing idea that the visual system transforms its inputs into internal representations that effectively capture the information the organism needs to operate in the world. DiCarlo and Cox's untangling manifolds is one example of this: multiple views of the same object, in pixel space, are a mess. one of the jobs of the visual system is to "untangle" these representations such that it is easy to distinguish between different objects.
+
+---
+## Representational straightening
+![image](assets/geodesic_2.svg)
+
+#note: here, we're applying that idea to motion: the visual system should be transforming its inputs so as to make future predictions easy. if you're an organism moving around in the world, it's not only important to recognize that I am Billy and distinct from Jon, regardless of viewpoint or lighting conditions, but also that, if I'm walking towards you, I'm likely to continue walking towards you. I'm *really* unlikely to just phase out of existence and pop back into existence behind you.
+
+and the easiest prediction to make is that things are linear. the linear predictions says: if I take the difference between the image at time t and time t-1 and add that to time t, I'll get time t+1. so that's what visual systems should be doing, taking sequences of images that exist in the real world, like me walking towards you, and making their representation perfectly straight, while taking sequences that *don't* exist, like me phasing out of existence and popping up behind you, and making them really curvy.
+
+that's the hypothesis -- does that make sense?
+
+they have a couple papers looking at this in human perception and the macaque visual system, if you're interested, but we're applying this idea to computational models
 
 ---
 ## Contents
