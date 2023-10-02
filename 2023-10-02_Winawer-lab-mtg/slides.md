@@ -429,19 +429,19 @@ and they did some psychophysics that showed observers found the middle two seque
 
 ---
 ## Status and Roadmap
-<div class="column margin-top" style="float:left; width:80%">
+<div class="column margin-top" style="float:left; width:70%">
 
 - All methods, models are implemented
   - Currently improving geodesics and refactoring texture model
 - Working on improving tutorials and documentation, cleaning up code base
 - Looking for feedback and users!
-  - https://plenoptic.readthedocs.io/
 
 </div>
 
-<div class="column margin-top" style="float:right; width:20%">
+<div class="column margin-top" style="float:right; width:30%">
 
-![qr](assets/plen-docs-qr.svg)
+![qr](assets/plen-docs-qr.svg) <!-- .element: style="width:70%" -->
+https://plenoptic.readthedocs.io/
 
 </div>
 
