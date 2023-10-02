@@ -1,9 +1,5 @@
 # plenoptic_presentations
 
-TODO:
-- [ ] update flatiron css for new branding
-- [ ] there appear to be some screen sizes which will cause elements of an svg to just ... not show up. look into that
-
 Presentations about the
 [plenoptic](https://github.com/LabForComputationalVision/plenoptic/) software
 package. These presentations are all [reveal.js](https://revealjs.com/)
@@ -11,6 +7,8 @@ presentations built from markdown files found in their respective folders, with
 the website built using github pages.
 
 This repo also includes some code used to generate figures.
+
+See [notes](./notes.md) for notes on how to improve presentations.
 
 ## Build locally
 
