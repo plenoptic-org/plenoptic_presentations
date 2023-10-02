@@ -5,42 +5,40 @@
 
 ---
 
-![](assets/plen-1.0.1-intro-1.svg)
+<div data-animate data-load="assets/plen-1.0.1-intro-2.svg">
+<!-- {"setup": [
+{"element": "#rect4749", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]}
+]} -->
+</div>
 
 #note: so I'm going to talk about plenoptic, which is a python library that performs "model-based synthesis of perceptual stimuli" to help better understand those computational models. I'm going to briefly describe what that means. key word is "synthesis"
 
 but before I go on, summarizing the contents of plenoptic is like summarizing the work of at least 5 grad students and 2 postdocs from Eero's lab. I'm focusing on the high level idea of what do these methods *do* and how can they be used, but it's a lot of material and this is my first attempt at doing this so ... thanks for being guinea pigs! and please interrupt me with questions if something isn't clear. I'm hoping on giving variants of this talk over and over to different vision scientists, so any feedback on how to improve it are much appreciated. and it's why I'm starting here.
 
----
-
-![](assets/plen-1.0.1-intro-2.svg)
-
-#note: we've represented synthesis with this little abstract logo. This represents the relationship between computational models, their inputs, outputs, and parameters.
+we've represented synthesis with this little abstract logo. This represents the relationship between computational models, their inputs, outputs, and parameters.
 
 ---
 
-![](assets/plen-synth-1.svg)
+<h2 class="fragment disappear" data-fragment-index=0>Visual model</h2>
+<h2 class="fragment appear-disappear" data-fragment-index=0>Simulate responses</h2>
+<h2 class="fragment appear-disappear" data-fragment-index=1>Fit parameters</h2>
+<h2 class="fragment appear-disappear" data-fragment-index=2>Synthesize stimuli</h2>
+
+<div data-animate data-load="assets/plen-synth-4.svg">
+<!-- {"setup": [
+{"element": "#rect6595-6", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
+{"element": "#rect6595-7", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "1"} ]},
+{"element": "#rect6595", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "2"} ]}
+]} -->
+</div>
 
 #note: To make that slightly less abstract, here is a diagram of a model in visual neuroscience. it accepts some stimuli s, often for us images, as inputs, and based on some parameters theta, returns some responses r. these responses can be anything of interst to the experimenter, such as predicted spike rates or image class, if this were doing image net
 
----
+- now the way that models are most commonly used, is that we feed them an input and some parameter values and we simulate the responses.
 
-## Simulate responses
-![](assets/plen-synth-2.svg)
+- we often pretty regularly fix the responses for a set of stimuli and use backpropagation to fit the parameters
 
-#note: now the way that models are most commonly used, is that we feed them an input and some parameter values and we simulate the responses.
-
----
-## Fit parameters
-![](assets/plen-synth-3.svg)
-
-#note: we often pretty regularly fix the responses for a set of stimuli and use backpropagation to fit the parameters
-
----
-## Synthesize stimuli
-![](assets/plen-synth-4.svg)
-
-#note: but there's nothing special about the stimuli. we can similarly hold both the responses and parameters constant and use back propagation to generate novel stimuli. 
+- but there's nothing special about the stimuli. we can similarly hold both the responses and parameters constant and use back propagation to generate novel stimuli. 
 
 this is what we call synthesis -- updating the pixel values of an image based on a model with set parameter values and some intended output.
 
@@ -82,15 +80,24 @@ Physically distinct stimuli that are perceptually identical (to a computational 
 
 ---
 ## Texture model metamers
-![contents](assets/texture-model-1.svg)
+
+<div data-animate data-load="assets/texture-model-3.svg">
+<!-- {"setup": [
+{"element": "#image1696", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#image300", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
+{"element": "#image2014", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#image2403", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image2618", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image268", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#g2940", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image2780", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image2768", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]}
+]} -->
+</div>
 
 #note: some examples of this from Eero's lab include the texture model, which he developed with Javier Portilla in the late 90s. The goal of this model was to develop a set of statistical properties that adequately capture what makes a visual texture a texture (not a vision science goal, more engineering). That model is built off the steerable pyramid, a multi-scale, multi-orientation filter bank, which we can think of as "V1 like receptive fields", as shown here. the model measures the cross-correlations and auto-correlations of the responses of these receptive fields, as well as some marginal pixel statistics.
 
----
-## Texture model metamers
-![contents](assets/texture-model-2.svg)
-
-#note: The question that Eero and Javier faced was: we developed this model that we think captures an images "texturiness", how do we demonstrate that it does a good job? 
+*CLICK* The question that Eero and Javier faced was: we developed this model that we think captures an images "texturiness", how do we demonstrate that it does a good job? 
 
 they first thought, let's try classification. let's see if our model can distinguish this basket from this grain of wood. and it did *phenomenally*, performance was at ceiling on the database of ~30 textures they had (this was in the late 90s). 
 
@@ -98,11 +105,7 @@ but then they said wait, let's compare it against a simple spectral model as wel
 
 so clearly the test was too easy. they came up with another solution: let's take a texture image...
 
----
-## Texture model metamers
-![contents](assets/texture-model-3.svg)
-
-#note: and a patch of white noise and let's adjust the pixels in the white noise image so that, eventually, it has the same texture statistics as the texture image. if our model is good, then the output of that process will look perceptually similar to the original image. That is, if we generate a metamer for our texture model, the human should believe it belongs to the same category.
+*CLICK* and a patch of white noise and let's adjust the pixels in the white noise image so that, eventually, it has the same texture statistics as the texture image. if our model is good, then the output of that process will look perceptually similar to the original image. That is, if we generate a metamer for our texture model, the human should believe it belongs to the same category.
 
 let's watch
 
@@ -122,39 +125,37 @@ let's watch
 
 ---
 ## Texture model metamers
-![contents](assets/texture-model-4.svg)
+
+<div data-animate data-load="assets/texture-model-3.svg">
+<!-- {"setup": [
+{"element": "#image1696", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image300", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image2014", "modifier": "attr", "parameters": [ {"style": "display: none;"} ]},
+{"element": "#image2618", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]},
+{"element": "#image268", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
+{"element": "#g2940", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "3"} ]},
+{"element": "#image2780", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
+{"element": "#image2768", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]}
+]} -->
+</div>
 
 #note: so this works for the basket...
 
----
-## Texture model metamers
-![contents](assets/texture-model-5.svg)
+*CLICK* ... it works for other textures, like this wood grain
 
-#note: ... it works for other textures, like this wood grain
+*CLICK* while it did really well on those first two, there are some textures it has a bit more trouble on. here we can see it struggles to break these tiles up into discrete units. it has trouble capturing perfectly straight lines like this.
 
----
-## Texture model metamers
-![image](assets/texture-model-5a.svg)
+*CLICK* and it allows you to do other intersting things, like extrapolating a texture beyond its borders or mixing two textures together
 
-#note: while it did really well on those first two, there are some textures it has a bit more trouble on. here we can see it struggles to break these tiles up into discrete units. it has trouble capturing perfectly straight lines like this.
+*CLICK* but it's a texture model, so it doesn't work for arbtirary images. this portrait of Einstein isn't a texture, so the texture metamer (predictably) looks nothing like the original image. 
 
----
-## Texture model metamers
-![contents](assets/texture-model-6.svg)
-
-#note: and it allows you to do other intersting things, like extrapolating a texture beyond its borders or mixing two textures together
-
----
-## Texture model metamers
-![contents](assets/texture-model-7.svg)
-
-#note: but it's a texture model, so it doesn't work for arbtirary images. this portrait of Einstein isn't a texture, so the texture metamer (predictably) looks nothing like the original image. so this is one sort of thing that can be done with model metamers: validating whether this image-computable model adequately captures the appearance of textures.
+so this is one sort of thing that can be done with model metamers: validating whether this image-computable model adequately captures the appearance of textures.
 
 ---
 ## More model metamers!
-![contents](assets/fovmet.png) <!-- .element: style="height:950px;width:auto" -->
+![contents](assets/fovmet.svg)
 
-#note: and as another example, these may look familiar to some of you. I built foveated models of the early visual system, which computed the local luminance or spectral energy in receptive-field like regions, which grew with eccentricity across the image. I then generated model metamers for different sizes of these images and showed them to humans in a psychophysics experiment (which, those who took part can attest, was super fun). I used these to find the parameter value for which the models and the humans agreed on which images were indistinguishable. that is, we used this metamer framework to find the size of the regions wherein humans would be insensitive to changes in either luminance or spectral energy
+#note: and as another example, these may look familiar to some of you. I built foveated models of the early visual system, which computed the local luminance or spectral energy in receptive-field like regions, which grew with eccentricity across the image. I then generated model metamers for different sizes of these regions and showed them to humans in a psychophysics experiment (which, those who took part can attest, was super fun). I used these to find the parameter value for which the models and the humans agreed on which images were indistinguishable. that is, we used this metamer framework to find the size of the regions wherein humans would be insensitive to changes in either luminance or spectral energy
 
 ---
 ## Why do this?
@@ -162,6 +163,7 @@ let's watch
 - Improve understanding of computational models <!-- .element: class="fragment margin-top" data-fragment-index="1" -->
 - Image space is vast! <!-- .element: class="fragment" data-fragment-index="2" -->
 - Better understand single model or compare between competing models <!-- .element: class="fragment" data-fragment-index="3" -->
+- Take models seriously as objects of scientific inquiry <!-- .element: class="fragment" data-fragment-index="4" -->
 
 #note: For those of you who haven't heard of this approach, you might wonder, why do
 this?
@@ -171,114 +173,136 @@ the goal is to improve our understanding of how our computational models make se
 image space is vast, so any possible dataset is a tiny sample of it, and the methods in plenoptic provide a different and targeted way of exploring this space.
 
 they can be used for:
-- improving understanding of a given model -- for example, fit a model to a visual neuron, then generate some stimuli with plenoptic and use it in a new experiment
-- another way of comparing models: many models can do equivalently (or near equivalently) well on a given benchmark, and plenoptic's methods provide a complementary approach for comparing them.
+- improving understanding of a given model -- for example, fit a model to prediction BOLD responses in V1, then generate some stimuli with plenoptic and use it in a new experiment
+- another way of comparing models: many models can do equivalently (or near equivalently) well on a given dataset, and plenoptic's methods provide a complementary approach for comparing them.
 
+and the real point here is that we should take our models seriously as objects of scientific inquiry. if we think that we have a good model for V1 responses, we should seriously test that model, to get a better sense for when its assumptions break down, the contexts in which it makes sense and the phenomena it can't explain.
 
 ---
 ## But wait there's more!
 
-- Eigendistortion: most and least noticeable changes to an image. <!-- .element: class="margin-top" -->
-- Maximally Differentiating (MAD) Competition: efficiently compare two visual models.
-- Representation geodesic: in a movie, what does the model think the most likely next frame is?
+- Metamer: what images does the model think are identical? <!-- .element: class="margin-top" -->
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image?
+- Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models?
+- Representational geodesic: what does the model think is the most likely sequence of images?
 
 #note: in addition to metamers, there are three other synthesis methods found in plenoptic, all based on research done in Eero's lab over the years. I'll describe each of them in a bit more detail, but they're all attempts to interrogate how visual models understand images and how we can compare them to biological perception in new ways.
 
 ---
 ## But wait there's more!
 
-- Eigendistortion: most and least noticeable changes to an image. <!-- .element: class="margin-top" -->
-- Maximally Differentiating (MAD) Competition: efficiently compare two visual models. <!-- .element: style="color: #bebebe" -->
-- Representation geodesic: in a movie, what does the model think the most likely next frame is? <!-- .element: style="color: #bebebe" -->
+- Metamer: what images does the model think are identical? <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image? 
+- Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models? <!-- .element: style="color: #bebebe" -->
+- Representational geodesic: what does the model think is the most likely sequence of images? <!-- .element: style="color: #bebebe" -->
 
 #note: let's talk about eigendistortions first.
 
 ---
 ## How to noticeably change an image?
-![contents](assets/eigendist-intro-1.svg)
+
+<div data-animate data-load="assets/eigendist-intro-5.svg">
+<!-- {"setup": [
+{"element": "#g11795", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]},
+{"element": "#g11801", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
+{"element": "#g11807", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
+{"element": "#g5889", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "3"} ]},
+{"element": "#g6029", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "5"} ]}
+]} -->
+</div>
 
 #note: this starts with a seemingly simple question: if you have an image and a pixel budget, how can you most, or least, noticeably change that image. That is, if I have this picture of a parrot, and I can change the pixel values so that I end up with an image whose mean-squared error with the original is .01, what should I do?
 
----
-## How to noticeably change an image?
-![contents](assets/eigendist-intro-2.svg)
+*CLICK* should I spread that as noise everywhere across the image?
 
-#note: should I spread that as noise everywhere across the image?
+*CLICK* should I uniformly increase the value of all the pixels?
 
----
-## How to noticeably change an image?
-![contents](assets/eigendist-intro-3.svg)
+*CLICK* should I concentrate my changes in just a portion of the image? all three of these pixels have the same MSE with the original image, but we've spent that pixel budget in different ways. and so discriminating these images apart from the original has different difficulties: we're very good at detecting these contrast edges, but not so good at an overall shift in luminance. and the noise is fairly noticeable as well.
 
-#note: should I uniformly increase the value of all the pixels?
+*CLICK* can we do this sort of exploration in a principled way? at the very least, we know that humans have the contrast response function, and so are more sensitive to some frequencies than others. but because of Weber's law, we know this is adaptive: how sensitive we are to a change in luminance depends on the contrast, if nothing else.
 
----
-## How to noticeably change an image?
-![contents](assets/eigendist-intro-4.svg)
+if we have a computational model of some kind, we can ask what changes *the model* thinks are easy or hard to detect, and use them in a human experiment.
 
-#note: should I concentrate my changes in just a portion of the image? all three of these pixels have the same MSE with the original image, but we've spent that pixel budget in different ways. and so discriminating these images apart from the original has different difficulties: we're very good at detecting these contrast edges, but not so good at an overall shift in luminance. and the noise is fairly noticeable as well.
-
-if we have a model, we can ask what changes *the model* thinks are easy or hard to detect, and use them in a human experiment.
-
----
-## How to noticeably change an image?
-![contents](assets/eigendist-intro-5.svg)
-
-#note: this is important because we know from adversarial examples that just because a model seems to behave similar to human perception (here, classifying images into different categories), that does not mean that they'll agree what changes are obvious. This model thinks this noise pattern is enough to switch the image category from a dog to an ostrich, but humans find it indetectable.
+*CLICK* from a model building perspective, this is important because we know from adversarial examples that just because a model seems to behave similar to human perception (here, classifying images into different categories), that does not mean that they'll agree what changes are obvious. This model thinks this noise pattern is enough to switch the image category from a dog to an ostrich, but humans find it indetectable.
 
 ---
 ## Eigendistortions
-![contents](assets/eigendistortions-1.svg)
+
+<div data-animate data-load="assets/eigendistortions.svg">
+<!-- {"setup": [
+{"element": "#g9885", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]}
+]} -->
+</div>
 
 #note: you can do this for two possible models of the human visual system, one a simple 4-layer convolutional neural network, and one a physiologically-inspired on-off model with contrast and luminance normalization. you can see that the OnOff model thinks that, to make changes noticeable, you should make high contrast, localized changes, and do the opposite to make them invisible, spread them out and make them low contrast. the CNN, on the other hand, thinks that uniform noise is not noticeable, and does something somewhat similar to the On Of to make it noticeable, though less localized and less contrast.
 
----
-## Eigendistortions
-![contents](assets/eigendistortions.svg)
+*CLICK* you can run a psyhophysics experiment to see how human perception aligns, and use that to compare the models. they ran more models than this, but let's just focus on these two. on the y-axis is the threshold for detection: what value did they need to multiply the eigndistortion on the top by before humans noticed it. in the examples here, the most noticeable has been multiplied by 4, the bottom by 30. so the further apart these two dots are, the more the human agrees with the model.
 
-#note: you can run a psyhophysics experiment to see how human perception aligns, and use that to compare the models. they ran more models than this, but let's just focus on these two. on the y-axis is the threshold for detection: what value did they need to multiply the eigndistortion on the top by before humans noticed it. in the examples here, the most noticeable has been multiplied by 4, the bottom by 30. so the further apart these two dots are, the more the human agrees with the model.
+in this case, we see that the human agrees more with OnOff model than the deep net, despite the fact that the deep net can perform an image classification task really well. the fact that a model can perform one task or fit one data set very well does not mean that it will perform well in other contexts. these tools are ways of exploring different aspects of a model's representation, its understanding of an image.
 
 ---
 ## More synthesis!
 
-- Eigendistortion: most and least noticeable changes to an image. <!-- .element: class="margin-top" style="color: #bebebe" -->
-- Maximally Differentiating (MAD) Competition: efficiently compare two visual models.
-- Representation geodesic: in a movie, what does the model think the most likely next frame is? <!-- .element: style="color: #bebebe" -->
+- Metamer: what images does the model think are identical? <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: style="color: #bebebe" -->
+- Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models?
+- Representational geodesic: what does the model think is the most likely sequence of images? <!-- .element: style="color: #bebebe" -->
 
-#note: now let's talk about MAD Competition. So far, I've talked a bit about comparing models to each other, but it's always been a bit implicit. what if you have two models that perform really similar to each other. for example, you're fitting pRFs and trying to decide whether they can be linear or whether you should add a compressive nonlinearity, like a power-law, on the end. for many images, the predictions of those two models are going to be relatively similar, and you really want to exaggerate them, to find the stimuli where their predictions will *really* differ. you can think carefully about the two models, how they differ, and try to build the proper stimuli by hand, but that's hard, and will  get harder and harder as your models get more complex. 
+#note: now let's talk about MAD Competition. So far, I've talked a bit about comparing models to each other, but it's always been a bit implicit. what if you have two models that perform really similar to each other. 
 
-or ... you could use MAD competition, who generates a set of stimuli that have *maximally different* predictions for the two models. let's step through how that works
+for example, say you're fitting the responses of BOLD V1 and you want to see if divisive normalization is necessary. Now if you're only showing sine gratings (each of which has a single orientation and spatial frequency), the responses of the model with and without normalization are probably going to be relatively similar.
 
----
-## Simple MAD Competition
-![img](assets/simple-mad.svg)
+in order to distinguish between them, you really want to exaggerate their differences, to find the stimuli where their predictions will *really* differ. you can think carefully about the two models, how they differ, and try to build the proper stimuli by hand and you could probably do that in this case, but in general that's hard, and will  get harder and harder as your models get more complex or you apply them to areas less wel understood than V1.
 
-#note:
-with a super simple example: we'll take a two-pixel image, each has value .5,
-and add some noise, then run MAD Competition between the L1 and L2 norms. so the
-L1 model thinks you can tell how different two points are by taking the absolute
-value of the difference of x and y and summing them, while the L2 takes the
-Euclidean norm of their difference, taking the difference between x and y,
-squaring that, summing them, and taking the square root.
-
-with this simple one first because we can actually plot it, with pixel 1 on the
-x-axis and pixel 2 on the y, and we can also plot the level sets of our two
-metrics.
-
-- so we start with a reference point, in red
-- we add some nosie to it, to get our initial point
-- and the diamond and the circle give us the level sets of L1 and L2. that is,
-  the L1 model thinks that all points which lie on the blue diamond are all *as
-  different* from the red point as the black one. if you were to run this
-  through psychophysics, L1 predicts the discrimination performance of every
-  point on the diamond is the same
-- L2 thinks that about the circle.
-- makes sense?
+so instead of doing this by hand, you could use MAD competition, which generates a set of stimuli that have *maximally different* predictions for the two models. let's step through how that works
 
 ---
-## Simple MAD Competition
-![img](assets/simple-mad-1.svg)
+## MAD Competition
+<div data-animate data-load="assets/simple-mad-setup.svg">
+<!-- {"setup": [
+{"element": "#path101175-3-2", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]},
+{"element": "#g15349", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
+{"element": "#g1959", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
+{"element": "#g3787", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "3"} ]}
+]} -->
+</div>
 
-#note:
+#note: MAD competition takes advantage of the fact that model's implicitly define a perceptual distance: we can say how different a model says two images are by taking the distance in their representational space.
+
+to get a sense for what that looks like, we're going to get more abstract first and take a simple 2d example. if we're comparing these two points, how do we measure the distance between them. we want to know how long it would take me to get from the black point to the red point.
+
+*CLICK* the most natural way might be to use the Euclidean (or L2) distance, the square root of the sum of squared differences. this is distance "as the crow flies"
+
+*CLICK* but what if I told you that the red dot is Flatiron and the black dot is Meyer? I'm not spiderman, I can't move through Manhattan as the crow flies, I have to follow the street grid. then we should use what's called Manhattan distance, or the L1 distance instead (sum of the absolute differences)
+
+so we have two different possibilities for how to consider distance. how do we figure which is better?
+
+*CLICK* we could randomly grab points, see what each model predicts, and then compare that to reality, but that seems slow.
+
+*CLICK* for some of these points, like this one, their predictions will be identical, and for others they'll be similar. 
+
+with MAD, we'll grab the set of points where the predictions are *as different as possible*
+
+---
+
+## MAD Competition
+
+<div data-animate data-load="assets/simple-mad-all.svg">
+<!-- {"setup": [
+{"element": "#use101147", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "0"} ]},
+{"element": "#use101155", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
+{"element": "#path101141", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
+{"element": "#path101138", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]}
+]} -->
+</div>
+
+#note: let's see what that means. we can take those distances from before, and transform them into their level set. this circle and this diamond define all the points that each model thinks are equally distant from the red dot.
+
+in psychophysical terms, the Manhattan distance model thinks that every point on this diamond is has equal discriminability from the red dot. Euclidean thinks the same about the circle
+
+makes sense?
+
+*CLICK*
 - this then is one MAD image, where we've maximized L2 norm while keeping L1
   constant
 - that is, L1 thinks the black and blue points are just as different from the
@@ -289,12 +313,7 @@ metrics.
   ended up here is because it's closer to our initial image and we used
   iterative optimization.
 
----
-## Simple MAD Competition
-![img](assets/simple-mad-2.svg)
-
-
-#note:
+*CLICK*
 - we can similarly max the L1 norm, which moves us along the L2 level set and
   moves us as far away from reference image as possible
 - this puts it "on the diagonal", so that neither pixel has the same value as in
@@ -302,12 +321,7 @@ metrics.
 - again, other diagonals would also have worked, but this is the one we were
   closest to
 
-
----
-## Simple MAD Competition
-![img](assets/simple-mad-all.svg)
-
-#note:
+*CLICK*
 - now add the final two dots, corresponding to minimizing L1 and L2,
   respectively
 - we see that they move along their respective level sets, ending up in the same
@@ -324,51 +338,6 @@ metrics.
 
 ---
 ## MAD Competition
-![img](assets/mad-checkerboard.svg)
-   
-#note:
-- so now let's do it an actual image
-- the top left here is what we were looking at before
-- and the right is MAD competition between L1 and L2 norm, as before, but now on
-  top of a full-sized checkerboard image.
-- the red-bordered image is our reference image, which we've added some gaussian
-  noise to to get our initial image
-- and then the four different MAD competition images are arranged around it,
-  like in our image in the top left: horizontal shows fixing L2 norm and min and
-  max L1; vertical shows fixing L1 norm and min and max L2
-- the inset is the difference between the MAD image and the reference
-- I'm going to blow these up so we can see them better
-
----
-## MAD Competition
-![img](assets/mad-checkerboard-1.svg)
-
-#note:
-- if we look at min L1 and max L2 we can see that they're "on the axes" like
-  predicted: most pixels are the same as before, and then some have been moved
-  to extremal values (white on the black parts, black on the white parts). and
-  we have more and more extremal values in the max L2 image than the min L1, as
-  we can see in the 2d plot
-
----
-## MAD Competition
-![img](assets/mad-checkerboard-2.svg)
-   
-#note:
-- similarly, for min L2 and max L1, we're on the diagonals: no pixels have the
-  same value as the reference image, all are distributed above or below the
-  reference image values by the same amount, so we have different grayish
-  values. and the difference is greater for max L1 than it is for min L2, though
-  that's hard to see here, I checked (on image going from 0 to 255, min L2 has
-  +-15, while max L1 has +- 18)
-- thus, in this example, we can see that L2 is a better perceptual metric than
-  L1: L2 predicts the two blue-outlined figures are as different as possible,
-  while L1 predicts the two orange-outlined ones are. to me, these two orange
-  ones aren't that different (and, if anything, the rightmost image is better
-  than the left), while the bottom blue one here is notably worse than the top.
-
----
-## MAD Competition
 ![image](assets/mad-mse-ssim.svg)
 
 #note: back in 2008, Eero did this work with a postdoc called Zhou Wang, comparing mean-squared error with SSIM, the strucural similarity metric, which was their proposed way of measuring how different two images are
@@ -380,35 +349,83 @@ Eero, Zhou, and their collaborators won an Emmy for their work on SSIM, as an as
 ---
 ## More synthesis!
 
-- Eigendistortion: most and least noticeable changes to an image. <!-- .element: class="margin-top" style="color: #bebebe" -->
-- Maximally Differentiating (MAD) Competition: efficiently compare two visual models. <!-- .element: style="color: #bebebe" -->
-- Representation geodesic: in a movie, what does the model think the most likely next frame is? 
+- Metamer: what images does the model think are identical? <!-- .element: class="margin-top" style="color: #bebebe" -->
+- Eigendistortion: what does the model think are the most and least noticeable changes to an image? <!-- .element: style="color: #bebebe" -->
+- Maximally Differentiating (MAD) Competition: what is the most efficient way to compare two models? <!-- .element: style="color: #bebebe" -->
+- Representational geodesic: what does the model think is the most likely sequence of images?
 
-#note: and the last one: geodesic. geodesic is about prediction: what is the most likely sequence of images? that is, if I'm watching a short movie and I stop suddenly, what happens next? if I'm shifting from left to right and I stop here, what is likely to happen next?
+#note: and the last one: representational geodesics. geoesics are about prediction: what is the most likely sequence of images? that is, if I'm watching a short movie and I stop suddenly, what happens next? this is tied to an old idea in perception, that the visual system structures its internal representations to effectively capture information the organism needs to operate in the world.
 
 ---
-## Representations must be useful
+## Representational untangling
 ![image](assets/geodesic_1.svg)
 
-#note: This is is related to the long standing idea that the visual system transforms its inputs into internal representations that effectively capture the information the organism needs to operate in the world. DiCarlo and Cox's untangling manifolds is one example of this: multiple views of the same object, in pixel space, are a mess. one of the jobs of the visual system is to "untangle" these representations such that it is easy to distinguish between different objects.
+#note: one expression of this idea is DiCarlo and Cox's untangling manifolds hypothesis. the structure that exists in the world is not readily available from the signal that enters our eyes. If we take pictures of two objects from a bunch of different views and under many different lighting conditions, and then plot the pixel values in that high dimensional space, the manifolds representing these two objects will be all intermixed. that is, determining whether a picture is of this mug or of this cup is very difficult in pixel space. the idea is that one of the functions of the visual system is to untangle these representations such that, at the end of the ventral stream, it is very easy to determine whether we're looking at the cup or the mug
 
 ---
 ## Representational straightening
 ![image](assets/geodesic_2.svg)
 
-#note: here, we're applying that idea to motion: the visual system should be transforming its inputs so as to make future predictions easy. if you're an organism moving around in the world, it's not only important to recognize that I am Billy and distinct from Jon, regardless of viewpoint or lighting conditions, but also that, if I'm walking towards you, I'm likely to continue walking towards you. I'm *really* unlikely to just phase out of existence and pop back into existence behind you.
+#note: but organisms don't just look at static images, we have to make sense of a moving world. it's not enough to tell whether you're looking at a cup or a mug, but if that cup is moving towards you, you want to be able to predict where it will end up.
 
-and the easiest prediction to make is that things are linear. the linear predictions says: if I take the difference between the image at time t and time t-1 and add that to time t, I'll get time t+1. so that's what visual systems should be doing, taking sequences of images that exist in the real world, like me walking towards you, and making their representation perfectly straight, while taking sequences that *don't* exist, like me phasing out of existence and popping up behind you, and making them really curvy.
+similar to the object identity idea, if you look at the trajectories of sequences of images (i.e., movies) in pixel space, they'll be very curved, all over the place. the hypothesis, then, is that the visual system straightens out likely sequences of images, likely videos, such that it is easy to predict what will happen next, because the difference between time t and t+1 will be every similar to the difference between time t and t-1, in representational space. and similarly, the visual system should take representations of sequences that are *unlikely*, like the cup phasing out of existence and popping up behind you, and make them really curvy
 
-that's the hypothesis -- does that make sense?
+that's the hypothesis --does that make sense?
 
-they have a couple papers looking at this in human perception and the macaque visual system, if you're interested, but we're applying this idea to computational models
+Olivier Henaff has a handful of papers investigating whether this hypothesis holds up in human perception and macaque visual cortex, if you're interested.
+
+---
+## VGG geodesic
+
+<div data-animate data-load="assets/geodesic_boat.svg">
+<!-- {"setup": [
+{"element": "#g3725", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "1"} ]},
+{"element": "#g3819", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "2"} ]},
+{"element": "#g3913", "modifier": "attr", "parameters": [ {"class": "fragment", "data-fragment-index": "3"} ]}
+]} -->
+</div>
+
+#note: but again, the idea with plenoptic is to enable the investigation of this in computational models.
+
+so we have this image of a boat that we're going to shift to the left by a small amount. this is probably hard to see, but if you look in the top left, you can see the rope shifting out of frame. so this is the actual sequence of images that happen, this is the ground truth
+
+*CLICK* as a point of comparison, a very implausible sequence of images is a pixel fade, where you take a weighted sum of the end points, transitioning from the first to the last frame. this is equivalent to the boat phasing out of existence at one location and phasing back in at the other -- something we don't see in the real world
+
+*CLICK* Olivier then asked, for a VGG deep net (standard object recognition neural network), what does it think the most likely sequence of images are? you get something weird and staticy, like this. This was very odd, but Olivier hypothesized that this might have to do with a detail of the construction of the network. these networks are series of convolutions, followed by nonlinearities, and one of those nonlinearities is what they call "max pooling", where they downsample an image by taking the largest value in each spatial region of the previous layers output
+
+this is a good way to get some wild aliasing, which Olivier hypothesized is
+responsible for this sequence of images. so they replaced the max pooling with a
+blur pooling step, where they blurred the image (throwing out the high
+frequencies that could alias) before downsampling.
+
+*CLICK* when you do that, you end up with a smoother transition, with less of the noticeable artifacts from the max pooling, though still clearly different from translation
+
+and they did some psychophysics that showed observers found the middle two sequences to be the least perceptually straight, then the bottom, the top (that is, they ran an ABX task where they had observers do an ABX task on sequences of frames to assess discriminability)
 
 ---
 ## Contents
-![contents](assets/plen-contents-2.svg)
+<div class="column" style="float:left; width:50%; margin-top:5%">
 
-#note:
+### Synthesize
+- Metamer: identical images
+- Eigendistortion: most and least noticeable changes
+- Maximally Differentiating (MAD) Competition: efficient model comparison
+- Representational geodesic: most likely image sequence
+
+</div>
+<div class="column" style="float:right; width:50%; margin-top:5%">
+
+### Synthesize
+- Portilla-Simoncelli texture statistics
+- Steerable pyramid
+- Laplacian pyramid
+- Front end models (Berardino et al., 2017)
+- Structural Similarity Index (SSIM) and Multi-Scale SSIM (MS-SSIM)
+- Normalized Laplacian Pyramid Distance (NLPD)
+
+</div>
+
+#note: okay, so that was a lot. I've shown you ... (go through slide)
 
 ---
 ## Status and Roadmap
@@ -449,3 +466,26 @@ At this point, I'm happy to work with anyone who wants to use plenoptic. I know 
 #note: I'm not just interested in more users, but in new contributors as well.
 
 We're about to finish merging our first substantial PR from someone outside the lab! Daniel Herrera from Johannes Burges's lab
+
+---
+## Contents
+<div class="column" style="float:left; width:50%; margin-top:5%">
+
+### Synthesize
+- Metamer: identical images
+- Eigendistortion: most and least noticeable changes
+- Maximally Differentiating (MAD) Competition: efficient model comparison
+- Representational geodesic: most likely image sequence
+
+</div>
+<div class="column" style="float:right; width:50%; margin-top:5%">
+
+### Synthesize
+- Portilla-Simoncelli texture statistics
+- Steerable pyramid
+- Laplacian pyramid
+- Front end models (Berardino et al., 2017)
+- Structural Similarity Index (SSIM) and Multi-Scale SSIM (MS-SSIM)
+- Normalized Laplacian Pyramid Distance (NLPD)
+
+</div>
