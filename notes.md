@@ -27,3 +27,9 @@ them.
   - emphasize that plenoptic is *not* a model, the focus is not the modeling contents
   - need to show people how to integrate this with existing research. what are examples of how this can work
   - mention that this is all built on pytorch, takes advantage of their automatic differentiation, and largely done with iterative optimization
+
+## 2023-10-23
+
+- image space impossibly vast: for 256 x 256 black and white image (just 0 or 1)
+  gives about 2^65000 possible images, and there are only 2^300 electrons in
+  universe
