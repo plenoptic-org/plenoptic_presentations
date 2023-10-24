@@ -33,3 +33,6 @@ them.
 - image space impossibly vast: for 256 x 256 black and white image (just 0 or 1)
   gives about 2^65000 possible images, and there are only 2^300 electrons in
   universe
+- make connection to most-exciting stimuli work? (Tolias, Livingstone, etc). and
+  point out that we're often interested in *invariances* as well (Tolias has
+  recent paper looking at invariances)
