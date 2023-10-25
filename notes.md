@@ -30,9 +30,10 @@ them.
 
 ## 2023-10-23
 
-- image space impossibly vast: for 256 x 256 black and white image (just 0 or 1)
-  gives about 2^65000 possible images, and there are only 2^300 electrons in
-  universe
-- make connection to most-exciting stimuli work? (Tolias, Livingstone, etc). and
-  point out that we're often interested in *invariances* as well (Tolias has
-  recent paper looking at invariances)
+- image space impossibly vast: for 256 x 256 black and white image (just 0 or 1) gives about 2^65000 possible images, and there are only 2^300 electrons in universe
+- make connection to most-exciting stimuli work? (Tolias, Livingstone, etc). and point out that we're often interested in *invariances* as well (Tolias has recent paper looking at invariances)
+- start with walking through that we have models that we want to compare to brains / behavior, and we need to know how to pick stimuli.
+- problem with commonly chosen ones: standard artificial or natural images...
+- plenoptic then contains methods to test specific model aspects: metamers test invariances, eigendistortions test sensitivities, etc. 
+- metamers are global, eigendistortions local
+- is it useful to draw a simple schematic of this? mapping between image space and representational space, showing there's a manifold in image space that corresponds to a single point in representational space, and we want to explore it somewhat. there are audiences for which that will be useful...
