@@ -50,7 +50,6 @@ body {
 }
 .reveal .slides section:has(> .column) {
   display: block !important;
-
 }
 .landing {
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
@@ -112,7 +111,6 @@ body {
 /* Ensure certain elements are never larger than the slide itself */
 .reveal img,
 .reveal svg,
-.reveal video,
 .reveal iframe {
   max-width: 95%;
   max-height: 95%;
