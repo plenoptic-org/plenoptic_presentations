@@ -156,4 +156,4 @@ the package also contains several models and model components that we find usefu
 
 ## CCN Software packages
 
-![image](https://users.flatironinstitute.org/~wbroderick/presentations_assets/fens-2024/software-packages.png)
+![image](assets/software-packages.png)
