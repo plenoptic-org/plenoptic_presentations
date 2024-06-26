@@ -16,7 +16,8 @@ import json
 
 OSF_DOWNLOAD = "https://osf.io/{}/download"
 OSF_METADATA = "https://osf.io/{}/metadata?format=datacite-json"
-OSF_URL = {'2023-10-02_Winawer-lab-mtg': 'spu5e'}
+OSF_URL = {'2023-10-02_Winawer-lab-mtg': 'spu5e',
+           '2024-06-25_SAB': 'z8ryf'}
 
 
 @click.group()
