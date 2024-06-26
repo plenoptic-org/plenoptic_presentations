@@ -163,12 +163,14 @@ def check_assets(dir_path: str):
         local_assets = os.listdir(op.join(dir_p, 'assets'))
         only_slides = [a for a in slides_assets if a not in local_assets]
         if len(only_slides):
-            print('\n'.join(only_slides))
-            raise Exception(f"The above assets are only in slides file (not in assets folder)!")
+            only_slides = '\n'.join(only_slides)
+            raise Exception("The following assets are only in slides file (not in assets folder)!"
+                            f"\n{only_slides}")
         only_local = [a for a in local_assets if a not in slides_assets]
         if len(only_local):
-            print('\n'.join(only_local))
-            raise Exception(f"The above assets are only in assets folder (not in slides file)!")
+            only_local = '\n'.join(only_local)
+            raise Exception("The following assets are only in assets folder (not in slides file)!"
+                            f"\n{only_local}")
 
 
 cli.add_command(package_assets)
