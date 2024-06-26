@@ -117,10 +117,15 @@ and the real point here is that we should take our models seriously as objects o
 <div class='margin-top column' style="float:left; width: 65%;">
 <pre><code data-trim>
 import plenoptic as po
+# load image
 basket = po.tools.load_images('data/basket.png')
+# instantiate model
 model = po.simulate.PortillaSimoncelli((256, 256))
+# instantiate Metamer object with image and model
 metamer = po.synthesize.Metamer(basket, model)
+# synthesize model metamer
 metamer.synthesize(max_iter=700, coarse_to_fine='together')
+# visualize synthesis process
 po.synthesize.metamer.animate(metamer, included_plots=['display_metamer', 'plot_loss'])
 </code></pre>
 </div>
@@ -140,5 +145,15 @@ each of these methods and models was developed by members of the lab over the ye
 the package also contains several models and model components that we find useful and think others might. these are all implemented in pytorch, can be used easily with our synthesis methods, and are tested and maintained
 
 ---
+## Github history
+![stars](assets/plen-stars.png)
+
+---
 ## Developers
 ![people](assets/plen-people-details.svg)
+
+---
+
+## CCN Software packages
+
+![image](https://users.flatironinstitute.org/~wbroderick/presentations_assets/fens-2024/software-packages.png)
