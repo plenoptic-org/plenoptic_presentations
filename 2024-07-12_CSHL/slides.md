@@ -225,7 +225,8 @@ that's fair enough
 
 <div data-animate data-load="assets/adversarial_examples.svg">
 <!-- {"setup": [
-{"element": "#g9931", "modifier": "attr", "parameters": [ {"display": "none"} ]}
+{"element": "#g9780", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#text9842", "modifier": "attr", "parameters": [ {"display": "none"} ]}
 ]} -->
 </div>
 
