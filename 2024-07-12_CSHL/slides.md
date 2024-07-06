@@ -180,7 +180,7 @@ you might think so, but...
 ---
 ## Image space is impossibly vast!
 
-<div data-animate data-load="assets/image-space-test.svg">
+<div data-animate data-load="assets/image-space.svg">
 <!-- {"setup": [
 {"element": "#g19211", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
 {"element": "#g19217", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
