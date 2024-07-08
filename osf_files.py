@@ -12,6 +12,7 @@ import os.path as op
 import subprocess
 import tarfile
 import json
+import pathlib
 
 
 OSF_DOWNLOAD = "https://osf.io/{}/download"
@@ -154,6 +155,18 @@ def check_assets(dir_path: str):
     if dir_path != 'all':
         dir_path = [dir_path]
     else:
+        all_dirs = [p.parent.name
+                    for p in pathlib.Path(__file__).parent.glob('*/slides.md')]
+        not_in_osf_dict = set(all_dirs).difference(OSF_URL.keys())
+        not_a_directory = set(OSF_URL.keys()).difference(all_dirs)
+        if len(not_in_osf_dict) > 0:
+            to_print = "\n\t".join(not_in_osf_dict)
+            raise Exception("Following presentations aren't found in OSF_URL dict"
+                            f", don't know how to download their assets!\n\t{to_print}")
+        if len(not_a_directory) > 0:
+            to_print = "\n\t".join(not_a_directory)
+            raise Exception("Following presentations are found in OSF_URL dict"
+                            f", but not in repo!\n\t{to_print}")
         dir_path = list(OSF_URL.keys())
     for dir_p in dir_path:
         with open(op.join(dir_p, 'slides.md')) as f:
