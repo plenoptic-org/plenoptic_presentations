@@ -18,7 +18,9 @@ import pathlib
 OSF_DOWNLOAD = "https://osf.io/{}/download"
 OSF_METADATA = "https://osf.io/{}/metadata?format=datacite-json"
 OSF_URL = {'2023-10-02_Winawer-lab-mtg': 'spu5e',
-           '2024-06-25_SAB': 'z8ryf'}
+           '2024-06-25_SAB': 'z8ryf',
+           '2024-07-12_CSHL': 'nvk85',
+           }
 
 
 @click.group()
@@ -177,12 +179,12 @@ def check_assets(dir_path: str):
         only_slides = [a for a in slides_assets if a not in local_assets]
         if len(only_slides):
             only_slides = '\n'.join(only_slides)
-            raise Exception("The following assets are only in slides file (not in assets folder)!"
+            raise Exception(f"The following assets (for {dir_p}) are only in slides file (not in assets folder)!"
                             f"\n{only_slides}")
         only_local = [a for a in local_assets if a not in slides_assets]
         if len(only_local):
             only_local = '\n'.join(only_local)
-            raise Exception("The following assets are only in assets folder (not in slides file)!"
+            raise Exception(f"The following assets (for {dir_p}) are only in assets folder (not in slides file)!"
                             f"\n{only_local}")
 
 
