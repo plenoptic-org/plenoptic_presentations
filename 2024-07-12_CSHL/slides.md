@@ -11,7 +11,7 @@
   - Advisors: Eero Simoncelli and Jonathan Winawer
 - Research focus: how vision changes across the visual field, using fMRI, psychophysics, and computational models <!-- .element: class="fragment" data-fragment-index="1" -->
 - Fell down the open source / open science rabbit hole <!-- .element: class="fragment" data-fragment-index="2" -->
-- Currently: part of NeuroRSE group at the Flatiron Institute Center for Computational Neuroscience <!-- .element: class="fragment" data-fragment-index="3" -->
+- Currently: Associate Research Scientist &ndash; Software in the NeuroRSE group at the Flatiron Institute Center for Computational Neuroscience <!-- .element: class="fragment" data-fragment-index="3" -->
 
 ---
 
