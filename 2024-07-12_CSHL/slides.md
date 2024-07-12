@@ -59,10 +59,60 @@
 ---
 ## CCN Software packages
 
-![image](assets/software-packages.svg)
+<div class='column' style="float:left;width:50%">
+<img src="assets/pynapple.svg">
+<ul>
+<li><a href="https://github.com/pynapple-org/pynapple/</li>">https://github.com/pynapple-org/pynapple/</li></a>
+<li>light-weight python library for neurophysiological data analysis</li>
+</ul>
+<img src="assets/nemos.svg">
+<ul>
+<li><a href="https://github.com/flatironinstitute/nemos</li>">https://github.com/flatironinstitute/nemos</li></a>
+<li>statistical modeling framework for neuroscience</li>
+</ul>
+</div>
+<div class='column' style="float:right;width:50%">
+<img src="assets/plenoptic_logo.svg">
+<ul>
+<li><a href="https://github.com/LabForComputationalVision/plenoptic/</li>">https://github.com/LabForComputationalVision/plenoptic/</li></a>
+<li>model-based synthesis of perceptual stimuli</li>
+</ul>
+<img src="assets/fastplotlib.svg">
+<ul>
+<li><a href="https://github.com/fastplotlib/fastplotlib</li>">https://github.com/fastplotlib/fastplotlib</li></a>
+<li>expressive plotting library that enables rapid prototyping for large scale explorative scientific visualization</li>
+</ul>
+</div>
 
 #note: 
 
+---
+
+# CITE YOUR SOFTWARE!
+
+---
+
+![image](assets/defense-blackhole.svg)
+
+#note: To take one particularly illustrative example: I'm sure many of you recognize this picture. It's an image of supermassive black hole M87, captured by the Event Horizon Telescope Collaboration in April 2019
+
+---
+---
+
+![image](assets/defense-blackhole-headlines.svg)
+
+#note: this hit the headlines of every major news outlet, with the image eventually reaching more than 4.5 billion people around the world
+
+the work that went into this was done with a variety of packages from the open-source python scientific ecosystem, such as numpy and matplotlib, which was credited by some of the scientists involved as making the work possible, preventing them from having to reinvent everything from scratch
+
+---
+---
+
+![image](assets/defense-blackhole-headlines-impact.svg)
+
+#note: yet five days after this announcement, the US National Science Foundation denied a grant to support that ecosystem, saying the software didn't have "sufficient impact"
+
+---
 ---
 
 # CITE YOUR SOFTWARE!
@@ -222,6 +272,36 @@ Eero and Javier were pretty proud of this; they thought this was a nifty idea an
 
 ---
 
+## Metamer synthesis
+
+<div data-animate data-load="assets/plen-synth-4.svg">
+<!-- {"setup": [
+{"element": "#rect6595-6", "modifier": "attr", "parameters": [ {"display": "none"} ] },
+{"element": "#rect6595-7", "modifier": "attr", "parameters": [ {"display": "none"} ] },
+{"element": "#rect6595", "modifier": "attr", "parameters": [ {"display": "none"} ] }
+]} -->
+</div>
+
+#note: so to bring this back to our schematic here, Eero and Javier built a model and came up with a set of parameters, fed it a natural image of a texture, which gave them a statistic to match. they then used optimization to generate some novel images, starting from different patches of white noise, and the did this for many different textures. 
+
+---
+
+## Metamer usage
+
+- Model validation <!-- .element: class="fragment" data-fragment-index="0" -->
+- Model comparison <!-- .element: class="fragment" data-fragment-index="1" -->
+- Model development <!-- .element: class="fragment" data-fragment-index="2" -->
+- Parameter fitting <!-- .element: class="fragment" data-fragment-index="3" -->
+
+#note: in this case, metamers served several purposes: 
+- validation of the model: the texture model metamers look like textures from the same family to human observers
+- model comparison: the texture model metamers look "better" than those of the simple V1-like model, even though that model could also perform texture classification very well
+- more subtle, but validating that the components of the model were all necessary. the model had about 700 statistics, which fall into about 10 families: marginal pixel stats, cross-correlations across scales, across orientations, auto-correlations, etc. they removed each of these families from the model in turn and ran metamer synthesis again to see the effect. this allowed them to both get a sense for what each family was capturing in the image and also that all of them were necessary in order to result in good texture metamers. in this way, metamers contributed the development and improvement of the model.
+
+while it didn't come up in this experiment, metamers can also be used to find the best parameter value. both in work from Jeremy Freeman around 2011 and myself during my PhD, we had models with a single parameter, generated model metamers for a range of parameter values, and then used those resulting images in a psychophysical experiment to determine for which parameter values were the model metamers also human metamers.
+
+---
+
 ## It's not the 90s anymore!
 
 <div data-animate data-load="assets/90s.svg">
@@ -317,6 +397,33 @@ We are on pip, we're up on github, we have documentation, and this has been the 
 
 ---
 
-## https://binder.flatironinstitute.org/~wbroderick/cshl2024
+## The Plan
 
-#note: everyone go ahead to that address. that will take you to a binder instance with a notebook we'll step through. normally, I like to do live coding, giving you an empty notebook and having you all follow along, but I think we don't have enough time for that, so we're going run through some cells and I'll explain the code as we go.
+<div data-animate data-load="assets/plan.svg">
+<!-- {"setup": [
+{"element": "#g17680", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#g18129", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "1"} ]},
+{"element": "#g17797", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]}
+]} -->
+
+#note: I have a notebook I'm going to walk us all through, but first I'd like to foreshadow what we're going to do for the rest of the session. I'm going to walk us through using plenoptic with three different convolutional models of increasing complexity.
+
+- The first is a simple Gaussian filter. Convolving a filter with an image blurs it, as I'm sure many of you know. This means that the model is throwing away high frequency information, which are responsible for the sharp lines in an image, while preserving the low frequencies. This isn't a model anyone uses in the visual system, but it's simple and will allow us to get our legs under us
+- The second is a CenterSurround model, constructed from taking the difference of two Gaussians, one larger than the other. This is similar to how people model retinal ganglion cells and neurons in the lateral geniculate nucleus. This model has a bandpass selectivity, meaning that it cares mostly about middle frequencies, and less about both low and high frequencies.
+- Finally, we'll introduce some nonlinearities with a LuminanceGainControl model. We'll take the CenterSurround filter, divide its response by local luminance (computed with a larger Gaussian) and then rectify that, throwing away any negative values. Gain control is a proposed "canonical computation" and shows up across the central nervous system, where it's proposed to help the brain maximimize sensitivity to relevant stimuli in changing contexts. here, it will make our model insensitive to luminance, and focus its sensitivity on contrast (the other linear models mixed contrast and luminance in their responses). This also has the flavor of a retinal ganglion cell or LGN neuron, but with this additional nonlinearity; whether it would be relevant for a given data set depends on the experiment: if you only ever showed stimuli whose overall luminance varied in a relatively small range, it would be unnecessary
+
+We're going to use these models with metamer synthesis, which I've described already. with metamers, we pass a target image, here the cows, through the to get a target representation. we then start with another image, by default white noise, and update its pixels *click* until the representations match
+
+Finally, we're also going to use these models with eigendistortions. this is a different method, for examining the most and least noticeable change in an image. we again start with a target image, and then we find the eigenvectors of the model's Fisher information matrix, which in our setup is basically the model's gradient with respect to the specific image. this allows us to say, given a certain pixel budget, how can I spend those pixels in the way that the model thinks is the most obvious, that changes the representation the most, and in the way that the model thinks is the least obvious, which changes the representation the least. (note this has a similar feel to metamers, but in practice does not the result in the same images). eigendistortion will give us two distortions, which we can then add to the reference image, in order to overlay them. all good?
+
+---
+
+## a very important link
+
+https://labforcomputationalvision.github.io/plenoptic-cshl-vision-2024/
+
+#note: everyone go ahead to that address. that will take you to the website that has the notebooks we'll use. I'm going to post this in the slack as well, so I can show you what this will look like.
+
+I'd encourage you to keep this website up for reference. it has a glossary with some terms that might be unfamiliar -- I'll try to explain them, but you know how it is. it has two versions of the notebook we'll be going through, one with text and one without. today, we'll be working through the version without text, with me explaining as we go, but if you want to come back to this later, you can come back to this website -- the text is basically what I'm saying
+
+today, we're going to use this binder link here, which will open up the notebook in an environment with a gpu. I got the emails you registered for the course with from Eline, so login with those. if that doesn't work or you want to use a different email address, send me a slack of the email address and I'll give you permission. once you've got into the binder and the notebook has rendered, put up your green sticky
