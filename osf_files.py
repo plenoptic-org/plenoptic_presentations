@@ -20,6 +20,7 @@ OSF_METADATA = "https://osf.io/{}/metadata?format=datacite-json"
 OSF_URL = {'2023-10-02_Winawer-lab-mtg': 'spu5e',
            '2024-06-25_SAB': 'z8ryf',
            '2024-07-12_CSHL': 'nvk85',
+           '2024-07-15_dana': 'qb9ec',
            }
 
 
