@@ -37,3 +37,9 @@ them.
 - plenoptic then contains methods to test specific model aspects: metamers test invariances, eigendistortions test sensitivities, etc. 
 - metamers are global, eigendistortions local
 - is it useful to draw a simple schematic of this? mapping between image space and representational space, showing there's a manifold in image space that corresponds to a single point in representational space, and we want to explore it somewhat. there are audiences for which that will be useful...
+
+## 2024-07-16
+
+- MAD Competition: use L1 vs L2 on map of Manhattan to introduce this idea (not just abstractly)
+  - maybe also tie to "subway distance"
+- in presentation for CSHL, people had a lot of clarifying questions around the slide where I showed the texture synthesis happening. probably still needs some build-up
