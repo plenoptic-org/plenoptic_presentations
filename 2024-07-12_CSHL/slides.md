@@ -74,7 +74,7 @@
 <div class='column' style="float:right;width:50%">
 <img src="assets/plenoptic_logo.svg">
 <ul>
-<li><a href="https://github.com/LabForComputationalVision/plenoptic/</li>">https://github.com/LabForComputationalVision/plenoptic/</li></a>
+<li><a href="https://github.com/plenoptic-org/plenoptic/</li>">https://github.com/plenoptic-org/plenoptic/</li></a>
 <li>model-based synthesis of perceptual stimuli</li>
 </ul>
 <img src="assets/fastplotlib.svg">

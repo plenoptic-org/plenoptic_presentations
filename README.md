@@ -1,7 +1,7 @@
 # plenoptic_presentations
 
 Presentations about the
-[plenoptic](https://github.com/LabForComputationalVision/plenoptic/) software
+[plenoptic](https://github.com/plenoptic-org/plenoptic/) software
 package. These presentations are all [reveal.js](https://revealjs.com/)
 presentations built from markdown files found in their respective folders, with
 the website built using github pages.
@@ -16,7 +16,7 @@ This repository uses `jekyll` to build `reveal.js` presentations from markdown
 files and svg images. You will need to install `jekyll` locally (see below), and
 `reveal.js` just needs to be present where expected. To do so, you can clone
 this repository with `git clone --recurse-submodules
-git@github.com:LabForComputationalVision/plenoptic_presentations.git`. If you've
+git@github.com:plenoptic-org/plenoptic_presentations.git`. If you've
 already cloned this repository, run `git submodule init; git submodule update`
 to check out the proper version.
 
