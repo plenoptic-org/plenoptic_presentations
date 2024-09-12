@@ -402,7 +402,7 @@ We are on pip, we're up on github, we have documentation, and this has been the 
 <div data-animate data-load="assets/plan.svg">
 <!-- {"setup": [
 {"element": "#g17680", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
-{"element": "#g18129", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "1"} ]},
+{"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
 {"element": "#g17797", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]}
 ]} -->
 
