@@ -25,7 +25,7 @@ For `jekyll`, [install Ruby](https://jekyllrb.com/docs/installation/), then run
 components (if you get an error when doing this, run `gem install bundler`
 first), then run `bundle exec jekyll serve` to build and serve the website
 locally. In your browser, navigate to the address shown in the terminal
-(probably `localhost:4000/plenoptic_presentations/`)
+(probably `localhost:4000/`)
 
 ## Assets
 
