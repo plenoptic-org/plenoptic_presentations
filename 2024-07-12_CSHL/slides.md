@@ -266,7 +266,7 @@ so Javier and Eero took this back to their model. what if they could come up wit
 
 #note: so that's what they did. they took texture images like this, sent them through the two models to get the "target statistics", the set of numbers that we need to match. they then took some white noise and ran gradient descent, updating the pixel values until those statistics matched. that looked like this.
 
-so this image in the top row, according to the simple model, looks like the same texture as our original basket. same is true for the bottom row and the new and improved texture model. we can see that, as humans, we think the texture model has better captured this texturiness. put another way, the 16 numbers in the simpler model are sufficient to perform texture on that data set. they are not sufficient for synthesis.
+so this image in the top row, according to the simple model, looks like the same texture as our original basket. same is true for the bottom row and the new and improved texture model. we can see that, as humans, we think the texture model has better captured this texturiness. put another way, the 16 numbers in the simpler model are sufficient to perform texture classification on that data set. they are not sufficient for synthesis.
 
 Eero and Javier were pretty proud of this; they thought this was a nifty idea and that it showed their texture model was pretty good
 
