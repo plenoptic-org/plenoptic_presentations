@@ -1,0 +1,6 @@
+body:after {
+  content: "https://presentations.plenoptic.org/2023-10-02_Winawer-lab-mtg/slides.html";
+  position: fixed;
+  bottom: 30px;
+  right: 12px;
+}

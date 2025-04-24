@@ -1,0 +1,6 @@
+body:after {
+  content: "https://presentations.plenoptic.org/2024-07-12_CSHL/slides.html";
+  position: fixed;
+  bottom: 30px;
+  right: 12px;
+}
