@@ -16,3 +16,5 @@ _site/
 *.mp4
 *.jpg
 *.tar.gz
+
+*render.md

@@ -42,8 +42,11 @@ jobs:
           pip install click tqdm
       - name: Download and check assets
         run: |
-          python osf_files.py download all
-          python osf_files.py check-assets all
+          python scripts/osf_files.py download all
+          python scripts/osf_files.py check-assets all
+      - name: Render code
+        run: |
+          python scripts/render_code.py 20*/slides.md
       - name: Build with Jekyll
         run: |
           bundle exec jekyll build --verbose -s ./ -d ./_site
