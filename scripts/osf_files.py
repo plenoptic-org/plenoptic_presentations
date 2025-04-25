@@ -21,6 +21,7 @@ OSF_URL = {'2023-10-02_Winawer-lab-mtg': 'spu5e',
            '2024-06-25_SAB': 'z8ryf',
            '2024-07-12_CSHL': 'nvk85',
            '2024-07-15_dana': 'qb9ec',
+           '2025-05-16_vss-symposium': 'drxyn',
            }
 
 
@@ -159,7 +160,7 @@ def check_assets(dir_path: str):
         dir_path = [dir_path]
     else:
         all_dirs = [p.parent.name
-                    for p in pathlib.Path(__file__).parent.glob('*/slides.md')]
+                    for p in pathlib.Path(__file__).parent.parent.glob('*/slides.md')]
         not_in_osf_dict = set(all_dirs).difference(OSF_URL.keys())
         not_a_directory = set(OSF_URL.keys()).difference(all_dirs)
         if len(not_in_osf_dict) > 0:
