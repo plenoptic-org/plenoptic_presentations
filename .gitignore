@@ -18,3 +18,16 @@ _site/
 *.tar.gz
 
 *render.md
+
+# python
+.ipynb_checkpoints
+*jvsc*
+__pycache__/
+*.egg-info/
+*.pyc
+*.iml
+*.xml
+*.pt
+.ftpconfig
+.vscode/
+.coverage*

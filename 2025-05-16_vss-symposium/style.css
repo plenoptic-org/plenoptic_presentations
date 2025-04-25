@@ -1,0 +1,6 @@
+body:after {
+  content: "https://presentations.plenoptic.org/2025-05-16_vss-symposium/slides.html";
+  position: fixed;
+  bottom: 30px;
+  right: 12px;
+}
