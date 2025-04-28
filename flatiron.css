@@ -304,6 +304,7 @@ body {
  *********************************************/
 
 .reveal div:has(> svg),
+.reveal p:has(> video),
 .reveal p:has(> img) {
   margin-top: 0;
   display: flex;
@@ -313,6 +314,7 @@ body {
 
 /* slide titles are almost always h2 */
 .reveal h2 ~ div:has(> svg),
+.reveal h2 ~ p:has(> video),
 .reveal h2 ~ p:has(> img) {
   margin-top: 0;
   display: flex;
@@ -321,6 +323,7 @@ body {
 }
 
 .reveal section svg,
+.reveal section video,
 .reveal section img {
   background: rgba(255, 255, 255, 0.12);
   display:block;
