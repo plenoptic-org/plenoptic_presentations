@@ -70,6 +70,20 @@ writing code in the markdown files easier. For all of this, see
     be wrapped in a div containing the contents of the curly braces. This is
     apply additional classes or styling.
     
+When run on an input file named `slides.md` ,the script will produce a file named `slides-render.md` (in general, appending `-render` before the `.md` file extension), which is the name of the file that should be in the frontmatter of `slides.html`.
+    
+### Render automatically during development
+
+While writing presentations, it's useful to start a jekyll server with `bundle exec jekyll serve --livereload`, which will rebuild the presentations whenever a file is updated. In order to also run the `scripts/render_code.py` script whenever the input is updated, you can make use of `inotify-wait` (part of the `inotify-tools` package):
+
+``` sh
+inotify-wait --monitor --event modify slides.md | while read FILENAME EVENT; do
+  python ../scripts/render_code.py $FILENAME
+end
+```
+
+note that the above should be run within the presentation's folder.
+    
 ## Assets
 
 The assets for these presentations (images, movies) are saved in [this OSF
