@@ -19,8 +19,6 @@ def initialize_color_matching_fig(to_match=(7, 175, 220), to_start=(128, 128, 12
     colors = [to_match, to_start]
     circles = {}
     distance = .25
-    # for ax in axes:
-        # ax.add_patch(plt.Rectangle((-1.5, -1.5), 3, 3, color=(0, 0, 0)))
     circles["red"] = axes[1].add_patch(plt.Circle((-distance, distance),
                                                   1, color=(to_start[0], 0, 0)))
     circles["green"] = axes[1].add_patch(plt.Circle((distance, distance),
@@ -56,6 +54,7 @@ def initialize_color_matching_fig(to_match=(7, 175, 220), to_start=(128, 128, 12
         sliders[c].on_changed(partial(update_circle, slider=c))
     if save_path is not None:
         fig.savefig(save_path, dpi=300)
+        fig.savefig(save_path.replace(".png", ".svg"))
     return fig, sliders
 
 
@@ -79,4 +78,5 @@ def match_some_colors(to_match=(7, 175, 220), to_start=(128, 128, 128),
     if save_path is not None:
         anim.save(save_path, dpi=300)
         fig.savefig(save_path.replace(".mp4", "-final.png"), dpi=300)
+        fig.savefig(save_path.replace(".mp4", "-final.svg"))
     return anim
