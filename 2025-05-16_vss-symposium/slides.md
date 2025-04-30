@@ -105,6 +105,10 @@ as I said, we knew how to find these images in this case because the model's lin
 
 ---
 
+<!-- to generate (movie, plus relevant svgs):
+met = textures.synth_texture(max_iter=200, store_progress=5)
+textures.animate(met, 5, save_path="textures.mp4")
+-->
 <div data-animate data-load="assets/metamer-portilla.svg">
 <!-- {"setup": [
 {"element": "#image1-35", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
@@ -143,7 +147,7 @@ as I said, we knew how to find these images in this case because the model's lin
     {"element": "#g20", "modifier": "attr", "parameters": [ {"display": "none"} ]}
     ]} -->
     </div>
-  <video class="overlap-center" data-autoplay data-src="assets/textures.mp4"></video>
+  <video style="width:71%" class="overlap-center" data-autoplay data-src="assets/textures.mp4"></video>
 </div>
 
 #note:
@@ -170,7 +174,63 @@ as I said, we knew how to find these images in this case because the model's lin
 
 ---
 
-#note: fortunately, in the 25ish years since that paper, something called automatic differentiation, or autodiff, has really come into its own
+<div data-animate data-load="assets/pytorch.svg">
+<!-- {"setup": [
+{"element": "#g4", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#g19", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]}
+]} -->
+</div>
 
+#note: fortunately, in the 25ish years since that paper, science has advanced. in particular, something called automatic differentiation, or autodiff, has really come into its own. with autodiff, we no longer have to compute these gradients manually, and can instead rely on software to do it for us.
+
+for plenoptic, we make use of pytorch, an open-source python package that came out of the deep learning community, originally developed at Meta and now part of the Linux Foundation.
+
+with pytorch, if we have a model that accepts and returns a torch tensor, and does the transofmration between the two in a torch-differentiable way (i.e., using functions from the pytorch library), pytorch can automatically compute the gradients we need.
+
+---
+
+<div style="display:flex;flex-direction:column">
+<div class="logo-title" data-load="/assets/plenoptic_logo_wide.svg"></div>
+
+Goals: <!-- .element: style="margin-top:1%" --> 
+- Facilitate synthesis of model-optimized stimuli.
+- Be compatible with any PyTorch model: e.g., `torchvision`, `brainscore`, custom models.
+- Provide selection of useful vision science metrics, models, and canonical computations.
+- Do all of the above in GPU-accelerated manner.
+- Provide thorough documentation and detailed examples.
+- Well-tested, easy-to-install, modular, and open source.
+</div>
+
+---
+
+<div style="display:flex;flex-direction:column">
+<div class="logo-title" data-load="/assets/plenoptic_logo_wide.svg"></div>
+
+
+Contents: <!-- .element: style="margin-top:1%" --> 
+<div style="display:flex;flex-direction:row">
+
+- Facilitate synthesis of model-optimized stimuli.
+- Be compatible with any PyTorch model: e.g., `torchvision`, `brainscore`, custom models.
+- Provide selection of useful vision science metrics, models, and canonical computations.
+- Do all of the above in GPU-accelerated manner.
+- Provide thorough documentation and detailed examples.
+- Well-tested, easy-to-install, modular, and open source.
+
+<!-- .element: style="float:left;width:45%" class="column"--> 
+
+- Facilitate model-optimized stimulus generation.
+- Be compatible with any PyTorch model: e.g., `torchvision`, `brainscore`, custom models.
+- Provide selection of useful vision science metrics, models, and canonical computations.
+- Do all of the above in GPU-accelerated manner.
+- Provide thorough documentation and detailed examples.
+- Well-tested, easy-to-install, modular, and open source.
+
+<!-- .element: style="float:right;width:45%" class="column"--> 
+</div>
+
+</div>
+
+---
 
 ![](assets/advertisement_slide.svg)
