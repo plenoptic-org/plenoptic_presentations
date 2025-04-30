@@ -74,3 +74,4 @@ def animate(met, framerate=10, save_path=None):
                                    blit=True, interval=1000/framerate)
     if save_path is not None:
         anim.save(save_path)
+        fig.savefig(save_path.replace(".mp4", "-metamer.svg"))
