@@ -34,7 +34,7 @@ def init_figure(image, model, ylim=None):
         ylim = axes[2].get_ylim()
         ylim = max(abs(np.asarray(ylim)))
     ylim = (-ylim, ylim)
-    axes[2].set(ylim=ylim)
+    axes[2].set(ylim=ylim, yscale="symlog")
     rect = axes[1].add_patch(plt.Rectangle((-.5, -.5), 1, 1, facecolor="white",
                                            edgecolor="black", lw=10))
     rx, ry = rect.get_xy()
