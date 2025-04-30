@@ -44,6 +44,9 @@ jobs:
         run: |
           python scripts/osf_files.py download all
           python scripts/osf_files.py check-assets all
+      - name: Fix svgs
+        run: |
+          python scripts/correct_linked_paths.py .
       - name: Render code
         run: |
           python scripts/render_code.py 20*/slides.md

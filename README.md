@@ -84,6 +84,22 @@ end
 
 note that the above should be run within the presentation's folder.
     
+## Linked images
+
+Some of the svgs used in the presentations include links to other images found
+in the `assets/` directory, which tends to improve performance over embedding
+them directly (especially for e.g., plots with many elements). The "including"
+svg file will contain a line like `xlink:href="other_image.svg"`; because both
+svg files live in the `assets` directory but the slides markdown lives one above
+it, the browser will be unable to find `other_image.svg`. To correct this, run:
+`correct_linked_paths.py including_image.svg`, which will prepend `assets/` to
+any paths that need it (it is safe to run this script multiple times on the same
+file). Note that this will break the path to `other_image.svg` in `inkscape`,
+which may make editing `including_image.svg` more difficult.
+
+This script is run on all svg images found in `assets/` folders during the build
+process.
+
 ## Assets
 
 The assets for these presentations (images, movies) are saved in [this OSF
