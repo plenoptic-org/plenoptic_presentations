@@ -31,38 +31,146 @@
 * advertisement slide
 -->
 
+![](/assets/plenoptic_logo_wide.svg) <!-- .element: style="height:50%" -->
 
-# Slide 1
-
-```python data-line-numbers
->>> import plenoptic as po
->>> po.data.einstein()
-```
+## A python library for synthesizing model-optimized visual stimuli
+## Billy Broderick <!-- .element: style="height:50%" -->
 
 ---
-# Slide 2
 
-{: class="margin-top column" style="float:left; width:60%"}
-```python  data-line-numbers doctest:scripts/test.py:test data-line-numbers
-```
-
-![](assets/test.png)
-
----
-# Slide 2
-
-```python doctest:scripts/test.py:test data-line-numbers data-line-numbers
-```
-
-![](assets/test.png)
-
----
-# Slide 3
-
-{: class="margin-top column" style="float:left; width:60%"}
-```python data-line-numbers doctest:scripts/test.py:test2
-```
-
-<div class='margin-top column ' data-fragment-index="0" style="float:right; width:35%">
-<video data-autoplay src="assets/test.mp4"></video>
+<div data-animate data-load="assets/metamer-intro.svg">
+<!-- {"setup": [
+{"element": "#g104", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#g103", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#g101", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
+{"element": "#g100", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]},
+{"element": "#g81", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "4"} ]},
+{"element": "#g105", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "5"} ]},
+{"element": "#g98", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "6"} ]},
+{"element": "#g7", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "7"} ]},
+{"element": "#text65-8-8", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "8"} ]}
+]} -->
 </div>
+
+#note: 
+
+---
+## Color matching experiments
+
+<!-- to generate (movie, plus initial and final frames as pngs+svgs) color_matching.match_some_colors(n_steps=10, save_path="color-match.mp4")
+-->
+<img data-src="assets/color-match-init.png"></img>
+
+#note: Understanding of this property of human vision dates to the 19th century, with Thomas Young and Hermann von Helmholtz's analysis of color matching experiments. In these experiments, participants were presented with a single color, here on the left, whose appearance they needed to match by playing around with the intensity of three different primaries.
+
+---
+## Color matching experiments
+
+<!-- to generate (movie, plus initial and final frames as pngs+svgs) color_matching.match_some_colors(n_steps=10, save_path="color-match.mp4")
+-->
+<video data-autoplay data-src="assets/color-match.mp4"></video>
+
+#note: participants increased or decreased the relative intensity as needed to end up with two identical colors
+
+---
+## Color matching experiments
+
+<div data-animate data-load="assets/metamer-model.svg">
+<!-- {"setup": [
+{"element": "#g275", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#g47", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
+{"element": "#g8", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]},
+{"element": "#g274", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "4"} ]}
+]} -->
+</div>
+
+#note: after running these color matching experiments many times *click*, Helmholtz was able to derive these curves, giving the response of putative "photoreceptors" found in the human eye which responded to light of different colors, from red to violet.
+
+*click* these curves give you a linear model of human trichromacy, which
+
+*click* allow you to predict the responses of these photoreceptors to any stimulus.
+
+your model is also making another really strong prediction -- all other information *not* captured by the model is discarded. thus, if the outputs of this model match, then they should be identical.
+
+testing that prediction is a really good way of validating our understanding of trichromacy, as embodied in this model.
+
+*click* because this model is linear, we know how to solve for a new stimulus that gives the same output
+
+*click* that is, we now know how to generate model metamers: images that are physically distinct but identical *to a model*.
+
+in this case, such images allow us to validate and refine the model in question -- by comparing these images against the target of the model (in this case, human color matching), we can see where the predictions don't match reality and update the model as needed
+
+as I said, we knew how to find these images in this case because the model's linear and thus, straightforward. but if we'd like to use this procedure with more complex, non-linear models, we need another way to find these images
+
+---
+
+<div data-animate data-load="assets/metamer-portilla.svg">
+<!-- {"setup": [
+{"element": "#image1-35", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#g15", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
+{"element": "#image1-05", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]},
+{"element": "#image1-39", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "4"} ]},
+{"element": "#image1-82", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g16", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g17", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g18", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g19", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g21", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g20", "modifier": "attr", "parameters": [ {"display": "none"} ]}
+]} -->
+</div>
+
+#note: plenoptic comes out of work in Eero Simoncelli's lab, and in Eero's lab, this goes back to work he did in the late 90s with Javier Portilla on a texture model.
+- in order to validate their computational model of visual texture, they were inspired by work from Bela Julesz in the 1960s. 
+- as Javier and Eero put it: if they had a good model of visual texture, then any two texture images whose model outputs matched should perceptually equivalent.
+- now, finding two natural images with the same model output would be fairly difficult -- especially in the 90s, before the advent of large image databases
+- so instead, they realized that, if they computed the gradient of the model with respect to the input image, they would know how to change the pixels of an image in order to get the model output to look like what they wanted
+- that is, they could start with a natural texture image, send it through their model to get some output
+- then take another image, say some white noise, ...
+
+---
+
+<div class="overlap-parent">
+  <div data-animate data-load="assets/metamer-portilla.svg">
+    <!-- {"setup": [
+    {"element": "#g16", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+    {"element": "#g17", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+    {"element": "#g18", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+    {"element": "#g19", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+    {"element": "#g21", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+    {"element": "#g20", "modifier": "attr", "parameters": [ {"display": "none"} ]}
+    ]} -->
+    </div>
+  <video class="overlap-center" data-autoplay data-src="assets/textures.mp4"></video>
+</div>
+
+#note:
+- and update its pixel values until the model outputs matched
+- doing this a bunch of times on different textures would allow them to then validate and refine their model, understanding what statistics captured what texture properties in their images
+
+---
+
+<div data-animate data-load="assets/metamer-portilla.svg">
+<!-- {"setup": [
+{"element": "#image1-39", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g16", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#g17", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
+{"element": "#g18", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]},
+{"element": "#g19", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "4"} ]},
+{"element": "#g21", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "5"} ]},
+{"element": "#g20", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "6"} ]}
+]} -->
+</div>
+
+#note:
+- however, in order to do this, they needed to calculate this derivative, and, despite their claim that "this is usually straightforward", it involved doing a lot of calculus by hand
+- even worse, every time they changed the model they would need to recompute the gradients, which is fairly tedious
+
+---
+
+#note: fortunately, in the 25ish years since that paper, something called automatic differentiation, or autodiff, has really come into its own
+
+
+![](assets/advertisement_slide.svg)

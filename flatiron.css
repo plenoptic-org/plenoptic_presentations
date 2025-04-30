@@ -494,3 +494,13 @@ div.two-column {
   display: none;
   visibility: hidden;
 }
+.reveal .overlap-parent {
+  position: relative;
+  height: 100%;
+}
+.reveal .overlap-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
