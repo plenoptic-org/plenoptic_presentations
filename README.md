@@ -98,7 +98,8 @@ file). Note that this will break the path to `other_image.svg` in `inkscape`,
 which may make editing `including_image.svg` more difficult.
 
 This script is run on all svg images found in `assets/` folders during the build
-process.
+process and will work for embedded files that end with any of
+`svg,jpg,jpeg,png`.
 
 ## Assets
 
