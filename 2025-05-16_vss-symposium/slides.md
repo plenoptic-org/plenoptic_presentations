@@ -31,7 +31,7 @@
 * advertisement slide
 -->
 
-![](/assets/plenoptic_logo_wide.svg) <!-- .element: style="height:50%" -->
+![](assets/plenoptic_logo_wide.svg) <!-- .element: style="height:50%" -->
 
 ## A python library for synthesizing model-optimized visual stimuli
 ## Billy Broderick <!-- .element: style="height:50%" -->
@@ -190,7 +190,7 @@ with pytorch, if we have a model that accepts and returns a torch tensor, and do
 ---
 
 <div style="display:flex;flex-direction:column">
-<div class="logo-title" data-load="/assets/plenoptic_logo_wide.svg"></div>
+<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
 
 Goals: <!-- .element: style="margin-top:1%" --> 
 - Facilitate synthesis of model-optimized stimuli.
@@ -204,7 +204,7 @@ Goals: <!-- .element: style="margin-top:1%" -->
 ---
 
 <div style="display:flex;flex-direction:column">
-<div class="logo-title" data-load="/assets/plenoptic_logo_wide.svg"></div>
+<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
 
 
 Contents: <!-- .element: style="margin-top:1%" --> 
