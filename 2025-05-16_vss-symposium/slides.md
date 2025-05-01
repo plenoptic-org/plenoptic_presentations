@@ -78,7 +78,7 @@
 <div data-animate data-load="assets/metamer-model.svg">
 <!-- {"setup": [
 {"element": "#g275", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
-{"element": "#g47", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#g11", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
 {"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
 {"element": "#g8", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]},
 {"element": "#g274", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "4"} ]}
@@ -208,29 +208,31 @@ Goals: <!-- .element: style="margin-top:1%" -->
 
 
 Contents: <!-- .element: style="margin-top:1%" --> 
-<div style="display:flex;flex-direction:row">
 
-- Facilitate synthesis of model-optimized stimuli.
-- Be compatible with any PyTorch model: e.g., `torchvision`, `brainscore`, custom models.
-- Provide selection of useful vision science metrics, models, and canonical computations.
-- Do all of the above in GPU-accelerated manner.
-- Provide thorough documentation and detailed examples.
-- Well-tested, easy-to-install, modular, and open source.
+- Synthesis methods:
+  - Metamers: investigate information discarded by model (e.g., Portilla and Simoncelli, 2000), with coarse-to-fine support.
+  - Eigendistortions: investigate image features considered most and least important by the model (e.g., Berardino et al., 2017).
+  - Maximal Differentiation (MAD) Competition: efficiently compare two models, highlighting differences in sensitivity (e.g., Wang and Simoncelli, 2008).
+- Image quality metrics:
+  - Normalized Laplacian Pyramid Distance (Laparra et al., 2017)
+  - SSIM (Structural Similarity Index) and MS-SSIM (Multi-Scale SSIM) (Wang et al. 2004; Wang et al., 2003)
+- Canonical computations:
+  - Laplacian and Steerable pyramids (Burt and Adelson, 1983; Simoncelli and Freeman, 1995)
+  - Local gain control (e.g., Heeger, 1991)
+- Models:
+  - Center-Surround, On-Off and other "front end" models (Berardino et al., 2017)
+  - Portilla and Simoncelli texture model (Portilla and Simoncelli, 2000)
+- Image processing tools:
+  - Alias-resistant up- and down-sampling
+  - Efficient computation of autocorrelation
+  - Complex signal phase modulation
+  - Conversion of complex signal from polar to rectangular coordinates and vice versa
+  - Computation of kurtosis, skew, and variance on n-dimensional tensors.
 
-<!-- .element: style="float:left;width:45%" class="column"--> 
-
-- Facilitate model-optimized stimulus generation.
-- Be compatible with any PyTorch model: e.g., `torchvision`, `brainscore`, custom models.
-- Provide selection of useful vision science metrics, models, and canonical computations.
-- Do all of the above in GPU-accelerated manner.
-- Provide thorough documentation and detailed examples.
-- Well-tested, easy-to-install, modular, and open source.
-
-<!-- .element: style="float:right;width:45%" class="column"--> 
-</div>
+<!-- .element: class="two-columns-text"--> 
 
 </div>
 
 ---
 
-![](assets/advertisement_slide.svg)
+<div data-load="assets/advertisement_slide.svg"></div>

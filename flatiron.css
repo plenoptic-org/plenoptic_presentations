@@ -508,3 +508,8 @@ div:has(> svg).logo-title {
   width:80%;
   align-self:center;
 }
+.two-columns-text {
+  column-count: 2;
+  column-gap: 3em;
+  font-size: 30px;
+}
