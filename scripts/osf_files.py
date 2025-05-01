@@ -176,6 +176,10 @@ def check_assets(dir_path: str):
         with open(op.join(dir_p, 'slides.md')) as f:
             slides = f.read()
         slides_assets = re.findall('assets/[A-Za-z0-9_.-]+', slides)
+        for p in pathlib.Path(dir_p).glob("assets/*.svg"):
+            with open(p) as f:
+                svg = f.read()
+            slides_assets.extend(re.findall('assets/[A-Za-z0-9_.-]+', svg))
         slides_assets = [a.replace('assets/', '') for a in slides_assets]
         local_assets = os.listdir(op.join(dir_p, 'assets'))
         only_slides = [a for a in slides_assets if a not in local_assets]
