@@ -4,25 +4,29 @@ import ast
 import re
 import sys
 import pathlib
+from collections import OrderedDict
 
 
-ALL_DOCSTRINGS = {}
+ALL_DOCSTRINGS = OrderedDict()
 
-def parse_docstring(docstring):
+def parse_docstring(docstring, respect_ignore=True):
     docstring = docstring.splitlines()
-    docstring = [d.strip() if "ignore" not in d else "" for d in docstring]
+    if respect_ignore:
+        docstring = [d.strip() if "ignore" not in d else "" for d in docstring]
+    else:
+        docstring = [d.strip() for d in docstring]
     return "\n".join(docstring).strip()
 
 
-def get_file_docstrings(tree_body):
-    docstrings = {}
+def get_file_docstrings(tree_body, respect_ignore=True):
+    docstrings = OrderedDict()
     for node in tree_body:
         try:
             doc = ast.get_docstring(node)
         except TypeError:
             doc = None
         if doc is not None:
-            docstrings[node.name] = parse_docstring(doc)
+            docstrings[node.name] = parse_docstring(doc, respect_ignore)
     return docstrings
 
 def get_docstring(file, function):
