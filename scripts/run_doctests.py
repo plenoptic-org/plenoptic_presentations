@@ -9,7 +9,7 @@ import argparse
 import render_code
 
 dt_parser = doctest.DocTestParser()
-dt_runner = doctest.DocTestRunner()
+dt_runner = doctest.DocTestRunner(optionflags=doctest.FAIL_FAST)
 
 def parse_functions_args(functions_str, function_names):
     functions_str = functions_str.split(",")
