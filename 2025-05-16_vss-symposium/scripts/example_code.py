@@ -3,14 +3,39 @@
 import plenoptic as po
 import matplotlib.pyplot as plt
 
-def create_figure(met):
-    fig, axes = plt.subplots(1, 4, figsize=(16, 4))
+def create_met_figure(met, included_plots=None):
+    if included_plots is None:
+        included_plots = [
+            "display_metamer",
+            "plot_loss",
+            "plot_representation_error",
+        ]
+    n_plots = 1 + len(included_plots)
+    fig, axes = plt.subplots(1, n_plots, figsize=(4*n_plots, 4))
     po.imshow(met.image, ax=axes[0], title="Original image")
     axes[0].set_axis_off()
     fig, axes_idx = po.synth.metamer.plot_synthesis_status(met, fig=fig, axes_idx={"misc": 0},
-                                                           iteration=0)
+                                                           iteration=0,
+                                                           included_plots=included_plots)
     fig.tight_layout(w_pad=.1, rect=(0, 0, 1, .9))
     return fig, axes_idx
+
+
+def create_eig_figure(eig):
+    fig, axes = plt.subplots(2, 3, figsize=(12, 8))
+    axes[0, 0].set_visible(False)
+    po.imshow(eig.image, ax=axes[1, 0], title="Original image")
+    title = ["Max", "Min"]
+    axes[1, 0].set_axis_off()
+    for i in range(2):
+        po.imshow(eig.eigendistortions[i:i+1], ax=axes[0, i+1],
+                  title=f"{title[i]} Eigendistortion")
+        axes[0, i+1].set_axis_off()
+        po.imshow(eig.image + eig.eigendistortions[i:i+1], ax=axes[1, i+1],
+                  title=f"{title[i]} Eigendistortion")
+        axes[1, i+1].set_axis_off()
+    fig.tight_layout(w_pad=.1, rect=(0, 0, 1, .9))
+    return fig
 
 
 def base():
@@ -27,9 +52,30 @@ def base():
     >>> met = po.synth.Metamer(img, model)
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
-    >>> fig, axes_idx = create_figure(met) # ignore
+    >>> fig, axes_idx = create_met_figure(met) # ignore
     >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    """
+    "hi"
+
+
+def eigendistortion():
+    """
+    >>> import plenoptic as po
+    >>> # Load image into Pytorch tensor
+    >>> img = po.data.einstein()
+    >>> # Initialize model
+    >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
+    ...                                 cache_filt=True,
+    ...                                 pad_mode="circular")
+    >>> # Detach gradients from model -- model parameters are fixed.
+    >>> po.tools.remove_grad(model)
+    >>> # Initialize metamer object
+    >>> eig = po.synth.Eigendistortion(img, model)
+    >>> # Synthesize eigendistortions
+    >>> eig.synthesize(max_iter=1000)
+    >>> fig = create_eig_figure(eig) # ignore
     >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
     "hi"
@@ -51,7 +97,7 @@ def gpu_one():
     >>> met = po.synth.Metamer(img, model)
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
-    >>> fig, axes_idx = create_figure(met) # ignore
+    >>> fig, axes_idx = create_met_figure(met) # ignore
     >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
     >>> fig.savefig("{filename}-{func}-final.svg") # ignore
@@ -75,7 +121,7 @@ def gpu_two():
     >>> met.to("cuda")
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
-    >>> fig, axes_idx = create_figure(met) # ignore
+    >>> fig, axes_idx = create_met_figure(met) # ignore
     >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
     >>> fig.savefig("{filename}-{func}-final.svg") # ignore
@@ -97,7 +143,7 @@ def custom_image():
     >>> met = po.synth.Metamer(img, model)
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
-    >>> fig, axes_idx = create_figure(met) # ignore
+    >>> fig, axes_idx = create_met_figure(met) # ignore
     >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
     >>> fig.savefig("{filename}-{func}-final.svg") # ignore
@@ -105,11 +151,11 @@ def custom_image():
     "hi"
 
 
-def custom_image():
+def init_image():
     """
     >>> import plenoptic as po
     >>> # Load image into Pytorch tensor
-    >>> img = po.load_images("/home/billbrod/Desktop/reptile_skin.png")
+    >>> img = po.data.einstein()
     >>> # Initialize model
     >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
     ...                                 cache_filt=True)
@@ -117,10 +163,151 @@ def custom_image():
     >>> po.tools.remove_grad(model)
     >>> # Initialize metamer object
     >>> met = po.synth.Metamer(img, model)
+    >>> met.setup(initial_image=po.data.curie())
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
-    >>> fig, axes_idx = create_figure(met) # ignore
+    >>> fig, axes_idx = create_met_figure(met) # ignore
     >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    """
+    "hi"
+
+
+def texture():
+    """
+    >>> import plenoptic as po
+    >>> # Load image into Pytorch tensor
+    >>> img = po.load_images("/home/billbrod/Desktop/reptile_skin.png")
+    >>> # Initialize model
+    >>> model = po.simul.PortillaSimoncelli(img.shape[-2:])
+    >>> # Initialize metamer object
+    >>> met = po.synth.MetamerCTF(img, model)
+    >>> init_img = .2 * torch.rand_like(img) + img.mean()
+    >>> met.setup(initial_image=init_img)
+    >>> # Synthesize model metamer
+    >>> met.synthesize(max_iter=200, store_progress=5, ctf_iters_to_check=3,
+    ...                change_scale_criterion=None)
+    >>> fig, axes_idx = create_met_figure(met) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    """
+    "hi"
+
+
+def optimizer():
+    """
+    >>> import plenoptic as po
+    >>> import torch
+    >>> # Load image into Pytorch tensor
+    >>> img = po.data.einstein()
+    >>> # Initialize model
+    >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
+    ...                                 cache_filt=True)
+    >>> # Detach gradients from model -- model parameters are fixed.
+    >>> po.tools.remove_grad(model)
+    >>> # Initialize metamer object
+    >>> met = po.synth.Metamer(img, model)
+    >>> met.setup(initial_image=po.data.curie(), optimizer=torch.optim.SGD)
+    >>> # Synthesize model metamer
+    >>> met.synthesize(max_iter=100, store_progress=5)
+    >>> fig, axes_idx = create_met_figure(met) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    """
+    "hi"
+
+
+def optimizer_kwargs():
+    """
+    >>> import plenoptic as po
+    >>> # Load image into Pytorch tensor
+    >>> img = po.data.einstein()
+    >>> # Initialize model
+    >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
+    ...                                 cache_filt=True)
+    >>> # Detach gradients from model -- model parameters are fixed.
+    >>> po.tools.remove_grad(model)
+    >>> # Initialize metamer object
+    >>> met = po.synth.Metamer(img, model)
+    >>> met.setup(initial_image=po.data.curie(), optimizer_kwargs=dict(lr=1e-3))
+    >>> # Synthesize model metamer
+    >>> met.synthesize(max_iter=100, store_progress=5)
+    >>> fig, axes_idx = create_met_figure(met) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    """
+    "hi"
+
+
+def torchvision():
+    """
+    >>> import plenoptic as po
+    >>> import torch
+    >>> from torchvision.models.feature_extraction import create_feature_extractor
+    >>> import torchvision
+    >>> # Load image into Pytorch tensor
+    >>> img = po.data.einstein(as_gray=False)
+    >>> # Initialize model
+    >>> class TorchVision(torch.nn.Module):
+    ...     def __init__(self, model, return_node, transform):
+    ...         super().__init__()
+    ...         self.transform = transform
+    ...         self.extractor = create_feature_extractor(model, return_nodes=[return_node])
+    ...         self.model = model
+    ...         self.return_node = return_node
+    ...     def forward(self, x):
+    ...         if self.transform is not None:
+    ...             x = self.transform(x)
+    ...         return self.extractor(x)[self.return_node]
+    >>> weights = torchvision.models.ResNet50_Weights.IMAGENET1K_V1
+    >>> transform = torchvision.models.ResNet50_Weights.IMAGENET1K_V1.transforms()
+    >>> model = torchvision.models.resnet50(weights=weights)
+    >>> # Detach gradients from model -- model parameters are fixed.
+    >>> model = TorchVision(model, "layer2", transform)
+    >>> po.tools.remove_grad(model)
+    >>> model = model.eval()
+    >>> # Initialize metamer object
+    >>> met = po.synth.Metamer(img, model)
+    >>> # Synthesize model metamer
+    >>> met.synthesize(max_iter=400, store_progress=5)
+    >>> included_plots = ["display_metamer", "plot_loss"] # ignore
+    >>> fig, axes_idx = create_met_figure(met, included_plots) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> po.synth.metamer.animate(met, 5, included_plots=included_plots,
+    ...                          fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    """
+    "hi"
+
+
+def custom_model():
+    """
+    >>> import plenoptic as po
+
+    >>> import torch
+    >>> import torchvision
+    >>> # Load image into Pytorch tensor
+    >>> img = po.data.einstein()
+    >>> # Create a simple Gaussian convolutional model
+    >>> class Gaussian(torch.nn.Module):
+    ...     def __init__(self, kernel_size, std_dev=3):
+    ...         super().__init__()
+    ...         self.kernel_size = kernel_size
+    ...         self.conv = torch.nn.Conv2d(1, 1, kernel_size=kernel_size,
+    ...                                     padding=(0, 0), bias=False)
+    ...         self.conv.weight.data[0, 0] = po.simul.circular_gaussian2d(kernel_size, float(std_dev))
+    ...     def forward(self, x):
+    ...         x = po.tools.conv.same_padding(x, self.kernel_size, pad_mode='circular')
+    ...         return self.conv(x)
+    >>> model = Gaussian((31, 31))
+    >>> # Detach gradients from model -- model parameters are fixed.
+    >>> po.tools.remove_grad(model)
+    >>> po.tools.validate.validate_model(model)
+    >>> # Initialize metamer object
+    >>> met = po.synth.Metamer(img, model)
+    >>> # Synthesize model metamer
+    >>> met.synthesize(max_iter=100, store_progress=5)
+    >>> fig, axes_idx = create_met_figure(met) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> po.synth.metamer.animate(met, 5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
     """
     "hi"

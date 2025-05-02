@@ -235,4 +235,18 @@ Contents: <!-- .element: style="margin-top:1%" -->
 
 ---
 
+## Example code
+
+```python doctest:scripts/example_code.py:base data-line-numbers
+```
+
+---
+
+## Example code
+
+```python doctest:scripts/example_code.py:gpu_one data-line-numbers="3,7,8"
+```
+
+---
+
 <div data-load="assets/advertisement_slide.svg"></div>
