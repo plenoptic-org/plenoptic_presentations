@@ -4,7 +4,7 @@ import plenoptic as po
 import matplotlib.pyplot as plt
 import torch
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-torch.set_default_device(device)
+torch.set_default_device(DEVICE)
 
 def create_met_figure(met, included_plots=None):
     if included_plots is None:
