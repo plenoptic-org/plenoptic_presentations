@@ -21,7 +21,7 @@ def create_met_figure(met, included_plots=None):
     return fig, axes_idx
 
 
-def create_eig_figure(eig):
+def create_eig_figure(eig, alpha=5):
     fig, axes = plt.subplots(2, 3, figsize=(12, 8))
     axes[0, 0].set_visible(False)
     po.imshow(eig.image, ax=axes[1, 0], title="Original image")
@@ -31,10 +31,10 @@ def create_eig_figure(eig):
         po.imshow(eig.eigendistortions[i:i+1], ax=axes[0, i+1],
                   title=f"{title[i]} Eigendistortion")
         axes[0, i+1].set_axis_off()
-        po.imshow(eig.image + eig.eigendistortions[i:i+1], ax=axes[1, i+1],
-                  title=f"{title[i]} Eigendistortion")
+        po.imshow(eig.image + alpha*eig.eigendistortions[i:i+1], ax=axes[1, i+1],
+                  title=f"Image + {alpha} * {title[i]} Eigendistortion")
         axes[1, i+1].set_axis_off()
-    fig.tight_layout(w_pad=.1, rect=(0, 0, 1, .9))
+    fig.tight_layout(w_pad=.1, rect=(0, 0, 1, .9), h_pad=2)
     return fig
 
 
