@@ -3,7 +3,8 @@
 import plenoptic as po
 import matplotlib.pyplot as plt
 import torch
-torch.set_default_device(0)
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+torch.set_default_device(device)
 
 def create_met_figure(met, included_plots=None):
     if included_plots is None:
@@ -190,9 +191,11 @@ def texture():
     >>> met.synthesize(max_iter=200, store_progress=5,
     ...                ctf_iters_to_check=3,
     ...                change_scale_criterion=None)
-    >>> fig, axes_idx = create_met_figure(met) # ignore
+    >>> included_plots = ["display_metamer", "plot_loss"] # ignore
+    >>> fig, axes_idx = create_met_figure(met, included_plots) # ignore
     >>> fig.savefig("{filename}-{func}-init.svg") # ignore
-    >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    >>> po.synth.metamer.animate(met, framerate=5, included_plots=included_plots, #ignore
+    ...                          fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
     >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
     "hi"
@@ -284,7 +287,7 @@ def torchvision():
     >>> included_plots = ["display_metamer", "plot_loss"] # ignore
     >>> fig, axes_idx = create_met_figure(met, included_plots) # ignore
     >>> fig.savefig("{filename}-{func}-init.svg") # ignore
-    >>> po.synth.metamer.animate(met, 5, included_plots=included_plots,
+    >>> po.synth.metamer.animate(met, 5, included_plots=included_plots, #ignore
     ...                          fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
     >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
@@ -294,9 +297,9 @@ def torchvision():
 def custom_model():
     """
     >>> import plenoptic as po
-
     >>> import torch
     >>> import torchvision
+    >>> from plenoptic.simulate import circular_gaussian2d
     >>> # Load image into Pytorch tensor
     >>> img = po.data.einstein()
     >>> # Create a simple Gaussian convolutional model
@@ -304,11 +307,14 @@ def custom_model():
     ...     def __init__(self, kernel_size, std_dev=3):
     ...         super().__init__()
     ...         self.kernel_size = kernel_size
-    ...         self.conv = torch.nn.Conv2d(1, 1, kernel_size=kernel_size,
+    ...         self.conv = torch.nn.Conv2d(1, 1,
+    ...                                     kernel_size=kernel_size,
     ...                                     padding=(0, 0), bias=False)
-    ...         self.conv.weight.data[0, 0] = po.simul.circular_gaussian2d(kernel_size, float(std_dev))
+    ...         gauss = circular_gaussian2d(kernel_size, std_dev)
+    ...         self.conv.weight.data[0, 0] = gauss
     ...     def forward(self, x):
-    ...         x = po.tools.conv.same_padding(x, self.kernel_size, pad_mode='circular')
+    ...         x = po.tools.conv.same_padding(x, self.kernel_size,
+    ...                                        pad_mode='circular')
     ...         return self.conv(x)
     >>> model = Gaussian((31, 31))
     >>> # Detach gradients from model -- model parameters are fixed.
