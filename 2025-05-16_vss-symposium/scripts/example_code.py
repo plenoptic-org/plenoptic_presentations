@@ -2,6 +2,8 @@
 
 import plenoptic as po
 import matplotlib.pyplot as plt
+import torch
+torch.set_default_device(0)
 
 def create_met_figure(met, included_plots=None):
     if included_plots is None:
@@ -14,6 +16,7 @@ def create_met_figure(met, included_plots=None):
     fig, axes = plt.subplots(1, n_plots, figsize=(4*n_plots, 4))
     po.imshow(met.image, ax=axes[0], title="Original image")
     axes[0].set_axis_off()
+    torch.set_default_device("cpu")
     fig, axes_idx = po.synth.metamer.plot_synthesis_status(met, fig=fig, axes_idx={"misc": 0},
                                                            iteration=0,
                                                            included_plots=included_plots)
@@ -74,9 +77,9 @@ def eigendistortion():
     >>> # Initialize metamer object
     >>> eig = po.synth.Eigendistortion(img, model)
     >>> # Synthesize eigendistortions
-    >>> eig.synthesize(max_iter=1000)
+    >>> eig.synthesize(max_iter=1000);
     >>> fig = create_eig_figure(eig) # ignore
-    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     """
     "hi"
 
@@ -97,10 +100,6 @@ def gpu_one():
     >>> met = po.synth.Metamer(img, model)
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
-    >>> fig, axes_idx = create_met_figure(met) # ignore
-    >>> fig.savefig("{filename}-{func}-init.svg") # ignore
-    >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
-    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
     "hi"
 
@@ -121,10 +120,6 @@ def gpu_two():
     >>> met.to("cuda")
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
-    >>> fig, axes_idx = create_met_figure(met) # ignore
-    >>> fig.savefig("{filename}-{func}-init.svg") # ignore
-    >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
-    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
     "hi"
 
@@ -167,8 +162,9 @@ def init_image():
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
     >>> fig, axes_idx = create_met_figure(met) # ignore
-    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
     "hi"
 
@@ -188,8 +184,9 @@ def texture():
     >>> met.synthesize(max_iter=200, store_progress=5, ctf_iters_to_check=3,
     ...                change_scale_criterion=None)
     >>> fig, axes_idx = create_met_figure(met) # ignore
-    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
     "hi"
 
@@ -211,8 +208,9 @@ def optimizer():
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
     >>> fig, axes_idx = create_met_figure(met) # ignore
-    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
     "hi"
 
@@ -233,8 +231,9 @@ def optimizer_kwargs():
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
     >>> fig, axes_idx = create_met_figure(met) # ignore
-    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     >>> po.synth.metamer.animate(met, framerate=5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
     "hi"
 
@@ -270,11 +269,13 @@ def torchvision():
     >>> met = po.synth.Metamer(img, model)
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=400, store_progress=5)
+    >>> met.to('cpu') # ignore
     >>> included_plots = ["display_metamer", "plot_loss"] # ignore
     >>> fig, axes_idx = create_met_figure(met, included_plots) # ignore
-    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     >>> po.synth.metamer.animate(met, 5, included_plots=included_plots,
     ...                          fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
     "hi"
 
@@ -307,7 +308,8 @@ def custom_model():
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
     >>> fig, axes_idx = create_met_figure(met) # ignore
-    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     >>> po.synth.metamer.animate(met, 5, fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
     """
     "hi"
