@@ -48,7 +48,8 @@ def base():
     >>> img = po.data.einstein()
     >>> # Initialize model
     >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
-    ...                                 cache_filt=True)
+    ...                                 cache_filt=True,
+    ...                                 pad_mode="circular")
     >>> # Detach gradients from model -- model parameters are fixed.
     >>> po.tools.remove_grad(model)
     >>> # Initialize metamer object
@@ -91,7 +92,8 @@ def gpu_one():
     >>> img = po.data.einstein().to("cuda")
     >>> # Initialize model
     >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
-    ...                                 cache_filt=True)
+    ...                                 cache_filt=True,
+    ...                                 pad_mode="circular")
     >>> # Move model object to GPU
     >>> model = model.to("cuda")
     >>> # Detach gradients from model -- model parameters are fixed.
@@ -111,7 +113,8 @@ def gpu_two():
     >>> img = po.data.einstein()
     >>> # Initialize model
     >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
-    ...                                 cache_filt=True)
+    ...                                 cache_filt=True,
+    ...                                 pad_mode="circular")
     >>> # Detach gradients from model -- model parameters are fixed.
     >>> po.tools.remove_grad(model)
     >>> # Initialize metamer object
@@ -131,7 +134,8 @@ def custom_image():
     >>> img = po.load_images("/home/billbrod/Desktop/reptile_skin.png")
     >>> # Initialize model
     >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
-    ...                                 cache_filt=True)
+    ...                                 cache_filt=True,
+    ...                                 pad_mode="circular")
     >>> # Detach gradients from model -- model parameters are fixed.
     >>> po.tools.remove_grad(model)
     >>> # Initialize metamer object
@@ -153,7 +157,8 @@ def init_image():
     >>> img = po.data.einstein()
     >>> # Initialize model
     >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
-    ...                                 cache_filt=True)
+    ...                                 cache_filt=True,
+    ...                                 pad_mode="circular")
     >>> # Detach gradients from model -- model parameters are fixed.
     >>> po.tools.remove_grad(model)
     >>> # Initialize metamer object
@@ -199,12 +204,14 @@ def optimizer():
     >>> img = po.data.einstein()
     >>> # Initialize model
     >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
-    ...                                 cache_filt=True)
+    ...                                 cache_filt=True,
+    ...                                 pad_mode="circular")
     >>> # Detach gradients from model -- model parameters are fixed.
     >>> po.tools.remove_grad(model)
     >>> # Initialize metamer object
     >>> met = po.synth.Metamer(img, model)
-    >>> met.setup(initial_image=po.data.curie(), optimizer=torch.optim.SGD)
+    >>> met.setup(initial_image=po.data.curie(),
+    ...           optimizer=torch.optim.SGD)
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
     >>> fig, axes_idx = create_met_figure(met) # ignore
@@ -222,12 +229,14 @@ def optimizer_kwargs():
     >>> img = po.data.einstein()
     >>> # Initialize model
     >>> model = po.simul.CenterSurround(kernel_size=(31, 31),
-    ...                                 cache_filt=True)
+    ...                                 cache_filt=True,
+    ...                                 pad_mode="circular")
     >>> # Detach gradients from model -- model parameters are fixed.
     >>> po.tools.remove_grad(model)
     >>> # Initialize metamer object
     >>> met = po.synth.Metamer(img, model)
-    >>> met.setup(initial_image=po.data.curie(), optimizer_kwargs=dict(lr=1e-3))
+    >>> met.setup(initial_image=po.data.curie(),
+    ...           optimizer_kwargs=dict(lr=1e-3))
     >>> # Synthesize model metamer
     >>> met.synthesize(max_iter=100, store_progress=5)
     >>> fig, axes_idx = create_met_figure(met) # ignore
