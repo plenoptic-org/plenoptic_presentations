@@ -441,7 +441,7 @@ and they did some psychophysics that showed observers found the middle two seque
 <div class="column margin-top" style="float:right; width:30%">
 
 ![qr](assets/plen-docs-qr.svg) <!-- .element: style="width:70%" -->
-https://plenoptic.readthedocs.io/
+https://docs.plenoptic.org/
 
 </div>
 
