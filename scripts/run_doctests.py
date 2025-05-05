@@ -12,6 +12,8 @@ dt_parser = doctest.DocTestParser()
 dt_runner = doctest.DocTestRunner(optionflags=doctest.FAIL_FAST)
 
 def parse_functions_args(functions_str, function_names):
+    if functions_str is None:
+        return function_names
     functions_str = functions_str.split(",")
     functions_out = []
     for s in functions_str:
