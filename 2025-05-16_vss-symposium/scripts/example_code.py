@@ -182,11 +182,13 @@ def texture():
     >>> # Initialize model
     >>> model = po.simul.PortillaSimoncelli(img.shape[-2:])
     >>> # Initialize metamer object
-    >>> met = po.synth.MetamerCTF(img, model)
+    >>> met = po.synth.MetamerCTF(img, model,
+    ...                           loss_function=po.tools.optim.l2_norm)
     >>> init_img = .2 * torch.rand_like(img) + img.mean()
     >>> met.setup(initial_image=init_img)
     >>> # Synthesize model metamer
-    >>> met.synthesize(max_iter=200, store_progress=5, ctf_iters_to_check=3,
+    >>> met.synthesize(max_iter=200, store_progress=5,
+    ...                ctf_iters_to_check=3,
     ...                change_scale_criterion=None)
     >>> fig, axes_idx = create_met_figure(met) # ignore
     >>> fig.savefig("{filename}-{func}-init.svg") # ignore
