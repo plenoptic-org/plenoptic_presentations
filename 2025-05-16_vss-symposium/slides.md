@@ -68,7 +68,7 @@
 
 <!-- to generate (movie, plus initial and final frames as pngs+svgs) color_matching.match_some_colors(n_steps=10, save_path="color-match.mp4")
 -->
-<video data-autoplay data-src="assets/color-match.mp4"></video>
+<video data-src="assets/color-match.mp4"></video>
 
 #note: participants increased or decreased the relative intensity as needed to end up with two identical colors
 
@@ -147,7 +147,7 @@ textures.animate(met, 5, save_path="textures.mp4")
     {"element": "#g20", "modifier": "attr", "parameters": [ {"display": "none"} ]}
     ]} -->
     </div>
-  <video style="width:71%" class="overlap-center" data-autoplay data-src="assets/textures.mp4"></video>
+  <video style="width:71%" class="overlap-center" data-src="assets/textures.mp4"></video>
 </div>
 
 #note:
@@ -211,7 +211,7 @@ Contents: <!-- .element: style="margin-top:1%" -->
 
 - Synthesis methods:
   - Metamers: investigate information discarded by model (e.g., Portilla and Simoncelli, 2000), with coarse-to-fine support.
-  - Eigendistortions: investigate image features considered most and least important by the model (e.g., Berardino et al., 2017).
+  - Eigendistortions: generate image perturbations considered most and least noticeable by the model (e.g., Berardino et al., 2017).
   - Maximal Differentiation (MAD) Competition: efficiently compare two models, highlighting differences in sensitivity (e.g., Wang and Simoncelli, 2008).
 - Image quality metrics:
   - Normalized Laplacian Pyramid Distance (Laparra et al., 2017)
@@ -235,17 +235,179 @@ Contents: <!-- .element: style="margin-top:1%" -->
 
 ---
 
-## Example code
-
-```python doctest:scripts/example_code.py:base data-line-numbers
-```
+Explain logo
 
 ---
 
-## Example code
-
-```python doctest:scripts/example_code.py:gpu_one data-line-numbers="3,7,8"
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
 ```
+<p><img style="width:100%" data-src="scripts/example_code-base-init.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
+```
+<p><video style="width:100%" data-src="scripts/example_code-base.mp4" ></video></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:gpu_one data-line-numbers="3,7,8" data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-base-final.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:gpu_two data-line-numbers="12" data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-base-final.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-base-final.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:custom_image data-line-numbers="3" data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-custom_image-init.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:custom_image data-line-numbers="3" data-id="one"
+```
+<p><video style="width:100%" data-src="scripts/example_code-custom_image.mp4" ></video></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:init_image data-line-numbers="3,11" data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-init_image-init.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:init_image data-line-numbers="3,11" data-id="one"
+```
+<p><video style="width:100%" data-src="scripts/example_code-init_image.mp4" ></video></p>
+</div>
+
+---
+
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:optimizer_kwargs data-line-numbers="11,12" data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-optimizer_kwargs-init.svg" ></img></p>
+</div>
+
+---
+
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:optimizer data-line-numbers="2,12,13" data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-optimizer-init.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-base-final.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:eigendistortion data-line-numbers="11" data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-eigendistortion-final.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:custom_model data-line-numbers="9-21,24" data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-custom_model-init.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:custom_model data-line-numbers="9-21,24" data-id="one"
+```
+<p><video style="width:100%" data-src="scripts/example_code-custom_model.mp4" ></video></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:texture data-line-numbers data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-texture-init.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid">
+```python doctest:scripts/example_code.py:texture data-line-numbers data-id="one"
+```
+<p><video style="width:100%" data-src="scripts/example_code-texture.mp4" ></video></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid" style="grid-template-columns: 53% 50%;">
+```python doctest:scripts/example_code.py:torchvision data-line-numbers="8-22" data-id="one"
+```
+<p><img style="width:100%" data-src="scripts/example_code-torchvision-init.svg" ></img></p>
+</div>
+
+---
+<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid" style="grid-template-columns: 53% 50%;">
+```python doctest:scripts/example_code.py:torchvision data-line-numbers="8-22" data-id="one"
+```
+<p><video style="width:100%" data-src="scripts/example_code-torchvision.mp4" ></video></p>
+</div>
 
 ---
 
