@@ -18,8 +18,9 @@ def create_met_figure(met, included_plots=None):
     po.imshow(met.image, ax=axes[0], title="Original image")
     axes[0].set_axis_off()
     torch.set_default_device("cpu")
+    vrange = (met.image.min().item(), met.image.max().item())
     fig, axes_idx = po.synth.metamer.plot_synthesis_status(met, fig=fig, axes_idx={"misc": 0},
-                                                           iteration=0,
+                                                           iteration=0, vrange=vrange,
                                                            included_plots=included_plots)
     fig.tight_layout(w_pad=.1, rect=(0, 0, 1, .9))
     return fig, axes_idx
