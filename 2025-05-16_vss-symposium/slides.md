@@ -36,6 +36,8 @@
 ## A python library for synthesizing model-optimized visual stimuli
 ## Billy Broderick <!-- .element: style="height:50%" -->
 
+#note: today I'm going to talk about plenoptic, a python library for synthesizing the model-optimized visual stimuli we're talking about it in this session. but first, I'm going to step back a bit
+
 ---
 
 <div data-animate data-load="assets/metamer-intro.svg">
@@ -52,7 +54,16 @@
 ]} -->
 </div>
 
-#note: 
+
+#note:
+- when you look at a picture of this room and compare it to looking around at the actual room
+- you generally judge the colors in those two as identical
+- this is not because the actual physical light, the energy at each wavelength, which our brains interpret as color, are identical
+- because they're very much not
+- instead, it's because to get to our brains, the light has to first go through our eyes and, in particular, our cones. most humans are trichromatic, which means they only have three cone classes, each differentially sensitive to visible light. in order to get identical color perception, you don't need the input to the system, the light, to be identical, you need
+- the output, the cone responses to be identical. 
+- if the responses of the three cone classes are identical to two given stimuli, you'll perceive their colors as identical, because you've thrown away all information that could be used to distinguish them
+- they are what we call *percpetual metamers*, a set of images that are physically different but perceptually identical.
 
 ---
 ## Color matching experiments
@@ -85,19 +96,18 @@
 ]} -->
 </div>
 
-#note: after running these color matching experiments many times *click*, Helmholtz was able to derive these curves, giving the response of putative "photoreceptors" found in the human eye which responded to light of different colors, from red to violet.
-
-*click* these curves give you a linear model of human trichromacy, which
-
-*click* allow you to predict the responses of these photoreceptors to any stimulus.
+#note: 
+- after running these color matching experiments many times 
+- Helmholtz was able to derive these curves, giving the response of putative "photoreceptors" found in the human eye which responded to light of different colors, from red to violet.
+- these curves give you a linear model of human trichromacy, which
+- allows you to predict the responses of these photoreceptors to any stimulus.
 
 your model is also making another really strong prediction -- all other information *not* captured by the model is discarded. thus, if the outputs of this model match, then they should be identical.
 
 testing that prediction is a really good way of validating our understanding of trichromacy, as embodied in this model.
 
-*click* because this model is linear, we know how to solve for a new stimulus that gives the same output
-
-*click* that is, we now know how to generate model metamers: images that are physically distinct but identical *to a model*.
+- because this model is linear, we know how to solve for a new stimulus that gives the same output pretty easily
+- that is, we now know how to generate model metamers: images that are physically distinct but identical *to a model*.
 
 in this case, such images allow us to validate and refine the model in question -- by comparing these images against the target of the model (in this case, human color matching), we can see where the predictions don't match reality and update the model as needed
 
@@ -126,10 +136,13 @@ textures.animate(met, 5, save_path="textures.mp4")
 ]} -->
 </div>
 
-#note: plenoptic comes out of work in Eero Simoncelli's lab, and in Eero's lab, this goes back to work he did in the late 90s with Javier Portilla on a texture model.
+#note: 
+- plenoptic comes out of work in Eero Simoncelli's lab, and in Eero's lab, this goes back to work he did in the late 90s with Javier Portilla on a texture model.
 - in order to validate their computational model of visual texture, they were inspired by work from Bela Julesz in the 1960s. 
-- as Javier and Eero put it: if they had a good model of visual texture, then any two texture images whose model outputs matched should perceptually equivalent.
-- now, finding two natural images with the same model output would be fairly difficult -- especially in the 90s, before the advent of large image databases
+- as Javier and Eero put it: if they had a good model of visual texture, then any two texture images whose model outputs matched should be perceptually equivalent.
+
+now, stumbling across two natural images with the same model output would be fairly difficult -- especially in the 90s, before the advent of large image databases
+
 - so instead, they realized that, if they computed the gradient of the model with respect to the input image, they would know how to change the pixels of an image in order to get the model output to look like what they wanted
 - that is, they could start with a natural texture image, send it through their model to get some output
 - then take another image, say some white noise, ...
@@ -150,9 +163,9 @@ textures.animate(met, 5, save_path="textures.mp4")
   <video style="width:71%" class="overlap-center" data-src="assets/textures.mp4"></video>
 </div>
 
-#note:
-- and update its pixel values until the model outputs matched
-- doing this a bunch of times on different textures would allow them to then validate and refine their model, understanding what statistics captured what texture properties in their images
+#note: and update its pixel values until the model outputs matched
+
+doing this a bunch of times on different textures would allow them to then validate and refine their model, understanding what statistics captured what texture properties in their images
 
 ---
 
@@ -181,15 +194,24 @@ textures.animate(met, 5, save_path="textures.mp4")
 ]} -->
 </div>
 
-#note: fortunately, in the 25ish years since that paper, science has advanced. in particular, something called automatic differentiation, or autodiff, has really come into its own. with autodiff, we no longer have to compute these gradients manually, and can instead rely on software to do it for us.
-
-for plenoptic, we make use of pytorch, an open-source python package that came out of the deep learning community, originally developed at Meta and now part of the Linux Foundation.
-
-with pytorch, if we have a model that accepts and returns a torch tensor, and does the transofmration between the two in a torch-differentiable way (i.e., using functions from the pytorch library), pytorch can automatically compute the gradients we need.
+#note:
+- fortunately, in the 25ish years since that paper, science has advanced. in particular, something called automatic differentiation, or autodiff, has really come into its own. with autodiff, we no longer have to compute these gradients manually, and can instead rely on software to do it for us.
+- for plenoptic, we make use of pytorch, an open-source python package that came out of the deep learning community, originally developed at Meta and now part of the Linux Foundation.
+- with pytorch, if we have a model that accepts and returns a torch tensor, and does the transofmration between the two in a torch-differentiable way (i.e., using functions from the pytorch library), pytorch can automatically compute the gradients we need.
 
 ---
 
-<h2 class="fragment disappear" data-fragment-index=0>Visual model</h2>
+<div style="display:flex;flex-direction:column">
+<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
+
+Goals: <!-- .element: style="margin-top:1%" --> 
+- Facilitate synthesis of model-optimized stimuli.
+</div>
+
+---
+
+<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
+<h2 class="fragment disappear" data-fragment-index=0>Unpacking plenoptic logo</h2>
 <h2 class="fragment appear-disappear" data-fragment-index=0>Simulate responses</h2>
 <h2 class="fragment appear-disappear" data-fragment-index=1>Fit parameters</h2>
 <h2 class="fragment appear-disappear" data-fragment-index=2>Synthesize stimuli</h2>
@@ -220,9 +242,9 @@ this is what we call synthesis -- updating the pixel values of an image based on
 Goals: <!-- .element: style="margin-top:1%" --> 
 - Facilitate synthesis of model-optimized stimuli.
 - <!-- .element: class="fragment appear"  -->
-Be compatible with any PyTorch model: e.g., `torchvision`, `brainscore`, custom models. 
+Be compatible with any PyTorch model: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html),[timm](https://huggingface.co/docs/timm/index), [brainscore](https://www.brain-score.org/vision/), custom models. 
 - Provide selection of useful vision science metrics, models, canonical computations, tools. <!-- .element: class="fragment appear"  --> 
-- Do all of the above in GPU-accelerated manner. <!-- .element: class="fragment appear"  --> 
+- Do all of the above in (optional) GPU-accelerated manner. <!-- .element: class="fragment appear"  --> 
 - Provide thorough documentation and detailed examples. <!-- .element: class="fragment appear"  --> 
 - Well-tested, easy-to-install, modular, and open source. <!-- .element: class="fragment appear"  --> 
 </div>
