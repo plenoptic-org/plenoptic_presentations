@@ -12,7 +12,7 @@ ALL_DOCSTRINGS = OrderedDict()
 def parse_docstring(docstring, respect_ignore=True):
     docstring = docstring.splitlines()
     if respect_ignore:
-        docstring = [d.strip() if "ignore" not in d else "" for d in docstring]
+        docstring = [d.strip() for d in docstring if "ignore" not in d]
     else:
         docstring = [d.strip() for d in docstring]
     return "\n".join(docstring).strip()
