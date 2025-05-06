@@ -42,9 +42,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.72856762"
-     inkscape:cx="1219.5162"
-     inkscape:cy="-47.353189"
+     inkscape:zoom="0.3980507"
+     inkscape:cx="1080.2644"
+     inkscape:cy="644.39027"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -539,62 +539,11 @@
          y="672.19989"
          style="font-weight:normal;fill:#000000">Billy Broderick</tspan></text><text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36px;line-height:1.5;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:start;white-space:pre;shape-inside:url(#rect8149) url(#rect8149-1) url(#rect8149-1-8);display:inline;fill:#000000;stroke:none;stroke-width:10;stroke-miterlimit:11.5;stroke-dasharray:none;stop-color:#000000"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36px;line-height:1.5;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;word-spacing:0px;white-space:pre;shape-inside:url(#rect8149) url(#rect8149-1) url(#rect8149-1-8);display:inline;fill:#000000;stroke:none;stroke-width:10;stroke-miterlimit:11.5;stroke-dasharray:none;stop-color:#000000"
        x="120.3898"
        y="744.24396"
        id="text6995"
-       transform="translate(-57.543542,-20)"><tspan
-         x="497.9668"
-         y="771.77699"
-         id="tspan14">Edoardo Balzani
-</tspan><tspan
-         x="497.9668"
-         y="825.77699"
-         id="tspan15">Kate Bonnen
-</tspan><tspan
-         x="497.9668"
-         y="879.77699"
-         id="tspan16">Hanna Dettki
-</tspan><tspan
-         x="497.9668"
-         y="933.77699"
-         id="tspan17">Lyndon Duong
-</tspan><tspan
-         x="896.02734"
-         y="771.77699"
-         id="tspan18">Daniel Herrera-Esposito
-</tspan><tspan
-         x="896.02734"
-         y="825.77699"
-         id="tspan19">Pierre-Étienne Fiquet
-</tspan><tspan
-         x="896.02734"
-         y="879.77699"
-         id="tspan20">Nikhil Parthasarathy
-</tspan><tspan
-         x="896.02734"
-         y="933.77699"
-         id="tspan21">Eero Simoncelli
-</tspan><tspan
-         x="896.02734"
-         y="987.77699"
-         id="tspan22">
-</tspan><tspan
-         x="1337.9668"
-         y="771.77699"
-         id="tspan23">Sarah Jo Venditto
-</tspan><tspan
-         x="1337.9668"
-         y="825.77699"
-         id="tspan24">Guillaume Viejo
-</tspan><tspan
-         x="1337.9668"
-         y="879.77699"
-         id="tspan25">Teddy Yerxa
-</tspan><tspan
-         x="1337.9668"
-         y="933.77699"
-         id="tspan26">Xinyuan Zhao</tspan></text><text
+       transform="translate(-57.543542,-20)" /><text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:start;text-anchor:start;fill:none;stroke:none;stroke-width:10;stroke-miterlimit:11.5;stroke-dasharray:none;stop-color:#000000"
        x="-23.190132"
@@ -665,4 +614,74 @@
            style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:19.9396;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
            d="M 2,5.5 V 1 H 17.5 33 V 5.5 10 H 17.5 2 Z"
            id="path6"
-           transform="matrix(0.63692469,0,0,0.63692469,1011.1179,-90.976427)" /></g></g></g></svg>
+           transform="matrix(0.63692469,0,0,0.63692469,1011.1179,-90.976427)" /></g></g><rect
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:none;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:11.5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none"
+       id="rect22"
+       width="294.63953"
+       height="220.41122"
+       x="451.43588"
+       y="716.82343"
+       transform="matrix(1.066324,0,0,1,-37.459674,7.5935658)" /><rect
+       style="font-variation-settings:normal;vector-effect:none;fill:none;fill-opacity:1;stroke:none;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:11.5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none"
+       id="rect22-2"
+       width="294.63953"
+       height="220.41122"
+       x="451.43588"
+       y="716.82343"
+       transform="matrix(1.066324,0,0,1,800.0382,7.5935658)" /><rect
+       style="font-variation-settings:normal;vector-effect:none;fill:none;fill-opacity:1;stroke:none;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:11.5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none"
+       id="rect22-0"
+       width="294.63953"
+       height="220.41122"
+       x="451.43588"
+       y="716.82343"
+       transform="matrix(1.3688478,0,0,1,200.15143,7.5935658)" /><rect
+       style="font-variation-settings:normal;vector-effect:none;fill:none;fill-opacity:1;stroke:none;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:11.5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none"
+       id="rect22-0-3-5"
+       width="294.63953"
+       height="220.41122"
+       x="451.43588"
+       y="716.82343"
+       transform="matrix(0.82964944,0,0,1,1281.0628,7.5935658)" /><text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36px;line-height:1.5;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect22) url(#rect22-0) url(#rect22-2) url(#rect22-0-3-5);display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:11.5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       x="509.42282"
+       y="1214.8733"
+       id="text1"><tspan
+         x="443.91602"
+         y="761.67348"
+         id="tspan1">Edoardo Balzani </tspan><tspan
+         x="443.91602"
+         y="815.67348"
+         id="tspan12">Kate Bonnen </tspan><tspan
+         x="443.91602"
+         y="869.67348"
+         id="tspan13">Hanna Dettki </tspan><tspan
+         x="443.91602"
+         y="923.67348"
+         id="tspan14">Lyndon Duong </tspan><tspan
+         x="818.09766"
+         y="761.67348"
+         id="tspan15">Daniel Herrera-Esposito </tspan><tspan
+         x="818.09766"
+         y="815.67348"
+         id="tspan16">Pierre-Étienne Fiquet </tspan><tspan
+         x="818.09766"
+         y="869.67348"
+         id="tspan17">Nikhil Parthasarathy </tspan><tspan
+         x="818.09766"
+         y="923.67348"
+         id="tspan18">Eero Simoncelli 
+</tspan><tspan
+         x="1281.4141"
+         y="761.67348"
+         id="tspan19">Sarah Jo Venditto </tspan><tspan
+         x="1281.4141"
+         y="815.67348"
+         id="tspan20">Guillaume Viejo </tspan><tspan
+         x="1281.4141"
+         y="869.67348"
+         id="tspan21">Teddy Yerxa </tspan><tspan
+         x="1281.4141"
+         y="923.67348"
+         id="tspan22">Xinyuan Zhao</tspan></text></g></svg>
