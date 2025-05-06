@@ -242,7 +242,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-base-init.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-base-init.svg" ></img></p>
 </div>
 
 ---
@@ -251,7 +251,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
 ```
-<p><video style="width:100%" data-src="scripts/example_code-base.mp4" ></video></p>
+<p><video style="width:100%" data-src="assets/example_code-base.mp4" ></video></p>
 </div>
 
 ---
@@ -260,7 +260,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:gpu_one data-line-numbers="3,7,8" data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-base-final.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-base-final.svg" ></img></p>
 </div>
 
 ---
@@ -269,7 +269,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:gpu_two data-line-numbers="12" data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-base-final.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-base-final.svg" ></img></p>
 </div>
 
 ---
@@ -278,7 +278,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-base-final.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-base-final.svg" ></img></p>
 </div>
 
 ---
@@ -287,7 +287,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:custom_image data-line-numbers="3" data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-custom_image-init.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-custom_image-init.svg" ></img></p>
 </div>
 
 ---
@@ -296,7 +296,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:custom_image data-line-numbers="3" data-id="one"
 ```
-<p><video style="width:100%" data-src="scripts/example_code-custom_image.mp4" ></video></p>
+<p><video style="width:100%" data-src="assets/example_code-custom_image.mp4" ></video></p>
 </div>
 
 ---
@@ -305,7 +305,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:init_image data-line-numbers="3,11" data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-init_image-init.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-init_image-init.svg" ></img></p>
 </div>
 
 ---
@@ -314,7 +314,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:init_image data-line-numbers="3,11" data-id="one"
 ```
-<p><video style="width:100%" data-src="scripts/example_code-init_image.mp4" ></video></p>
+<p><video style="width:100%" data-src="assets/example_code-init_image.mp4" ></video></p>
 </div>
 
 ---
@@ -324,7 +324,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:optimizer_kwargs data-line-numbers="11,12" data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-optimizer_kwargs-init.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-optimizer_kwargs-init.svg" ></img></p>
 </div>
 
 ---
@@ -334,7 +334,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:optimizer data-line-numbers="2,12,13" data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-optimizer-init.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-optimizer-init.svg" ></img></p>
 </div>
 
 ---
@@ -343,7 +343,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-base-final.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-base-final.svg" ></img></p>
 </div>
 
 ---
@@ -352,7 +352,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:eigendistortion data-line-numbers="11" data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-eigendistortion-final.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-eigendistortion-final.svg" ></img></p>
 </div>
 
 ---
@@ -361,7 +361,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:custom_model data-line-numbers="9-21,24" data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-custom_model-init.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-custom_model-init.svg" ></img></p>
 </div>
 
 ---
@@ -370,7 +370,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:custom_model data-line-numbers="9-21,24" data-id="one"
 ```
-<p><video style="width:100%" data-src="scripts/example_code-custom_model.mp4" ></video></p>
+<p><video style="width:100%" data-src="assets/example_code-custom_model.mp4" ></video></p>
 </div>
 
 ---
@@ -379,7 +379,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:texture data-line-numbers data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-texture-init.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-texture-init.svg" ></img></p>
 </div>
 
 ---
@@ -388,7 +388,7 @@ Explain logo
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:texture data-line-numbers data-id="one"
 ```
-<p><video style="width:100%" data-src="scripts/example_code-texture.mp4" ></video></p>
+<p><video style="width:100%" data-src="assets/example_code-texture.mp4" ></video></p>
 </div>
 
 ---
@@ -397,7 +397,7 @@ Explain logo
 <div class="code-vis-grid" style="grid-template-columns: 53% 50%;">
 ```python doctest:scripts/example_code.py:torchvision data-line-numbers="8-22" data-id="one"
 ```
-<p><img style="width:100%" data-src="scripts/example_code-torchvision-init.svg" ></img></p>
+<p><img style="width:100%" data-src="assets/example_code-torchvision-init.svg" ></img></p>
 </div>
 
 ---
@@ -406,7 +406,7 @@ Explain logo
 <div class="code-vis-grid" style="grid-template-columns: 53% 50%;">
 ```python doctest:scripts/example_code.py:torchvision data-line-numbers="8-22" data-id="one"
 ```
-<p><video style="width:100%" data-src="scripts/example_code-torchvision.mp4" ></video></p>
+<p><video style="width:100%" data-src="assets/example_code-torchvision.mp4" ></video></p>
 </div>
 
 ---
