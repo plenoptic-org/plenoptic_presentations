@@ -189,16 +189,42 @@ with pytorch, if we have a model that accepts and returns a torch tensor, and do
 
 ---
 
+<h2 class="fragment disappear" data-fragment-index=0>Visual model</h2>
+<h2 class="fragment appear-disappear" data-fragment-index=0>Simulate responses</h2>
+<h2 class="fragment appear-disappear" data-fragment-index=1>Fit parameters</h2>
+<h2 class="fragment appear-disappear" data-fragment-index=2>Synthesize stimuli</h2>
+
+<div data-animate data-load="assets/plen-synth-4.svg">
+<!-- {"setup": [
+{"element": "#rect6595-6", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
+{"element": "#rect6595-7", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "1"} ]},
+{"element": "#rect6595", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "2"} ]}
+]} -->
+</div>
+
+#note: To make that slightly less abstract, here is a diagram of a model in visual neuroscience. it accepts some stimuli s, often for us images, as inputs, and based on some parameters theta, returns some responses r. these responses can be anything of interst to the experimenter, such as predicted spike rates or image class, if this were doing image net
+
+- now the way that models are most commonly used, is that we feed them an input and some parameter values and we simulate the responses.
+
+- we often pretty regularly fix the responses for a set of stimuli and use backpropagation to fit the parameters
+
+- but there's nothing special about the stimuli. we can similarly hold both the responses and parameters constant and use back propagation to generate novel stimuli. 
+
+this is what we call synthesis -- updating the pixel values of an image based on a model with set parameter values and some intended output.
+
+---
+
 <div style="display:flex;flex-direction:column">
 <div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
 
 Goals: <!-- .element: style="margin-top:1%" --> 
 - Facilitate synthesis of model-optimized stimuli.
-- Be compatible with any PyTorch model: e.g., `torchvision`, `brainscore`, custom models.
-- Provide selection of useful vision science metrics, models, and canonical computations.
-- Do all of the above in GPU-accelerated manner.
-- Provide thorough documentation and detailed examples.
-- Well-tested, easy-to-install, modular, and open source.
+- <!-- .element: class="fragment appear"  -->
+Be compatible with any PyTorch model: e.g., `torchvision`, `brainscore`, custom models. 
+- Provide selection of useful vision science metrics, models, canonical computations, tools. <!-- .element: class="fragment appear"  --> 
+- Do all of the above in GPU-accelerated manner. <!-- .element: class="fragment appear"  --> 
+- Provide thorough documentation and detailed examples. <!-- .element: class="fragment appear"  --> 
+- Well-tested, easy-to-install, modular, and open source. <!-- .element: class="fragment appear"  --> 
 </div>
 
 ---
@@ -235,10 +261,6 @@ Contents: <!-- .element: style="margin-top:1%" -->
 
 ---
 
-Explain logo
-
----
-
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
 ```
@@ -246,7 +268,6 @@ Explain logo
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
@@ -255,25 +276,22 @@ Explain logo
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
-```python doctest:scripts/example_code.py:gpu_one data-line-numbers="3,7,8" data-id="one"
+```python doctest:scripts/example_code.py:gpu_one data-line-numbers="3,8,9" data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-base-final.svg" ></img></p>
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
-```python doctest:scripts/example_code.py:gpu_two data-line-numbers="12" data-id="one"
+```python doctest:scripts/example_code.py:gpu_two data-line-numbers="12,13" data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-base-final.svg" ></img></p>
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
@@ -282,7 +300,6 @@ Explain logo
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:custom_image data-line-numbers="3" data-id="one"
@@ -291,7 +308,6 @@ Explain logo
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:custom_image data-line-numbers="3" data-id="one"
@@ -300,7 +316,6 @@ Explain logo
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:init_image data-line-numbers="3,11" data-id="one"
@@ -309,7 +324,6 @@ Explain logo
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:init_image data-line-numbers="3,11" data-id="one"
@@ -319,26 +333,21 @@ Explain logo
 
 ---
 
-<!-- .element data-auto-animate -->
-
 <div class="code-vis-grid">
-```python doctest:scripts/example_code.py:optimizer_kwargs data-line-numbers="11,12" data-id="one"
+```python doctest:scripts/example_code.py:optimizer_kwargs data-line-numbers="12,13" data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-optimizer_kwargs-init.svg" ></img></p>
 </div>
 
 ---
 
-<!-- .element data-auto-animate -->
-
 <div class="code-vis-grid">
-```python doctest:scripts/example_code.py:optimizer data-line-numbers="2,12,13" data-id="one"
+```python doctest:scripts/example_code.py:optimizer data-line-numbers="2,13,14" data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-optimizer-init.svg" ></img></p>
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
@@ -347,7 +356,6 @@ Explain logo
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:eigendistortion data-line-numbers="11" data-id="one"
@@ -356,25 +364,38 @@ Explain logo
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
-<div class="code-vis-grid">
-```python doctest:scripts/example_code.py:custom_model data-line-numbers="9-21,24" data-id="one"
+<div class="code-vis-grid" style="top:15%;">
+```python doctest:scripts/example_code.py:custom_model data-line-numbers="8-21,24" data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-custom_model-init.svg" ></img></p>
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
-<div class="code-vis-grid">
-```python doctest:scripts/example_code.py:custom_model data-line-numbers="9-21,24" data-id="one"
+<div class="code-vis-grid" style="top:15%;">
+```python doctest:scripts/example_code.py:custom_model data-line-numbers="8-21,24" data-id="one"
 ```
 <p><video style="width:100%" data-src="assets/example_code-custom_model.mp4" ></video></p>
 </div>
 
 ---
-<!-- .element data-auto-animate -->
+
+<div class="code-vis-grid" style="grid-template-columns: 53% 50%;top:15%;">
+```python doctest:scripts/example_code.py:torchvision data-line-numbers="8-22" data-id="one"
+```
+<p><img style="width:100%" data-src="assets/example_code-torchvision-init.svg" ></img></p>
+</div>
+
+---
+
+<div class="code-vis-grid" style="grid-template-columns: 53% 50%;top:15%;">
+```python doctest:scripts/example_code.py:torchvision data-line-numbers="8-22" data-id="one"
+```
+<p><video style="width:100%" data-src="assets/example_code-torchvision.mp4" ></video></p>
+</div>
+
+---
 
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:texture data-line-numbers data-id="one"
@@ -383,30 +404,11 @@ Explain logo
 </div>
 
 ---
-<!-- .element data-auto-animate -->
 
 <div class="code-vis-grid">
 ```python doctest:scripts/example_code.py:texture data-line-numbers data-id="one"
 ```
 <p><video style="width:100%" data-src="assets/example_code-texture.mp4" ></video></p>
-</div>
-
----
-<!-- .element data-auto-animate -->
-
-<div class="code-vis-grid" style="grid-template-columns: 53% 50%;">
-```python doctest:scripts/example_code.py:torchvision data-line-numbers="8-22" data-id="one"
-```
-<p><img style="width:100%" data-src="assets/example_code-torchvision-init.svg" ></img></p>
-</div>
-
----
-<!-- .element data-auto-animate -->
-
-<div class="code-vis-grid" style="grid-template-columns: 53% 50%;">
-```python doctest:scripts/example_code.py:torchvision data-line-numbers="8-22" data-id="one"
-```
-<p><video style="width:100%" data-src="assets/example_code-torchvision.mp4" ></video></p>
 </div>
 
 ---

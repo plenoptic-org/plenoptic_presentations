@@ -517,6 +517,8 @@ div:has(> svg).logo-title {
 .code-vis-grid {
   display: grid;
   grid-template-columns: 50% 50%;
+  position: relative;
+  top: 20%;
 }
 .code-vis-grid video,
 .code-vis-grid img {

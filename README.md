@@ -71,6 +71,9 @@ writing code in the markdown files easier. For all of this, see
     apply additional classes or styling.
     
 When run on an input file named `slides.md` ,the script will produce a file named `slides-render.md` (in general, appending `-render` before the `.md` file extension), which is the name of the file that should be in the frontmatter of `slides.html`.
+
+> [!CAUTION]
+> For some reason, the rendering gets weird if there are too many blank newlines around the code blocks. See `2025-05-16_vss-symposium/slides.md` for a working example: a single empty line before and after the `<div>` that is wrapped around the code block.
     
 ### Render automatically during development
 
