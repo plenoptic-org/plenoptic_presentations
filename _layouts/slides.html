@@ -27,7 +27,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js"></script>
     <script src="{{ site.baseurl }}/reveal.js-plugins/loadcontent/plugin.js"></script>
     <script src="{{ site.baseurl }}/reveal.js-plugins/animate/plugin.js"></script>
-
+    <script type="text/javascript">
+     console.log(window.innerHeight , window.innerWidth)
+     if(window.innerHeight > window.innerWidth){
+         if(window.innerHeight < "600"){
+             alert("The presentation will look better in landscape!");
+         }
+     }
+    </script>
   </head>
   <body>
     <div class="reveal">
