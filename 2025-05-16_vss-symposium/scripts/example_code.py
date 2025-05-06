@@ -178,6 +178,9 @@ def init_image():
 def texture():
     """
     >>> import plenoptic as po
+    >>> import torch # ignore
+    >>> # for some reason, looks much better when done on cpu # ignore
+    >>> torch.set_default_device("cpu") # ignore
     >>> # Load image into Pytorch tensor
     >>> img = po.load_images("/home/billbrod/Desktop/reptile_skin.png")
     >>> # Initialize model
@@ -188,7 +191,7 @@ def texture():
     >>> init_img = .2 * torch.rand_like(img) + img.mean()
     >>> met.setup(initial_image=init_img)
     >>> # Synthesize model metamer
-    >>> met.synthesize(max_iter=200, store_progress=5,
+    >>> met.synthesize(max_iter=500, store_progress=5,
     ...                ctf_iters_to_check=3,
     ...                change_scale_criterion=None)
     >>> included_plots = ["display_metamer", "plot_loss"] # ignore
