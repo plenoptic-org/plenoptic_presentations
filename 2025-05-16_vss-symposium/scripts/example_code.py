@@ -260,7 +260,7 @@ def torchvision():
     """
     >>> import plenoptic as po
     >>> import torch
-    >>> from torchvision.models.feature_extraction import create_feature_extractor
+    >>> from torchvision.models import feature_extraction as fe
     >>> import torchvision
     >>> # Load image into Pytorch tensor
     >>> img = po.data.einstein(as_gray=False)
@@ -269,7 +269,8 @@ def torchvision():
     ...     def __init__(self, model, return_node, transform):
     ...         super().__init__()
     ...         self.transform = transform
-    ...         self.extractor = create_feature_extractor(model, return_nodes=[return_node])
+    ...         self.extractor = fe.create_feature_extractor(model,
+    ...                                                      [return_node])
     ...         self.model = model
     ...         self.return_node = return_node
     ...     def forward(self, x):
@@ -277,10 +278,9 @@ def torchvision():
     ...             x = self.transform(x)
     ...         return self.extractor(x)[self.return_node]
     >>> weights = torchvision.models.ResNet50_Weights.IMAGENET1K_V1
-    >>> transform = torchvision.models.ResNet50_Weights.IMAGENET1K_V1.transforms()
     >>> model = torchvision.models.resnet50(weights=weights)
+    >>> model = TorchVision(model, "layer2", weights.transforms())
     >>> # Detach gradients from model -- model parameters are fixed.
-    >>> model = TorchVision(model, "layer2", transform)
     >>> po.tools.remove_grad(model)
     >>> model = model.eval()
     >>> # Initialize metamer object
