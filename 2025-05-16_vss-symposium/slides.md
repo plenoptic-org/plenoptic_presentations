@@ -380,15 +380,16 @@ Contents: <!-- .element: style="margin-top:1%" -->
 
 ## How to synthesize eigendistortions
 
-<div class="code-vis-grid">
+<div class="code-vis-grid" style="top:-2%">
+{: style="top:8%"}
 ```python doctest:scripts/example_code.py:eigendistortion data-line-numbers="11" data-id="one"
 ```
-<p><img style="width:100%" data-src="assets/example_code-eigendistortion-final.svg" ></img></p>
+<p><img style="width:70%" data-src="assets/example_code-eigendistortion-init.svg" ></img></p>
 </div>
 
 ---
 
-## How to specify a custom model
+## How to use a custom model
 
 <div class="code-vis-grid" style="top:5%;">
 ```python doctest:scripts/example_code.py:custom_model data-line-numbers="8-21,24" data-id="one"
