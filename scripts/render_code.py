@@ -9,13 +9,23 @@ from collections import OrderedDict
 
 ALL_DOCSTRINGS = OrderedDict()
 
+
+def include_line(d):
+    if "..." in d:
+        if d.startswith("..."):
+            return True
+        else:
+            return False
+    return True
+
+
 def parse_docstring(docstring, respect_ignore=True):
     docstring = docstring.splitlines()
     if respect_ignore:
         docstring = [d.strip() for d in docstring if "ignore" not in d]
     else:
         docstring = [d.strip() for d in docstring]
-    docstring = [d for d in docstring if "..." not in d]
+    docstring = [d for d in docstring if include_line(d)]
     docstring = [d.split("#doctest")[0] for d in docstring]
     return "\n".join(docstring).strip()
 
