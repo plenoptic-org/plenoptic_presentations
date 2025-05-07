@@ -83,6 +83,7 @@ def eigendistortion():
     >>> eig = po.synth.Eigendistortion(img, model)
     >>> # Synthesize eigendistortions
     >>> eig.synthesize(max_iter=1000);
+    ... # ignore
     >>> fig = create_eig_figure(eig) # ignore
     >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     """
