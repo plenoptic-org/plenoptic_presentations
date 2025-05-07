@@ -262,12 +262,41 @@ def torchvision():
     """
     >>> import plenoptic as po
     >>> import torch
+    >>> import torchvision
+    >>> # Load image into Pytorch tensor
+    >>> img = po.data.einstein(as_gray=False)
+    >>> # Initialize model
+    >>> weights = torchvision.models.ResNet50_Weights.IMAGENET1K_V1
+    >>> model = torchvision.models.resnet50(weights=weights)
+    >>> model = po.TorchVisionModel(model, "layer2", weights.transforms())
+    >>> # Detach gradients from model -- model parameters are fixed.
+    >>> po.tools.remove_grad(model)
+    >>> model = model.eval()
+    >>> # Initialize metamer object
+    >>> met = po.synth.Metamer(img, model)
+    >>> # Synthesize model metamer
+    >>> met.synthesize(max_iter=400, store_progress=5)
+    >>> met.to('cpu') # ignore
+    >>> included_plots = ["display_metamer", "plot_loss"] # ignore
+    >>> fig, axes_idx = create_met_figure(met, included_plots) # ignore
+    >>> fig.savefig("{filename}-{func}-init.svg") # ignore
+    >>> po.synth.metamer.animate(met, 5, included_plots=included_plots, #ignore
+    ...                          fig=fig, axes_idx=axes_idx).save("{filename}-{func}.mp4", dpi=300) # ignore
+    >>> fig.savefig("{filename}-{func}-final.svg") # ignore
+    """
+    "hi"
+
+
+def torchvision_full():
+    """
+    >>> import plenoptic as po
+    >>> import torch
     >>> from torchvision.models import feature_extraction as fe
     >>> import torchvision
     >>> # Load image into Pytorch tensor
     >>> img = po.data.einstein(as_gray=False)
     >>> # Initialize model
-    >>> class TorchVision(torch.nn.Module):
+    >>> class TorchVisionModel(torch.nn.Module):
     ...     def __init__(self, model, return_node, transform):
     ...         super().__init__()
     ...         self.transform = transform
@@ -281,7 +310,7 @@ def torchvision():
     ...         return self.extractor(x)[self.return_node]
     >>> weights = torchvision.models.ResNet50_Weights.IMAGENET1K_V1
     >>> model = torchvision.models.resnet50(weights=weights)
-    >>> model = TorchVision(model, "layer2", weights.transforms())
+    >>> model = TorchVisionModel(model, "layer2", weights.transforms())
     >>> # Detach gradients from model -- model parameters are fixed.
     >>> po.tools.remove_grad(model)
     >>> model = model.eval()

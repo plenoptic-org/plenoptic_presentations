@@ -526,6 +526,9 @@ div:has(> svg).logo-title {
   position: relative;
   top: 20%;
 }
+.reveal h2 ~ div.code-vis-grid {
+  top: 10%;
+}
 .code-vis-grid video,
 .code-vis-grid img {
   max-width: 100%;
