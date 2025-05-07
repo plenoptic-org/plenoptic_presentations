@@ -210,7 +210,6 @@ Goals: <!-- .element: style="margin-top:1%" -->
 
 ---
 
-<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
 <h2 class="fragment disappear" data-fragment-index=0>Unpacking plenoptic logo</h2>
 <h2 class="fragment appear-disappear" data-fragment-index=0>Simulate responses</h2>
 <h2 class="fragment appear-disappear" data-fragment-index=1>Fit parameters</h2>
@@ -287,14 +286,8 @@ Contents: <!-- .element: style="margin-top:1%" -->
 ```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-base-init.svg" ></img></p>
-</div>
-
----
-
-<div class="code-vis-grid">
-```python doctest:scripts/example_code.py:base data-line-numbers data-id="one"
-```
-<p><video style="width:100%" data-src="assets/example_code-base.mp4" ></video></p>
+<div class='fragment appear-disappear overlap-code-grid' data-fragment-index="0">
+<video style="width:100%" data-src="assets/example_code-base.mp4" ></video></div>
 </div>
 
 ---
@@ -327,14 +320,8 @@ Contents: <!-- .element: style="margin-top:1%" -->
 ```python doctest:scripts/example_code.py:custom_image data-line-numbers="3" data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-custom_image-init.svg" ></img></p>
-</div>
-
----
-
-<div class="code-vis-grid">
-```python doctest:scripts/example_code.py:custom_image data-line-numbers="3" data-id="one"
-```
-<p><video style="width:100%" data-src="assets/example_code-custom_image.mp4" ></video></p>
+<div class='fragment appear-disappear overlap-code-grid' data-fragment-index="0">
+<video style="width:100%" data-src="assets/example_code-custom_image.mp4" ></video></div>
 </div>
 
 ---
@@ -343,14 +330,8 @@ Contents: <!-- .element: style="margin-top:1%" -->
 ```python doctest:scripts/example_code.py:init_image data-line-numbers="3,11" data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-init_image-init.svg" ></img></p>
-</div>
-
----
-
-<div class="code-vis-grid">
-```python doctest:scripts/example_code.py:init_image data-line-numbers="3,11" data-id="one"
-```
-<p><video style="width:100%" data-src="assets/example_code-init_image.mp4" ></video></p>
+<div class='fragment appear-disappear overlap-code-grid' data-fragment-index="0">
+<video style="width:100%" data-src="assets/example_code-init_image.mp4" ></video></div>
 </div>
 
 ---
@@ -391,14 +372,8 @@ Contents: <!-- .element: style="margin-top:1%" -->
 ```python doctest:scripts/example_code.py:custom_model data-line-numbers="8-21,24" data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-custom_model-init.svg" ></img></p>
-</div>
-
----
-
-<div class="code-vis-grid" style="top:15%;">
-```python doctest:scripts/example_code.py:custom_model data-line-numbers="8-21,24" data-id="one"
-```
-<p><video style="width:100%" data-src="assets/example_code-custom_model.mp4" ></video></p>
+<div class='fragment appear-disappear overlap-code-grid' data-fragment-index="0">
+<video style="width:100%" data-src="assets/example_code-custom_model.mp4" ></video></div>
 </div>
 
 ---
@@ -407,14 +382,8 @@ Contents: <!-- .element: style="margin-top:1%" -->
 ```python doctest:scripts/example_code.py:torchvision data-line-numbers="8-22" data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-torchvision-init.svg" ></img></p>
-</div>
-
----
-
-<div class="code-vis-grid" style="grid-template-columns: 53% 50%;top:15%;">
-```python doctest:scripts/example_code.py:torchvision data-line-numbers="8-22" data-id="one"
-```
-<p><video style="width:100%" data-src="assets/example_code-torchvision.mp4" ></video></p>
+<div class='fragment appear-disappear overlap-code-grid' data-fragment-index="0" style="left:53%;width:50%;">
+<video style="width:100%" data-src="assets/example_code-torchvision.mp4" ></video></div>
 </div>
 
 ---
@@ -423,14 +392,8 @@ Contents: <!-- .element: style="margin-top:1%" -->
 ```python doctest:scripts/example_code.py:texture data-line-numbers data-id="one"
 ```
 <p><img style="width:100%" data-src="assets/example_code-texture-init.svg" ></img></p>
-</div>
-
----
-
-<div class="code-vis-grid">
-```python doctest:scripts/example_code.py:texture data-line-numbers data-id="one"
-```
-<p><video style="width:100%" data-src="assets/example_code-texture.mp4" ></video></p>
+<div class='fragment appear-disappear overlap-code-grid' data-fragment-index="0">
+<video style="width:100%" data-src="assets/example_code-texture.mp4" ></video></div>
 </div>
 
 ---
