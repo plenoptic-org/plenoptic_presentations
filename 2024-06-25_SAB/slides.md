@@ -50,7 +50,7 @@ the classic example of metamers come from color perception.
 
 ---
 ## Metamers
-![](assets/plen-metamer-podium.svg) <!-- .element: style="margin-top:5%;height:950px;width:auto" -->
+<img style="margin-top:5%;height:950px;width:auto" data-src="assets/plen-metamer-podium.svg"></img> 
 
 #note: when you look at this picture of this room, compared to the room in real life, they look like they're the same color. however, the physical light that is entering your eye is *very* different, because this projector only has three color channels (RGB), and so it cannot hope to exactly match the energy at every wavelength in the visual light spectrum
 
@@ -58,7 +58,7 @@ however, it doesn't need to
 
 ---
 ## Metamers
-![](assets/plen-metamer-cones.svg)
+<img data-src="assets/plen-metamer-cones.svg"></img>
 
 #note: because of how the human eye transforms physical light into perceptual color. humans only have three cone classes, called short, medium, and long based on which wavelengths they're most sensitive to.
 
@@ -114,7 +114,7 @@ and the real point here is that we should take our models seriously as objects o
 
 ## Metamer code example
 
-<div class='margin-top column' style="float:left; width: 65%;">
+<div class='code-vis-grid'>
 <pre><code data-trim>
 import plenoptic as po
 # load image
@@ -126,17 +126,19 @@ metamer = po.synthesize.Metamer(basket, model)
 # synthesize model metamer
 metamer.synthesize(max_iter=700, coarse_to_fine='together')
 # visualize synthesis process
-po.synthesize.metamer.animate(metamer, included_plots=['display_metamer', 'plot_loss'])
+plots = ['display_metamer', 'plot_loss']
+po.synthesize.metamer.animate(metamer, 
+                              included_plots=plots)
 </code></pre>
-</div>
 
-<div class='margin-top column fragment appear-disappear' data-fragment-index="0" style="float:right; width:35%">
-<video data-fragment-index="1" data-autoplay src="assets/texture-model-synth.mp4"></video>
+<div class='fragment appear-disappear' data-fragment-index="0">
+<video  data-fragment-index="1"  data-src="assets/texture-model-synth.mp4"></video>
+</div>
 </div>
 
 ---
 ## Contents
-![image](assets/plen-contents-2.svg)
+<img data-src="assets/plen-contents-2.svg"></img>
 
 #note: plenoptic contains four synthesis methods, which have all been developed in Eero's lab over the years. I won't go though the rest of them in detail, but I'm happy to provide more detail or discuss them later if you're interested
 
@@ -146,14 +148,14 @@ the package also contains several models and model components that we find usefu
 
 ---
 ## Github history
-![stars](assets/plen-stars.png)
+<img data-src="assets/plen-stars.png"></img>
 
 ---
 ## Developers
-![people](assets/plen-people-details.svg)
+<img data-src="assets/plen-people-details.svg"></img>
 
 ---
 
 ## CCN Software packages
 
-![image](assets/software-packages.png)
+<img data-src="assets/software-packages.png"></img>

@@ -1,4 +1,4 @@
-![](assets/plenoptic_logo.svg) <!-- .element: style="height:50%" -->
+<img style="height:50%" data-src="assets/plenoptic_logo.svg"></img> 
 
 ## CSHL Vision 2024
 ## Billy Broderick <!-- .element: style="height:50%" -->
@@ -31,28 +31,28 @@
 
 ## The Real Flatiron Institute
 
-![image](assets/flatiron-institute.png)
+<img data-src="assets/flatiron-institute.png"></img>
 
 #note: we are part of this Flatiron institute, which is part of the Simons Foundation. the Simons Foundation is a private foundation whose money comes from Jim Simons, a mathematician and hedge fund billionaire who recnetly passed away. it funds a variety of projects in the maths and sciences, especially computational research, and the Flatiron institute is the in-house research center.
 
 ---
 ## The Real Flatiron Institute
 
-![image](assets/flatiron-centers.png)
+<img data-src="assets/flatiron-centers.png"></img>
 
 #note: Flatiron has five centers, one each for computational astrophysics, biology, mathematics, neuroscience, and quantum physics, plus the scientific computing core, who supports the cluster and other computational infrastructure that the other centers use.
 
 ---
 ## The Real Flatiron Institute
 
-![image](assets/flatiron-ccn.png)
+<img data-src="assets/flatiron-ccn.png"></img>
 
 #note: Mots of the speakers and TAs here are part of the Center for Computational Neuroscience, the newest center at Flatiron, which has four research groups doing differnet types of computational neuroscience work, with grad students from NYU, postdocs and research scientists, along with summer interns.
 
 ---
 ## The Real Flatiron Institute
 
-![image](assets/neurorse.png)
+<img data-src="assets/neurorse.png"></img>
 
 #note: And most of the speakers you're going to hear from over the next two days are from the neuroRSE, or research software engineering, group within CCN. We're a group of full time research scientists whose only job is to build and maintain open source python packages for neuroscience research, including pynapple and nemos.
 
@@ -60,24 +60,24 @@
 ## CCN Software packages
 
 <div class='column' style="float:left;width:50%">
-<img src="assets/pynapple.svg">
+<img data-src="assets/pynapple.svg">
 <ul>
 <li><a href="https://github.com/pynapple-org/pynapple/</li>">https://github.com/pynapple-org/pynapple/</li></a>
 <li>light-weight python library for neurophysiological data analysis</li>
 </ul>
-<img src="assets/nemos.svg">
+<img data-src="assets/nemos.svg">
 <ul>
 <li><a href="https://github.com/flatironinstitute/nemos</li>">https://github.com/flatironinstitute/nemos</li></a>
 <li>statistical modeling framework for neuroscience</li>
 </ul>
 </div>
 <div class='column' style="float:right;width:50%">
-<img src="assets/plenoptic_logo.svg">
+<img data-src="assets/plenoptic_logo.svg">
 <ul>
 <li><a href="https://github.com/plenoptic-org/plenoptic/</li>">https://github.com/plenoptic-org/plenoptic/</li></a>
 <li>model-based synthesis of perceptual stimuli</li>
 </ul>
-<img src="assets/fastplotlib.svg">
+<img data-src="assets/fastplotlib.svg">
 <ul>
 <li><a href="https://github.com/fastplotlib/fastplotlib</li>">https://github.com/fastplotlib/fastplotlib</li></a>
 <li>expressive plotting library that enables rapid prototyping for large scale explorative scientific visualization</li>
@@ -92,14 +92,14 @@
 
 ---
 
-![image](assets/defense-blackhole.svg)
+<img data-src="assets/defense-blackhole.svg"></img>
 
 #note: To take one particularly illustrative example: I'm sure many of you recognize this picture. It's an image of supermassive black hole M87, captured by the Event Horizon Telescope Collaboration in April 2019
 
 ---
 ---
 
-![image](assets/defense-blackhole-headlines.svg)
+<img data-src="assets/defense-blackhole-headlines.svg"></img>
 
 #note: this hit the headlines of every major news outlet, with the image eventually reaching more than 4.5 billion people around the world
 
@@ -108,7 +108,7 @@ the work that went into this was done with a variety of packages from the open-s
 ---
 ---
 
-![image](assets/defense-blackhole-headlines-impact.svg)
+<img data-src="assets/defense-blackhole-headlines-impact.svg"></img>
 
 #note: yet five days after this announcement, the US National Science Foundation denied a grant to support that ecosystem, saying the software didn't have "sufficient impact"
 
@@ -164,7 +164,7 @@ the classic example of metamers come from color perception.
 
 ---
 ## Metamers
-![](assets/plen-metamer-podium.svg) <!-- .element: style="margin-top:5%;height:950px;width:auto" -->
+<img style="margin-top:5%;height:950px;width:auto" data-src="assets/plen-metamer-podium.svg"></img> 
 
 #note: when you look at this picture of this room, compared to the room in real life, they look like they're the same color. however, the physical light that is entering your eye is *very* different, because this projector only has three color channels (RGB), and so it cannot hope to exactly match the energy at every wavelength in the visual light spectrum
 
@@ -172,7 +172,7 @@ however, it doesn't need to
 
 ---
 ## Metamers
-![](assets/plen-metamer-cones.svg)
+<img data-src="assets/plen-metamer-cones.svg"></img>
 
 #note: because of how the human eye transforms physical light into perceptual color. humans only have three cone classes, called short, medium, and long based on which wavelengths they're most sensitive to.
 
@@ -256,11 +256,11 @@ so Javier and Eero took this back to their model. what if they could come up wit
 ## Texture metamer synthesis
 
 <div style="display:flex;align-items:center;justify-content:center;flex-direction:width">
-<div style="flex:2 1 auto"><img src="assets/basket.jpg"></div>
-<img class='fragment appear' data-fragment-index="0" style="flex:2 1 auto" src="assets/texture-two-models.svg">
+<div style="flex:2 1 auto"><img data-src="assets/basket.jpg"></div>
+<img class='fragment appear' data-fragment-index="0" style="flex:2 1 auto" data-src="assets/texture-two-models.svg">
 <div class='fragment appear' data-fragment-index="1" style="flex:1 1 auto;width:50%">
-<video data-autoplay src="assets/texture-pyr-synthesis.mp4"></video>
-<video data-autoplay src="assets/texture-model-synthesis.mp4"></video>
+<video data-autoplay data-src="assets/texture-pyr-synthesis.mp4"></video>
+<video data-autoplay data-src="assets/texture-model-synthesis.mp4"></video>
 </div>
 </div>
 
@@ -383,13 +383,13 @@ but if you were AlexNet
 ---
 ## AlexNet Adversarial examples
 
-![](assets/adversarial_examples.svg)
+<img data-src="assets/adversarial_examples.svg"></img>
 #note: you'd see all these images on the right as ostriches.
 
 these are adversarial examples, and this example is quite old, but the point is that there are dragons lurking in image space --- we can't explore it all and, as models get complicated, we can't assume that our intuitions about images, which have been developed over millenia of evolution, will be reflected by the models we build
 
 ---
-![](assets/advertisement_slide.svg)
+<img data-src="assets/advertisement_slide.svg"></img>
 
 #note: so that's the point of plenoptic. the goal of plenoptic is to help guide you, to help find sets of images, like the model metamers we discussed earlier that are particularly informative for reasoning about how your computational model makes sense of images.
 

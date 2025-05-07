@@ -1,4 +1,4 @@
-![](assets/plenoptic_logo.svg) <!-- .element: style="height:50%" -->
+<img style="height:50%" data-src="assets/plenoptic_logo.svg"></img> 
 
 ---
 ## Models in vision
@@ -72,7 +72,7 @@ so you can't look at every possible image, and there are likely dragons out ther
 
 ---
 
-![](assets/advertisement_slide.svg)
+<img data-src="assets/advertisement_slide.svg"></img>
 
 #note: so plenoptic helps guide you, to help find sets of images that are particularly informative for reasoning about how your computational model makes sense of images, like those image sets we showed you before
 

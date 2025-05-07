@@ -52,7 +52,7 @@ the classic example of metamers come from color perception.
 
 ---
 ## Metamers
-![](assets/metamer-room.jpg) <!-- .element: style="margin-top:5%;height:950px;width:auto" -->
+<img style="margin-top:5%;height:950px;width:auto" data-src="assets/metamer-room.jpg"></img> 
 
 #note: when you look at this picture of this room, compared to the room in real life, they look like they're the same color. however, the physical light that is entering your eye is *very* different, because this projector only has three color channels (RGB), and so it cannot hope to exactly match the energy at every wavelength in the visual light spectrum
 
@@ -60,7 +60,7 @@ however, it doesn't need to
 
 ---
 ## Metamers
-![](assets/plen-metamer-cones.svg)
+<img data-src="assets/plen-metamer-cones.svg"></img>
 
 #note: because of how the human eye transforms physical light into perceptual color. humans only have three cone classes, called short, medium, and long based on which wavelengths they're most sensitive to.
 
@@ -113,12 +113,12 @@ let's watch
 ## Texture model metamers
 <div class="column" style="float:left; width:65%">
 
-![contents](assets/texture-model-2-half.svg) 
+<img data-src="assets/texture-model-2-half.svg"></img> 
 
 </div>
 
 <div class="column" style="float:right; width:35%; margin-top: 6.5%">
-<video data-autoplay src="assets/texture-model-synth.mp4"></video>
+<video data-autoplay data-src="assets/texture-model-synth.mp4"></video>
 </div>
 
 #note: so we can see that it gets very similar. Note they're not looking for *identical* here (and they didn't run any psychophysics), because their model cares more about texture category (fur, baskets, etc).
@@ -153,7 +153,7 @@ so this is one sort of thing that can be done with model metamers: validating wh
 
 ---
 ## More model metamers!
-![contents](assets/fovmet.svg)
+<img data-src="assets/fovmet.svg"></img>
 
 #note: and as another example, these may look familiar to some of you. I built foveated models of the early visual system, which computed the local luminance or spectral energy in receptive-field like regions, which grew with eccentricity across the image. I then generated model metamers for different sizes of these regions and showed them to humans in a psychophysics experiment (which, those who took part can attest, was super fun). I used these to find the parameter value for which the models and the humans agreed on which images were indistinguishable. that is, we used this metamer framework to find the size of the regions wherein humans would be insensitive to changes in either luminance or spectral energy
 
@@ -338,7 +338,7 @@ makes sense?
 
 ---
 ## MAD Competition
-![image](assets/mad-mse-ssim.svg)
+<img data-src="assets/mad-mse-ssim.svg"></img>
 
 #note: back in 2008, Eero did this work with a postdoc called Zhou Wang, comparing mean-squared error with SSIM, the strucural similarity metric, which was their proposed way of measuring how different two images are
 
@@ -358,13 +358,13 @@ Eero, Zhou, and their collaborators won an Emmy for their work on SSIM, as an as
 
 ---
 ## Representational untangling
-![image](assets/geodesic_1.svg)
+<img data-src="assets/geodesic_1.svg"></img>
 
 #note: one expression of this idea is DiCarlo and Cox's untangling manifolds hypothesis. the structure that exists in the world is not readily available from the signal that enters our eyes. If we take pictures of two objects from a bunch of different views and under many different lighting conditions, and then plot the pixel values in that high dimensional space, the manifolds representing these two objects will be all intermixed. that is, determining whether a picture is of this mug or of this cup is very difficult in pixel space. the idea is that one of the functions of the visual system is to untangle these representations such that, at the end of the ventral stream, it is very easy to determine whether we're looking at the cup or the mug
 
 ---
 ## Representational straightening
-![image](assets/geodesic_2.svg)
+<img data-src="assets/geodesic_2.svg"></img>
 
 #note: but organisms don't just look at static images, we have to make sense of a moving world. it's not enough to tell whether you're looking at a cup or a mug, but if that cup is moving towards you, you want to be able to predict where it will end up.
 
@@ -440,7 +440,7 @@ and they did some psychophysics that showed observers found the middle two seque
 
 <div class="column margin-top" style="float:right; width:30%">
 
-![qr](assets/plen-docs-qr.svg) <!-- .element: style="width:70%" -->
+<img style="width:70%" data-src="assets/plen-docs-qr.svg"></img> 
 https://docs.plenoptic.org/
 
 </div>
@@ -455,13 +455,13 @@ At this point, I'm happy to work with anyone who wants to use plenoptic. I know 
 
 ---
 ## Developers
-![dev](assets/plen-people-details.svg)
+<img data-src="assets/plen-people-details.svg"></img>
 
 #note: I want to point out that wasn't just me -- I'm the maintainer and core developer now, but this was the work of 7 folks in Eero's lab since 2019.
 
 ---
 ## Developers
-![dev](assets/plen-people-details-and-you.svg)
+<img data-src="assets/plen-people-details-and-you.svg"></img>
 
 #note: I'm not just interested in more users, but in new contributors as well.
 
