@@ -527,10 +527,13 @@ div:has(> svg).logo-title {
   top: 20%;
 }
 .reveal h2 ~ div.code-vis-grid {
-  top: 10%;
+  top: 5%;
 }
 .code-vis-grid video,
 .code-vis-grid img {
   max-width: 100%;
   max-height: 100%;
+}
+.reveal pre {
+  height: fit-content;
 }
