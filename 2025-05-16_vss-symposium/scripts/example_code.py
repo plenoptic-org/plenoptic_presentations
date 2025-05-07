@@ -41,7 +41,7 @@ def create_eig_figure(eig, alpha=5):
         po.imshow(eig.image + alpha*eig.eigendistortions[i:i+1], ax=axes[i+1, 0],
                   title=f"Image + {alpha} * {title[i]} Eigendistortion")
         axes[i+1, 0].set_axis_off()
-    fig.tight_layout()
+    fig.tight_layout(rect=(0, 0, 1, .95), h_pad=2)
     return fig
 
 
@@ -82,8 +82,8 @@ def eigendistortion():
     >>> # Initialize metamer object
     >>> eig = po.synth.Eigendistortion(img, model)
     >>> # Synthesize eigendistortions
-    >>> eig.synthesize(max_iter=1000);
-    ... # ignore
+    >>> eig.synthesize(max_iter=1000) #doctest: +ELLIPSIS
+    Top ... 
     >>> fig = create_eig_figure(eig) # ignore
     >>> fig.savefig("{filename}-{func}-init.svg") # ignore
     """
