@@ -28,7 +28,7 @@ def parse_docstring(docstring, respect_ignore=True):
     docstring = [d for d in docstring if include_line(d)]
     docstring = [d.split("#doctest")[0] for d in docstring]
     if all([d.startswith("...") or d.startswith(">>>") for d in docstring]):
-        docstring = [d[3:] for d in docstring]
+        docstring = [d[3:].strip() for d in docstring]
     return "\n".join(docstring).strip()
 
 
