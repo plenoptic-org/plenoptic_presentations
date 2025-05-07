@@ -13,8 +13,8 @@ def create_met_figure(met, included_plots=None):
             "plot_loss",
             "plot_representation_error",
         ]
-    n_plots = 1 + len(included_plots)
-    fig, axes = plt.subplots(1, n_plots, figsize=(4*n_plots, 4))
+    fig, axes = plt.subplots(2, 2, figsize=(8, 8))
+    axes = axes.flat
     po.imshow(met.image, ax=axes[0], title="Original image")
     axes[0].set_axis_off()
     torch.set_default_device("cpu")
@@ -22,24 +22,26 @@ def create_met_figure(met, included_plots=None):
     fig, axes_idx = po.synth.metamer.plot_synthesis_status(met, fig=fig, axes_idx={"misc": 0},
                                                            iteration=0, vrange=vrange,
                                                            included_plots=included_plots)
-    fig.tight_layout(w_pad=.1, rect=(0, 0, 1, .9))
+    if "plot_representation_error" not in included_plots:
+        axes[-1].set_visible(False)
+    fig.tight_layout(rect=(0, 0, 1, .99), h_pad=2)
     return fig, axes_idx
 
 
 def create_eig_figure(eig, alpha=5):
-    fig, axes = plt.subplots(2, 3, figsize=(12, 8))
-    axes[0, 0].set_visible(False)
-    po.imshow(eig.image, ax=axes[1, 0], title="Original image")
+    fig, axes = plt.subplots(3, 2, figsize=(8, 12))
+    axes[0, 1].set_visible(False)
+    po.imshow(eig.image, ax=axes[0, 0], title="Original image")
     title = ["Max", "Min"]
-    axes[1, 0].set_axis_off()
+    axes[0, 0].set_axis_off()
     for i in range(2):
-        po.imshow(eig.eigendistortions[i:i+1], ax=axes[0, i+1],
+        po.imshow(eig.eigendistortions[i:i+1], ax=axes[i+1, 1],
                   title=f"{title[i]} Eigendistortion")
-        axes[0, i+1].set_axis_off()
-        po.imshow(eig.image + alpha*eig.eigendistortions[i:i+1], ax=axes[1, i+1],
+        axes[i+1, 1].set_axis_off()
+        po.imshow(eig.image + alpha*eig.eigendistortions[i:i+1], ax=axes[i+1, 0],
                   title=f"Image + {alpha} * {title[i]} Eigendistortion")
-        axes[1, i+1].set_axis_off()
-    fig.tight_layout(w_pad=.1, rect=(0, 0, 1, .9), h_pad=2)
+        axes[i+1, 0].set_axis_off()
+    fig.tight_layout()
     return fig
 
 
