@@ -250,6 +250,11 @@ Be compatible with any PyTorch model: e.g., [torchvision](https://docs.pytorch.o
 
 ---
 
+## Contents
+<img data-src="assets/contents.svg"></img>
+
+--
+
 <div style="display:flex;flex-direction:column">
 <div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
 
@@ -438,4 +443,8 @@ Contents: <!-- .element: style="margin-top:1%" -->
 
 ---
 
-<div data-load="assets/advertisement_slide.svg"></div>
+<div data-animate data-load="assets/advertisement_slide.svg">
+<!-- {"setup": [
+{"element": "#g18", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]}
+]} -->
+</div>
