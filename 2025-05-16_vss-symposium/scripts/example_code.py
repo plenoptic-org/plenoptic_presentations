@@ -24,7 +24,7 @@ def create_met_figure(met, included_plots=None):
                                                            included_plots=included_plots)
     if "plot_representation_error" not in included_plots:
         axes[-1].set_visible(False)
-    fig.tight_layout(rect=(0, 0, 1, .99), h_pad=2)
+    fig.tight_layout(rect=(0, 0, 1, .95), h_pad=2)
     return fig, axes_idx
 
 
