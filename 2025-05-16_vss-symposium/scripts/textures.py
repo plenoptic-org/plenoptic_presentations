@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import argparse
+import time
 import plenoptic as po
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,16 +13,22 @@ plt.rcParams["text.usetex"] = True
 def synth_texture(max_iter=500, store_progress=True,
                   change_scale_criterion=None,
                   ctf_iters_to_check=3,
+                  device=None,
                   **synth_kwargs):
-    img = po.data.reptile_skin()
+    if device is None:
+        device = DEVICE
+    img = po.data.reptile_skin().to(device)
     ps = po.simul.PortillaSimoncelli(img.shape[-2:])
+    ps.to(device)
     im_init = torch.rand_like(img) * .2 + img.mean()
     met = po.synth.MetamerCTF(img, ps, loss_function=po.tools.optim.l2_norm)
     met.setup(im_init)
+    start = time.time()
     met.synthesize(max_iter=max_iter, store_progress=store_progress,
                    change_scale_criterion=change_scale_criterion,
                    ctf_iters_to_check=ctf_iters_to_check)
-    return met
+    stop = time.time()
+    return met, stop - start
 
 
 def init_figure(image, model, ylim=None):
@@ -76,3 +84,21 @@ def animate(met, framerate=10, save_path=None):
     if save_path is not None:
         anim.save(save_path)
         fig.savefig(save_path.replace(".mp4", "-metamer.svg"))
+
+
+parser = argparse.ArgumentParser(
+    description=("Synth and time texture metamers")
+)
+parser.add_argument("save_path",
+                    help=(".mp4 path to save animated video at (metamer)"))
+parser.add_argument("device", help="one of {cpu, gpu, None}. If None, use gpu if available.",
+                    default=None)
+args = vars(parser.parse_args())
+if args["device"] == "None":
+    args["device"] = None
+met, duration = synth_texture(device=args["device"])
+met.to("cpu")
+animate(met, save_path=args["save_path"])
+txt_path = args["save_path"].replace('.mp4', '-time.txt')
+with open(txt_path, 'w') as f:
+    f.write(f"{duration // 60} minutes, {duration % 60} seconds")
