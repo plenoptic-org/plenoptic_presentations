@@ -57,7 +57,7 @@ def init_figure(image, model, rep_vrange="indep1"):
 
 def animate(met, framerate=10, save_path=None):
     all_imgs = torch.cat([met.image, met.saved_metamer[0], met.metamer], 0)
-    rep_vrange = (model(all_imgs).min().item(), model(all_imgs).max().item())
+    rep_vrange = (met.model(all_imgs).min().item(), met.model(all_imgs).max().item())
     if save_path is not None:
         fig = init_figure(met.image, met.model, rep_vrange)
         fig.savefig(save_path.replace(".mp4", "-image.svg"))
