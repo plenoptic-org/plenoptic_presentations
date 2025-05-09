@@ -40,11 +40,12 @@ def init_figure(image, model, ylim=None):
     rx, ry = rect.get_xy()
     cx = rx + rect.get_width() / 2
     cy = ry + rect.get_height() / 2
-    axes[1].annotate("", xytext=(-.6, .5), xy=(1.4, .5), zorder=0,
+    axes[1].annotate("", xytext=(-.5, .5), xy=(1.5, .5), zorder=0,
                      arrowprops={"arrowstyle": "->", "linewidth": 4},
-                     xycoords="axes fraction")
+                     xycoords=axes[1].transAxes)
     axes[1].annotate(r"$M$", (cx - .05, cy - .05), fontsize=80, ha="center", va="center")
     axes[1].set(xlim=(-.5, .5), ylim=(-.5, .5), aspect="equal")
+    fig.tight_layout()
     return fig
 
 

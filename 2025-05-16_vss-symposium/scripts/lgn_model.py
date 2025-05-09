@@ -34,6 +34,22 @@ def metamer(max_iter=3500, store_progress=10,
     return met, stop - start
 
 
+def eigendistortion(max_iter=1000, device=None):
+    if device is None:
+        device = DEVICE
+    img = po.data.einstein().to(device)
+    lg = po.simul.LuminanceGainControl((31, 31), pad_mode="circular",
+                                       pretrained=True, cache_filt=True)
+    po.tools.remove_grad(lg)
+    lg = lg.to(device)
+    lg.eval()
+    eig = po.synth.Eigendistortion(img, lg)
+    start = time.time()
+    eig.synthesize(max_iter=max_iter)
+    stop = time.time()
+    return eig, stop - start
+
+
 def init_figure(image, model, rep_vrange="indep1"):
     fig, axes = plt.subplots(1, 3, figsize=(11, 3.5),
                              gridspec_kw={"width_ratios": [1, .5, 1]})
@@ -52,6 +68,23 @@ def init_figure(image, model, rep_vrange="indep1"):
     axes[1].annotate(r"$M$", (cx - .05, cy - .05), fontsize=80, ha="center", va="center")
     axes[1].set(xlim=(-.5, .5), ylim=(-.5, .5), aspect="equal")
     fig.tight_layout()
+    return fig
+
+
+def create_eig_figure(eig, alpha=5):
+    fig, axes = plt.subplots(2, 3, figsize=(12, 8))
+    axes[0, 0].set_visible(False)
+    po.imshow(eig.image, ax=axes[0, 1], title="Original image")
+    title = ["Max", "Min"]
+    axes[1, 0].set_axis_off()
+    for i in range(2):
+        po.imshow(eig.eigendistortions[i:i+1], ax=axes[0, i+1],
+                  title=f"{title[i]} Eigendistortion")
+        axes[0, i+1].set_axis_off()
+        po.imshow(eig.image + alpha*eig.eigendistortions[i:i+1], ax=axes[1, i+1],
+                  title=f"Image + {alpha} * {title[i]} Eigendistortion")
+        axes[1, i+1].set_axis_off()
+    fig.tight_layout(rect=(0, 0, 1, .95), h_pad=2)
     return fig
 
 
@@ -89,14 +122,24 @@ parser = argparse.ArgumentParser(
     description=("Synth and time LGN metamers, eigendistortions")
 )
 parser.add_argument("synth_method", help="one of {metamer, eigendistortion}")
-parser.add_argument("save_path", help=".mp4 path to save animated video at")
+parser.add_argument("save_path",
+                    help=(".mp4 path to save animated video at (metamer) or svg path to "
+                          "save figure at (eigendistortion)"))
 parser.add_argument("device", help="one of {cpu, gpu, None}. If None, use gpu if available.",
                     default=None)
 args = vars(parser.parse_args())
 if args["device"] == "None":
     args["device"] = None
-met, duration = metamer(device=args["device"])
-met.to("cpu")
-with open(args["save_path"].replace('.mp4', '-time.txt'), 'w') as f:
+if args["synth_method"] == "metamer":
+    met, duration = metamer(device=args["device"])
+    met.to("cpu")
+    animate(met, save_path=args["save_path"])
+    txt_path = args["save_path"].replace('.mp4', '-time.txt')
+elif args["synth_method"] == "eigendistortion":
+    eig, duration = eigendistortion(device=args["device"])
+    eig.to("cpu")
+    fig = create_eig_figure(eig)
+    fig.savefig(args["save_path"])
+    txt_path = args["save_path"].replace('.svg', '-time.txt')
+with open(txt_path, 'w') as f:
     f.write(f"{duration // 60} minutes, {duration % 60} seconds")
-animate(met, save_path=args["save_path"])
