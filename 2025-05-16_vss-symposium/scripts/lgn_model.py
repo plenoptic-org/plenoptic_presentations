@@ -27,9 +27,11 @@ def metamer(max_iter=500, store_progress=10,
         im_init = torch.rand_like(img)
         im_init = (2 * im_init - .5).clip(0, 1)
     met.setup(im_init, optimizer_kwargs={"lr": lr, "amsgrad": True})
+    start = time.time()
     met.synthesize(max_iter=max_iter, store_progress=store_progress,
                    stop_criterion=stop_criterion, **synth_kwargs)
-    return met
+    stop = time.time()
+    return met, stop - start
 
 
 def init_figure(image, model):
@@ -91,9 +93,7 @@ parser.add_argument("device", help="one of {cpu, gpu, None}. If None, use gpu if
 args = vars(parser.parse_args())
 if args["device"] == "None":
     args["device"] = None
-start = time.time()
-met = metamer(device=args["device"])
-stop = time.time()
+met, duration = metamer(device=args["device"])
 met.to("cpu")
 duration = stop - start
 with open(args["save_path"].replace('.mp4', '-time.txt'), 'w') as f:
