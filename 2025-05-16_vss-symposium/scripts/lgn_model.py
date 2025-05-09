@@ -95,6 +95,7 @@ if args["device"] == "None":
 start = time.time()
 met = metamer(device=args["device"])
 stop = time.time()
+duration = start - stop
 with open(args["save_path"].replace('.mp4', '-time.txt'), 'w') as f:
-    f.write(start-stop)
+    f.write(f"{duration // 60} minutes, {duration % 60} seconds")
 animate(met, save_path=args["save_path"])
