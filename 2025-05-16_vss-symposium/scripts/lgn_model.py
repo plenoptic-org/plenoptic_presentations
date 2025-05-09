@@ -4,6 +4,7 @@ import argparse
 import time
 import plenoptic as po
 import matplotlib.pyplot as plt
+from matplotlib import animation
 import torch
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 plt.rcParams["text.usetex"] = True
@@ -88,14 +89,13 @@ parser.add_argument("save_path", help=".mp4 path to save animated video at")
 parser.add_argument("device", help="one of {cpu, gpu, None}. If None, use gpu if available.",
                     default=None)
 args = vars(parser.parse_args())
-if args["device"] not in  ["None", "cpu", "gpu"]:
-    raise ValueError("device must be one of {cpu, gpu, None}!")
 if args["device"] == "None":
     args["device"] = None
 start = time.time()
 met = metamer(device=args["device"])
 stop = time.time()
-duration = start - stop
+met.to("cpu")
+duration = stop - start
 with open(args["save_path"].replace('.mp4', '-time.txt'), 'w') as f:
     f.write(f"{duration // 60} minutes, {duration % 60} seconds")
 animate(met, save_path=args["save_path"])
