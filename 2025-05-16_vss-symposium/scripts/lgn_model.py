@@ -12,7 +12,7 @@ plt.rcParams["text.usetex"] = True
 
 def metamer(max_iter=3500, store_progress=10,
             stop_criterion=1e-11,
-            im_init = None,
+            im_init=None,
             lr=.007, device=None, **synth_kwargs):
     if device is None:
         device = DEVICE
@@ -21,12 +21,8 @@ def metamer(max_iter=3500, store_progress=10,
                                        pretrained=True, cache_filt=True)
     po.tools.remove_grad(lg)
     lg = lg.to(device)
-    lg.eval()
     met = po.synth.Metamer(img, lg)
-    if im_init is None:
-        im_init = torch.rand_like(img)
-        im_init = (2 * im_init - .5).clip(0, 1)
-    met.setup(im_init, optimizer_kwargs={"lr": lr, "amsgrad": True})
+    met.setup(im_init)
     start = time.time()
     met.synthesize(max_iter=max_iter, store_progress=store_progress,
                    stop_criterion=stop_criterion, **synth_kwargs)
