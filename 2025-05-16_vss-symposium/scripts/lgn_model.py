@@ -10,7 +10,7 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 plt.rcParams["text.usetex"] = True
 
 
-def metamer(max_iter=500, store_progress=10,
+def metamer(max_iter=3500, store_progress=10,
             stop_criterion=1e-11,
             im_init = None,
             lr=.007, device=None, **synth_kwargs):
@@ -34,13 +34,13 @@ def metamer(max_iter=500, store_progress=10,
     return met, stop - start
 
 
-def init_figure(image, model):
+def init_figure(image, model, rep_vrange="indep1"):
     fig, axes = plt.subplots(1, 3, figsize=(11, 3.5),
                              gridspec_kw={"width_ratios": [1, .5, 1]})
     po.imshow(po.to_numpy(image), ax=axes[0], vrange=(0, 1), title=None)
     for ax in axes:
         ax.set_axis_off()
-    po.imshow(model(image), ax=axes[2], title=None)
+    po.imshow(model(image), ax=axes[2], title=None, vrange=rep_vrange)
     rect = axes[1].add_patch(plt.Rectangle((-.5, -.5), 1, 1, facecolor="white",
                                            edgecolor="black", lw=10))
     rx, ry = rect.get_xy()
@@ -56,10 +56,12 @@ def init_figure(image, model):
 
 
 def animate(met, framerate=10, save_path=None):
+    all_imgs = torch.cat([met.image, met.saved_metamer[0], met.metamer], 0)
+    rep_vrange = (model(all_imgs).min().item(), model(all_imgs).max().item())
     if save_path is not None:
-        fig = init_figure(met.image, met.model)
+        fig = init_figure(met.image, met.model, rep_vrange)
         fig.savefig(save_path.replace(".mp4", "-image.svg"))
-    fig = init_figure(met.saved_metamer[0], met.model)
+    fig = init_figure(met.saved_metamer[0], met.model, rep_vrange)
     if save_path is not None:
         fig.savefig(save_path.replace(".mp4", "-init.svg"))
 
@@ -95,7 +97,6 @@ if args["device"] == "None":
     args["device"] = None
 met, duration = metamer(device=args["device"])
 met.to("cpu")
-duration = stop - start
 with open(args["save_path"].replace('.mp4', '-time.txt'), 'w') as f:
     f.write(f"{duration // 60} minutes, {duration % 60} seconds")
 animate(met, save_path=args["save_path"])
