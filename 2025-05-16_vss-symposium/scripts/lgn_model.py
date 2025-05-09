@@ -74,12 +74,12 @@ def init_figure(image, model, rep_vrange="indep1"):
 def create_eig_figure(eig, alpha=5):
     fig, axes = plt.subplots(2, 3, figsize=(12, 8))
     axes[0, 0].set_visible(False)
-    po.imshow(eig.image, ax=axes[1, 0])
+    po.imshow(eig.image, ax=axes[1, 0], title=None)
     axes[1, 0].set_axis_off()
     for i in range(2):
-        po.imshow(eig.eigendistortions[i:i+1], ax=axes[0, i+1])
+        po.imshow(eig.eigendistortions[i:i+1], ax=axes[0, i+1], title=None)
         axes[0, i+1].set_axis_off()
-        po.imshow(eig.image + alpha*eig.eigendistortions[i:i+1], ax=axes[1, i+1])
+        po.imshow(eig.image + alpha*eig.eigendistortions[i:i+1], ax=axes[1, i+1], title=None)
         axes[1, i+1].set_axis_off()
     fig.tight_layout(rect=(0, 0, 1, .95), h_pad=2)
     return fig
