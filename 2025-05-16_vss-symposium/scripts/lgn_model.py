@@ -128,11 +128,14 @@ if args["synth_method"] == "metamer":
     met.to("cpu")
     animate(met, save_path=args["save_path"])
     txt_path = args["save_path"].replace('.mp4', '-time.txt')
+    n_iter = len(met.losses)
 elif args["synth_method"] == "eigendistortion":
     eig, duration = eigendistortion(device=args["device"])
     eig.to("cpu")
     fig = create_eig_figure(eig)
     fig.savefig(args["save_path"])
     txt_path = args["save_path"].replace('.svg', '-time.txt')
+    n_iter = "?"
 with open(txt_path, 'w') as f:
+    f.write(f"{n_iter} iterations")
     f.write(f"{duration // 60} minutes, {duration % 60} seconds")
