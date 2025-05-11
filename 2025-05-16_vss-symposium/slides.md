@@ -67,8 +67,8 @@ this is what we call synthesis -- updating the pixel values of an image based on
 
 <div data-animate data-load="assets/image_space-2.svg">
 <!-- {"setup": [
-{"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]}
-{"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]}
 ]} -->
 </div>
 
