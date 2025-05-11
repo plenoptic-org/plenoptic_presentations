@@ -1,7 +1,8 @@
-![](assets/plenoptic_logo_wide.svg) <!-- .element: style="height:50%" -->
+![](assets/plenoptic_logo_wide.svg) <!-- .element: style="width:75%" -->
 
 ## A python library for synthesizing model-optimized visual stimuli
-## Billy Broderick <!-- .element: style="height:50%" -->
+## Billy Broderick 
+### <!-- .element: style="margin-bottom:5%" --> slides: https://vss.plenoptic.org 
 
 #note: today I'm going to talk about plenoptic, a python library for synthesizing the model-optimized visual stimuli we're talking about it in this session. but first, I'm going to step back a bit
 
