@@ -35,9 +35,11 @@ this is what we call synthesis -- updating the pixel values of an image based on
 
 ## Why do this?
 
-- Better understand computational visual models. <!-- .element: class="fragment margin-top" data-fragment-index="1" -->
-- Compare models. <!-- .element: class="fragment margin-top" data-fragment-index="2" -->
-- Improve models models. <!-- .element: class="fragment margin-top" data-fragment-index="3" -->
+- Better understand computational visual models. <!-- .element: class="fragment" data-fragment-index="1" -->
+- Compare models. <!-- .element: class="fragment" data-fragment-index="2" -->
+- Improve models. <!-- .element: class="fragment" data-fragment-index="3" -->
+
+<!-- .element: style="font-size:1.5em" -->
 
 ---
 
