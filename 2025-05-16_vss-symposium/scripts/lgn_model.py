@@ -10,10 +10,10 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 plt.rcParams["text.usetex"] = True
 
 
-def metamer(max_iter=3500, store_progress=10,
+def metamer(max_iter=1300, store_progress=10,
             stop_criterion=1e-11,
             im_init=None,
-            lr=.007, device=None, **synth_kwargs):
+            device=None, **synth_kwargs):
     if device is None:
         device = DEVICE
     img = po.data.einstein().to(device)
