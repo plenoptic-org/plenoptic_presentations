@@ -143,7 +143,6 @@ this is what we call synthesis -- updating the pixel values of an image based on
 - watch video doing just that
 - now we end up with matched output, and we can see that the input has those features that the model is sensitive to, those edges, but it's *lacking* the ones it's insensitive to. and in fact, in the high frequencies and (less noticeably) the low ones, this metamer has just inherited content from the initial image.
 - this emphasizes what the model cares about and what it discards.
-- this was an example created with plenoptic, and the synthesis of the metamer took XXX seconds to run ...
 - now this was a relatively simple model, those of you who are used to thinking about models like this didn't need metamers to understand everything I just walked you through
 
 ---
@@ -179,7 +178,6 @@ this is what we call synthesis -- updating the pixel values of an image based on
 
 #note: 
 - watch the video
-- this was an example created with plenoptic, and the synthesis of the metamer took XXX seconds to run ...
 - to emphasize what Ruth talked about in her talk, the process of modifying the model and synthesizing model metamers to see the effect adding or removing or changing different computations had, this was how this model was developed.
 - now you may have noticed the big asterisk on this work: you need to know the gradient of the model with respect to the input in order to do this.
 - originally, this was very labor-intensive, requiring a lot of calculus by hand.
