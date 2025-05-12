@@ -78,7 +78,7 @@ for p in paths:
         contents = re.sub(rf"```(python.*? )doctest:{match_f}:{match_func}( |$)(.*)\n```",
                           rf"```\1\3\n{doc}\n```", contents, flags=re.MULTILINE)
     # convert md code blocks to html, preserving attributes
-    contents = re.sub(r'```python +([a-z "=,0-9-:%]*?)(data-id=.[a-z0-9-]+.)([a-z "=,0-9-:%]*)$\n(.*?)```',
+    contents = re.sub(r'```python *([a-z "=,0-9-:%\|]*?)(data-id=.[a-z0-9-]+.)?([a-z "=,0-9-:%\|]*)$\n(.*?)```',
                       r'<pre \2><code class="language-python" data-trim \1 \3>\n\4</code></pre>',
                       contents,
                       flags=re.MULTILINE | re.DOTALL)
