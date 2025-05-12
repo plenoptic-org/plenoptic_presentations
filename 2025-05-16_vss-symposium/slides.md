@@ -219,7 +219,7 @@ model = po.simul.LuminanceGainControl(
 )
 po.tools.remove_grad(model)
 met = po.synth.Metamer(img, model)
-met.synthesize(max_iter=1000, 
+met.synthesize(max_iter=1300, 
                stop_criterion=1e-11)
 ```
 
@@ -230,7 +230,9 @@ met.synthesize(max_iter=1000,
 {"element": "#g9", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "1"} ]},
 {"element": "#g8", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "2"} ]},
 {"element": "#g10", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "3"} ]},
-{"element": "#g11", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "4"} ]}
+{"element": "#g11", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "4"} ]},
+{"element": "#g19", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "5"} ]},
+{"element": "#g20", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "6"} ]}
 ]} -->
 </img>
 
@@ -270,7 +272,7 @@ met.synthesize(max_iter=1000,
 
 ---
 
-## LGN-inspired eigendistortion
+## LGN-inspired model eigendistortion
 
 <div data-animate data-load="assets/lgn-eigen.svg">
 <!-- {"setup": [
@@ -293,8 +295,19 @@ met.synthesize(max_iter=1000,
 
 ---
 
-## Plenoptic Contents
-<img data-src="assets/contents.svg"></img>
+<div style="display:flex;flex-direction:column">
+<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
+<div data-animate data-load="assets/contents.svg">
+<!-- {"setup": [
+{"element": "#g4", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#g5", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#text1-3-6", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
+{"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]},
+{"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "4"} ]},
+{"element": "#g6", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "5"} ]}
+]} -->
+</div>
+</div>
 
 #note:
 - in addition to metamer and eigendistortion, plenoptic currently includes another synthesis method, known as MAD competition. I'm not going to describe that one in detail, but its goal is to efficiently compare models by generating stimuli that result in very different outputs
@@ -306,8 +319,8 @@ met.synthesize(max_iter=1000,
 <div style="display:flex;flex-direction:column">
 <div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
 
-Goals: <!-- .element: style="margin-top:1%" --> 
-- Facilitate synthesis of model-optimized stimuli.
+Help scientists understand, compare, and improve computational models: <!-- .element: style="margin-top:1%" --> 
+- Facilitate synthesis of model-optimized stimuli. <!-- .element: class="fragment appear"  -->
 - <!-- .element: class="fragment appear"  -->
 Be compatible with any PyTorch model: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [brainscore](https://www.brain-score.org/vision/), custom models. 
 - Provide selection of useful vision science metrics, models, canonical computations, tools. <!-- .element: class="fragment appear"  --> 
