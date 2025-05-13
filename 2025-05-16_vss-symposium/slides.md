@@ -21,7 +21,9 @@
 ]} -->
 </div>
 
-#note: To make that slightly less abstract, here is a diagram of a model in visual neuroscience. it accepts some stimuli s, often for us images, as inputs, and based on some parameters theta, returns some responses r. these responses can be anything of interst to the experimenter, such as predicted spike rates or image class, if this were doing image net
+#note: our logo here represents this process of synthesizing model-optimized stimul.
+
+when we think about models in visual neuroscience, they're often set up like this. it accepts some stimuli s, often for us images, as inputs, and based on some parameters theta, returns some responses r. these responses can be anything of interst to the experimenter, such as predicted spike rates or image class, if this were doing image net
 
 - now the way that models are most commonly used, is that we feed them an input and some parameter values and we simulate the responses.
 
@@ -206,6 +208,10 @@ this is what we call synthesis -- updating the pixel values of an image based on
 
 ---
 
+#note:
+- I'm going to show you one simple bit of code, so you know what it looks like to use plenoptic
+- the code I'm going to show you was used to generate this example from earlier: if you install plenoptic and run the code, you'll create the metamer seen here
+
 ## Example code: synthesize metamer
 
 ```python data-line-numbers="1|2|3-6|7|8|9-10"
@@ -235,18 +241,18 @@ met.synthesize(max_iter=1300,
 </img>
 
 #note:
-- I'm going to show you one simple example, so you know what this looks like.
-- this example I showed you before, was generated with this code. (I'm not showing you the code for creating the figures and animation -- as those of you who use matplotlib know, it can take some fiddling to make things look nice)
-- this is real code, if you install plenoptic you can run it now. I'm going to step through it bit by bit, so you see what's happening
+- (I'm not showing you the code for creating the figures and animation -- as those of you who use matplotlib know, it can take some fiddling to make things look nice)
 - first, as should be familiar to all of you familiar with python, you import your library
-- you then need to get your image into a torch tensor. there are many ways to do that: plenoptic has some built-in images we use for tests and examples, we have a helper function from loading images from disk, or if you're familiar with pytorch, you can get it in the normal way
+- you then need to get your image into a torch tensor. there are many ways to do that: plenoptic has some built-in images we use for tests and examples, we have a helper function from loading images from disk, or if you're familiar with pytorch, you can get it in any way you like, including converting from a numpy array.
 - then we need to initialize your model. here, we're using the LGN-like model I showed earlier, called luminance gain control. we have some built-in models you can use, or you can grab a model from any of the many pytorch model zoos that exist, or you can write your own. as long as it's in pytorch, it will work
 - now, we need to detach the model parameter gradients -- most people are fitting pytorch models and so they want to update model parameters. for plenoptic, models are *fixed*, and so we remove those gradients, which saves computation
 - now we initialize the metamer object. this only requires the target image and the model, though there are additional arguments you can specify here, for example, changing the loss function
-- and finally, we call synthesize. the only option required here is the number of iterations to run the synthesis for, though again there are more options you could choose if you don't like our defaults.
+- and finally, we call synthesize. these arguments here specify how long to run the optimization for and the threshold we use for determining if it looks like the optimization has converged, i.e., the loss has stopped changing. neither of these arguments are necessary, we have defaults, but, depending on your model, you'll need to play around with them.
 - if you wanted to change the initial image, the optimization parameters, or the optimization algorithm, you can do that as well
-- but this is all you *need*, five lines of code.
-- if you go to my slides on the web, you can press the down arrow from this slide to see how you would make some of those simple changes, for those who are interested
+- but this is all you *need*, six lines of code.
+- generally speaking, this last step, synthesize, is the most resource and time-intensive
+- to give you a sense for how long this took, the synthesize step here took 7 seconds using the GPU on the workstation I have in my office, 3.5 minutes on that machine without using the GPU, and 7 min on this laptop
+- the texture example I showed you earlier took 40sec using the GPU, about 1min without, or 3.5 min on this laptop
 
 ---
 
