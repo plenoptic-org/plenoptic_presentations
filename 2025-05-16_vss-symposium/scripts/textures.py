@@ -62,28 +62,33 @@ def animate(met, framerate=10, save_path=None):
     if save_path is not None:
         fig = init_figure(met.image, met.model, ymax + ymax/5)
         fig.savefig(save_path.replace(".mp4", "-image.svg"))
-    fig = init_figure(met.saved_metamer[0], met.model, ymax + ymax/5)
+    n_frames = len(met.saved_metamer)
+    # lot of frames towards the end, so speed through them
+    saved_metamer = torch.cat([met.saved_metamer[:n_frames//6],
+                               met.saved_metamer[n_frames//6::8]])
+    fig = init_figure(saved_metamer[0], met.model, ymax + ymax/5)
     if save_path is not None:
         fig.savefig(save_path.replace(".mp4", "-init.svg"))
 
     def update_frame(i):
         artists = []
         artists.extend(
-            po.tools.display.update_plot(fig.axes[0], data=met.saved_metamer[i],
+            po.tools.display.update_plot(fig.axes[0], data=saved_metamer[i],
                                          batch_idx=0)
         )
         artists.extend(
             po.tools.display.update_plot(fig.axes[2],
-                                         data=met.model(met.saved_metamer[i]),
+                                         data=met.model(saved_metamer[i]),
                                          batch_idx=0)
         )
         return artists
 
-    anim = animation.FuncAnimation(fig, update_frame, frames=len(met.saved_metamer),
+    anim = animation.FuncAnimation(fig, update_frame, frames=len(saved_metamer),
                                    blit=True, interval=1000/framerate)
     if save_path is not None:
         anim.save(save_path)
         fig.savefig(save_path.replace(".mp4", "-metamer.svg"))
+    return len(saved_metamer)
 
 
 parser = argparse.ArgumentParser(
@@ -98,7 +103,7 @@ if args["device"] == "None":
     args["device"] = None
 met, duration = synth_texture(device=args["device"])
 met.to("cpu")
-animate(met, save_path=args["save_path"])
+n_frames = animate(met, save_path=args["save_path"])
 txt_path = args["save_path"].replace('.mp4', '-time.txt')
 with open(txt_path, 'w') as f:
-    f.write(f"{duration // 60} minutes, {duration % 60} seconds")
+    f.write(f"{n_frames}\n{duration // 60} minutes, {duration % 60} seconds")
