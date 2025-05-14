@@ -4,7 +4,7 @@
 ## Billy Broderick 
 ### <!-- .element: style="margin-bottom:5%" --> slides: https://vss.plenoptic.org 
 
-#note: today I'm going to talk about plenoptic, a python library for synthesizing the model-optimized visual stimuli we're talking about it in this session. but first, I'm going to step back a bit
+#note: today I'm going to talk about plenoptic, a python library for synthesizing the model-optimized visual stimuli we're talking about it in this session.
 
 ---
 
@@ -55,7 +55,7 @@ this is what we call synthesis -- updating the pixel values of an image based on
 <!-- {"setup": [
 {"element": "#path2-3", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
 {"element": "#text13-5", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
-{"element": "#g13", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#g3", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
 {"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
 {"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]}
 ]} -->
