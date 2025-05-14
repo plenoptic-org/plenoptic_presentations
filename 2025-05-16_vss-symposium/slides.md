@@ -8,6 +8,22 @@
 
 ---
 
+## Big picture goal
+
+- Better understand computational visual models. <!-- .element: class="fragment" data-fragment-index="1" -->
+- Compare models. <!-- .element: class="fragment" data-fragment-index="2" -->
+- Improve models. <!-- .element: class="fragment" data-fragment-index="3" -->
+
+<!-- .element: style="font-size:1.5em" -->
+
+#note: big picture goal of plenotpic, of using model-optimized stimulus is to better understand models
+
+...
+
+with plenoptic, we seek to do this with model-optimized stimuli
+
+---
+
 <h2 class="fragment disappear" data-fragment-index=0>Unpacking plenoptic logo</h2>
 <h2 class="fragment appear-disappear" data-fragment-index=0>Simulate responses</h2>
 <h2 class="fragment appear-disappear" data-fragment-index=1>Fit parameters</h2>
@@ -21,7 +37,7 @@
 ]} -->
 </div>
 
-#note: our logo here represents this process of synthesizing model-optimized stimul.
+#note: which we represent with our logo
 
 when we think about models in visual neuroscience, they're often set up like this. it accepts some stimuli s, often for us images, as inputs, and based on some parameters theta, returns some responses r. these responses can be anything of interst to the experimenter, such as predicted spike rates or image class, if this were doing image net
 
@@ -35,13 +51,23 @@ this is what we call synthesis -- updating the pixel values of an image based on
 
 ---
 
-## Why do this?
+## How to pick scientifically useful images?
 
-- Better understand computational visual models. <!-- .element: class="fragment" data-fragment-index="1" -->
-- Compare models. <!-- .element: class="fragment" data-fragment-index="2" -->
-- Improve models. <!-- .element: class="fragment" data-fragment-index="3" -->
+<div data-animate data-load="assets/image_space-2.svg">
+<!-- {"setup": [
+{"element": "#path2-3", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#text13-5", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
+{"element": "#g13", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
+{"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]}
+]} -->
+</div>
 
-<!-- .element: style="font-size:1.5em" -->
+#note: the reason this is useful is to address the general difficult question of how to pick scientifically useful images.
+- if this is image space, the space of all possible images, every point here is an image, and every image you can show is a point here.
+- when you design an experiment, you have limited time and need to decide what stimuli to use -- not a new idea in psychophysics
+- many of the stimuli out here are not useful
+- and we want to find the ones that are helpful, that will tell you something about your model
 
 ---
 
@@ -49,36 +75,23 @@ this is what we call synthesis -- updating the pixel values of an image based on
 
 <div data-animate data-load="assets/image_space.svg">
 <!-- {"setup": [
-{"element": "#path2-3", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
-{"element": "#text13-5", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
-{"element": "#g13", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
-{"element": "#text11", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
-{"element": "#text3", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]},
-{"element": "#rect13", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "4"} ]},
-{"element": "#rect13-6", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "5"} ]},
-{"element": "#rect13-6-7", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "6"} ]},
-{"element": "#rect13-6-7-5", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "7"} ]},
-{"element": "#image15239", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "8"} ]},
-{"element": "#text14", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "9"} ]}
+{"element": "#text11", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#text3", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#rect13", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "2"} ]},
+{"element": "#rect13-6", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "3"} ]},
+{"element": "#rect13-6-7", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "4"} ]},
+{"element": "#image15239", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "6"} ]},
+{"element": "#text14", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "7"} ]}
 ]} -->
 </div>
 
----
-
-## How to pick scientifically useful images?
-
-<div data-animate data-load="assets/image_space-2.svg">
-<!-- {"setup": [
-{"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
-{"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]}
-]} -->
-</div>
-
-#note: now this isn't a new point to those of you in this room: the question of how to pick informative, how to pick scientifically useful, stimuli is one with a long history in psychophysics
+#note: and you need a method for this because image space is really big
+- like really really big
 
 ---
 
-## One possible answer: model metamers
+
+## One possible method: model metamers
 
 <div data-animate data-load="assets/image_space-metamers.svg">
 <!-- {"setup": [
@@ -117,7 +130,9 @@ this is what we call synthesis -- updating the pixel values of an image based on
 {"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
 {"element": "#image1-5", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
 {"element": "#image1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
-{"element": "#image1-1", "modifier": "attr", "parameters": [ {"display": "none"} ]}
+{"element": "#image1-1", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g4", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g5", "modifier": "attr", "parameters": [ {"display": "none"} ]}
 ]} -->
 </div>
 </div>
@@ -133,12 +148,31 @@ this is what we call synthesis -- updating the pixel values of an image based on
 ## LGN-inspired model metamer
 
 <div class="overlap-parent">
-  <div data-load="assets/lgn-metamers.svg">
+  <div data-animate data-load="assets/lgn-metamers.svg">
 <!-- {"setup": [
-{"element": "#image1-1", "modifier": "attr", "parameters": [ {"display": "none"} ]}
+{"element": "#image1-1", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g4", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g5", "modifier": "attr", "parameters": [ {"display": "none"} ]}
 ]} -->
   </div>
   <video style="width:74.5%;top:76%;left:60%" class="overlap-item" data-src="assets/workstation_gpu_noise_lr.mp4"></video>
+</div>
+
+#note:
+- watch video doing just that
+- now we end up with matched output, and we can see that the input has those features that the model is sensitive to, those edges, but it's *lacking* the ones it's insensitive to. and in fact, in the high frequencies and (less noticeably) the low ones, this metamer has just inherited content from the initial image.
+- this emphasizes what the model cares about and what it discards.
+- now this was a relatively simple model, those of you who are used to thinking about models like this didn't need metamers to understand everything I just walked you through
+
+---
+## LGN-inspired model metamer
+
+<div class="overlap-parent">
+  <div data-animate data-load="assets/lgn-metamers.svg">
+<!-- {"setup": [
+{"element": "#g5", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]}
+]} -->
+  </div>
 </div>
 
 #note:
@@ -155,8 +189,13 @@ this is what we call synthesis -- updating the pixel values of an image based on
 <div data-animate data-load="assets/texture-metamers.svg">
 <!-- {"setup": [
 {"element": "#image1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
-{"element": "#image1-6", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
-{"element": "#g1059", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "1"} ]}
+{"element": "#g6", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "1"} ]},
+{"element": "#image1-6", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
+{"element": "#g8", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "2"} ]},
+{"element": "#text39936", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "2"} ]},
+{"element": "#image1-8", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g4", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g5", "modifier": "attr", "parameters": [ {"display": "none"} ]}
 ]} -->
 </div>
 </div>
@@ -172,7 +211,12 @@ this is what we call synthesis -- updating the pixel values of an image based on
 <div class="overlap-parent">
   <div data-animate data-load="assets/texture-metamers.svg">
 <!-- {"setup": [
-{"element": "#g1059", "modifier": "attr", "parameters": [ {"display": "none"} ]}
+{"element": "#g8", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#image1-8", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#text39936", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g6", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g4", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g5", "modifier": "attr", "parameters": [ {"display": "none"} ]}
 ]} -->
   </div>
   <video style="width:84%;top:58%;left:56%" class="overlap-item" data-src="assets/textures_workstation_gpu.mp4"></video>
@@ -183,6 +227,43 @@ this is what we call synthesis -- updating the pixel values of an image based on
 - to emphasize what Ruth talked about in her talk, the process of modifying the model and synthesizing model metamers to see the effect adding or removing or changing different computations had, this was how this model was developed.
 - now you may have noticed the big asterisk on this work: you need to know the gradient of the model with respect to the input in order to do this.
 - originally, this was very labor-intensive, requiring a lot of calculus by hand.
+
+---
+## Texture model metamer
+
+<div class="overlap-parent">
+  <div data-animate data-load="assets/texture-metamers.svg">
+<!-- {"setup": [
+{"element": "#g8", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g6", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#text39936", "modifier": "attr", "parameters": [ {"display": "none"} ]},
+{"element": "#g5", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]}
+]} -->
+  </div>
+</div>
+
+#note: 
+- watch the video
+- to emphasize what Ruth talked about in her talk, the process of modifying the model and synthesizing model metamers to see the effect adding or removing or changing different computations had, this was how this model was developed.
+- now you may have noticed the big asterisk on this work: you need to know the gradient of the model with respect to the input in order to do this.
+- originally, this was very labor-intensive, requiring a lot of calculus by hand.
+
+---
+## Texture model metamer
+
+<div class="overlap-parent">
+  <div data-animate data-load="assets/texture-metamers-gd.svg">
+<!-- {"setup": [
+{"element": "#g4", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
+{"element": "#path2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
+{"element": "#g3", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]},
+{"element": "#image1-67", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "4"} ]}
+]} -->
+  </div>
+</div>
+
+#note: 
 
 ---
 
@@ -206,15 +287,15 @@ this is what we call synthesis -- updating the pixel values of an image based on
 
 <div data-load="assets/lgn-metamers.svg"></div>
 
----
-
 #note:
 - I'm going to show you one simple bit of code, so you know what it looks like to use plenoptic
 - the code I'm going to show you was used to generate this example from earlier: if you install plenoptic and run the code, you'll create the metamer seen here
 
+---
+
 ## Example code: synthesize metamer
 
-```python data-line-numbers="1|2|3-6|7|8|9-10"
+```python data-line-numbers="|1|2|3-6|7|8|9-10"
 import plenoptic as po
 img = po.data.einstein()
 model = po.simul.LuminanceGainControl(
@@ -229,14 +310,14 @@ met.synthesize(max_iter=1300,
 
 <div class="overlap-item overlap-center" data-animate data-load="assets/code-overlay.svg">
 <!-- {"setup": [
-{"element": "#g6", "modifier": "attr", "parameters": [ {"class": "fragment disappear", "data-fragment-index": "0"} ]},
-{"element": "#g7", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
-{"element": "#g9", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "1"} ]},
-{"element": "#g8", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "2"} ]},
-{"element": "#g10", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "3"} ]},
-{"element": "#g11", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "4"} ]},
-{"element": "#g19", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "5"} ]},
-{"element": "#g20", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "6"} ]}
+{"element": "#g6", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
+{"element": "#g7", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "1"} ]},
+{"element": "#g9", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "2"} ]},
+{"element": "#g8", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "3"} ]},
+{"element": "#g10", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "4"} ]},
+{"element": "#g11", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "5"} ]},
+{"element": "#g19", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "6"} ]},
+{"element": "#g20", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "7"} ]}
 ]} -->
 </img>
 
@@ -256,7 +337,7 @@ met.synthesize(max_iter=1300,
 
 ---
 
-## Another synthesis method: eigendistortions
+## Plenoptic also includes "eigendistortions"
 
 <div data-animate data-load="assets/image_space-eigendistortion.svg">
 <!-- {"setup": [
@@ -323,14 +404,21 @@ met.synthesize(max_iter=1300,
 <div style="display:flex;flex-direction:column">
 <div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
 
-Help scientists understand, compare, and improve computational models: <!-- .element: style="margin-top:1%" --> 
-- Facilitate synthesis of model-optimized stimuli. <!-- .element: class="fragment appear"  -->
+Goal: understand, compare, and improve computational models <!-- .element: style="margin-top:1%;font-size:1.3em" --> 
+- <!-- .element: class="fragment appear"  --> 
+Facilitate synthesis of **model-optimized stimuli**.
 - <!-- .element: class="fragment appear"  -->
-Be compatible with any PyTorch model: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [brainscore](https://www.brain-score.org/vision/), custom models. 
-- Provide selection of useful vision science metrics, models, canonical computations, tools. <!-- .element: class="fragment appear"  --> 
-- Do all of the above in (optional) GPU-accelerated manner. <!-- .element: class="fragment appear"  --> 
-- Provide thorough documentation and detailed examples. <!-- .element: class="fragment appear"  --> 
-- Well-tested, easy-to-install, modular, and open source. <!-- .element: class="fragment appear"  --> 
+Be compatible with **any PyTorch model**: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [brainscore](https://www.brain-score.org/vision/), custom models. 
+- <!-- .element: class="fragment appear"  --> 
+Provide selection of useful vision science **metrics, models, tools**. 
+- <!-- .element: class="fragment appear"  --> 
+Do all of the above in (optional) **GPU-accelerated manner**. 
+- <!-- .element: class="fragment appear"  --> 
+Provide thorough **documentation** and detailed **examples**.
+- <!-- .element: class="fragment appear"  -->
+Well-tested, easy-to-install, modular, and open source. 
+
+<!-- .element: style="font-size:1.3em" -->
 </div>
 
 #note: to conclude, I'd like to step back a bit
