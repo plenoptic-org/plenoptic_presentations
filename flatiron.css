@@ -205,6 +205,7 @@ body {
 .reveal code {
   font-family: monospace;
   text-transform: none;
+  color: black;
 }
 
 .reveal pre code {

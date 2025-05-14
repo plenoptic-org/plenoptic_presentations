@@ -1,6 +1,6 @@
-body:after {
-  content: "vss.plenoptic.org";
+body:before {
+  content: '';
   position: fixed;
   bottom: 30px;
-  right: 12px;
+  left: 12px;
 }
