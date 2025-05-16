@@ -452,7 +452,7 @@ Well-tested, easy-to-install, modular, and open source.
 
 <div data-animate data-load="assets/advertisement_slide.svg">
 <!-- {"setup": [
-{"element": "#g18", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]}
+{"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]}
 ]} -->
 </div>
 
