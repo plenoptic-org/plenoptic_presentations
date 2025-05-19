@@ -84,7 +84,7 @@ body {
   margin-top: 20%;
 }
 
-.reveal h2:not(:has(~ p, ~ div, ~ ul, ~ ol, ~ dl, ~ pre)):not(h1 + h2, h2 + h2, p + h2, div + h2) {
+.reveal h2:not(:has(~ p, ~ div, ~ ul, ~ ol, ~ dl, ~ pre, ~ table)):not(h1 + h2, h2 + h2, p + h2, div + h2) {
   text-shadow: none;
   margin-bottom: 5%;
   margin-top: 20%;
@@ -217,10 +217,42 @@ body {
 }
 
 .reveal table {
-  margin: auto;
+  width: 100%;
+  text-align: left;
   border-collapse: collapse;
+  margin: auto;
   border-spacing: 0;
+  border: 1px solid #e8e8e8;
+  th {
+    font-weight: bold;
+  }
+  th,
+  td {
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    border-bottom: 1px solid;
+  }
+  td {
+    border-width: 1px 0px 1px 0px;
+    border-style: solid;
+    border-color: #e8e8e8;
+  }
+  th:first-child, td:first-child {
+    width: 30%
+  }
+  th[align='center'],
+  td[align='center'] {
+    text-align: center;
+  }
+  th[align='right'],
+  td[align='right'] {
+    text-align: right;
+  }
+  tbody tr:last-child th,
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
 }
+
 
 .reveal table th {
   font-weight: bold;
