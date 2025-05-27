@@ -216,7 +216,7 @@ body {
   word-wrap: normal;
 }
 
-.reveal table {
+.reveal :not(code) > table {
   width: 100%;
   text-align: left;
   border-collapse: collapse;
