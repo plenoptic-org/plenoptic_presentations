@@ -23,6 +23,7 @@ OSF_URL = {'2023-10-02_Winawer-lab-mtg': 'spu5e',
            '2024-07-15_dana': 'qb9ec',
            '2025-05-16_vss-symposium': 'drxyn',
            "2025-05-19_vss-satellite": "syujv",
+           '2025-06-25_SAB': '4y62r',
            }
 
 
