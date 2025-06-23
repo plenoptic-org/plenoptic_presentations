@@ -149,3 +149,4 @@ now this was a relatively simple model, those of you who are used to thinking ab
 - Reproduce examples from the literature: Wang and Simoncelli, 2008 (original MAD paper); Feather et al., 2023 (audio and image deep net metamers)
 - Double-check compatibility with new Mac GPUs
 - Finalize pooled texture model (e.g., Freeman and Simoncelli, 2011)
+- Refactor steerable pyramid, to clean code and make more efficient
