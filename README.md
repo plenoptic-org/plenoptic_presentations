@@ -36,7 +36,7 @@ writing code in the markdown files easier. For all of this, see
 - It is run during every github pages build.
 - To activate for a given presentation, include `render.md` in the `markdown`
   value of your yml frontmatter in `slides.html`, e.g., `markdown:
-  slides-render.md` . 
+  slides-render.md` .
 - The script does three things in the following order:
   - Allows the insertion of code from other files. Any code block formatted like:
     ````
@@ -69,12 +69,12 @@ writing code in the markdown files easier. For all of this, see
   - Any code blocks that have a line before them formatted like `{: (.*)}` will
     be wrapped in a div containing the contents of the curly braces. This is
     apply additional classes or styling.
-    
+
 When run on an input file named `slides.md` ,the script will produce a file named `slides-render.md` (in general, appending `-render` before the `.md` file extension), which is the name of the file that should be in the frontmatter of `slides.html`.
 
 > [!CAUTION]
 > For some reason, the rendering gets weird if there are too many blank newlines around the code blocks. See `2025-05-16_vss-symposium/slides.md` for a working example: a single empty line before and after the `<div>` that is wrapped around the code block.
-    
+
 ### Render automatically during development
 
 While writing presentations, it's useful to start a jekyll server with `bundle exec jekyll serve --livereload`, which will rebuild the presentations whenever a file is updated. In order to also run the `scripts/render_code.py` script whenever the input is updated, you can make use of `inotify-wait` (part of the `inotify-tools` package):
@@ -86,7 +86,7 @@ end
 ```
 
 note that the above should be run within the presentation's folder.
-    
+
 ## Linked images
 
 Some of the svgs used in the presentations include links to other images found
@@ -142,6 +142,13 @@ tarball will be left locally for you to examine.
 
 You may also run `python scripts/osf_files.py download all`, which will download and
 extract all tarballs.
+
+## Pre-commit
+
+In order to ensure that you remember to package and upload the relevant assets,
+you can use the included [pre-commit](https://pre-commit.com/) config. To use,
+install pre-commit, run `pre-commit` install. Then, whenever you run `git
+commit`, pre-commit will run `scripts/osf_files.py check-assets all`.
 
 ## Licensing
 

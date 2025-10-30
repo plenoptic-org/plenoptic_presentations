@@ -15,8 +15,9 @@ import json
 import pathlib
 
 
-OSF_DOWNLOAD = "https://osf.io/{}/download"
-OSF_METADATA = "https://osf.io/{}/metadata?format=datacite-json"
+OSF_DOWNLOAD = "https://osf.io/download/{}"
+OSF_METADATA = "https://osf.io/metadata/{}"
+# all these belong to https://osf.io/admxn/overview
 OSF_URL = {'2023-10-02_Winawer-lab-mtg': 'spu5e',
            '2024-06-25_SAB': 'z8ryf',
            '2024-07-12_CSHL': 'nvk85',
@@ -24,6 +25,7 @@ OSF_URL = {'2023-10-02_Winawer-lab-mtg': 'spu5e',
            '2025-05-16_vss-symposium': 'drxyn',
            "2025-05-19_vss-satellite": "syujv",
            '2025-06-25_SAB': '4y62r',
+           "2025-11-14_sfn-workshop": "j4mub",
            }
 
 
