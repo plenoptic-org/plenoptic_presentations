@@ -555,7 +555,6 @@ div:has(> svg).logo-title {
 .two-columns-text {
   column-count: 2;
   column-gap: 3em;
-  font-size: 30px;
 }
 .code-vis-grid {
   display: grid;
