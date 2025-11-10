@@ -42,7 +42,7 @@ when we think about models in visual neuroscience, they're often set up like thi
 
 - we often pretty regularly fix the responses for a set of stimuli and use backpropagation to fit the parameters
 
-- but there's nothing special about the stimuli. we can similarly hold both the responses and parameters constant and use back propagation to generate novel stimuli. 
+- but there's nothing special about the stimuli. we can similarly hold both the responses and parameters constant and use back propagation to generate novel stimuli.
 
 this is what we call synthesis -- updating the pixel values of an image based on a model with set parameter values and some intended output.
 
@@ -140,7 +140,7 @@ this is what we call synthesis -- updating the pixel values of an image based on
 </div>
 </div>
 
-#note: now that was very abstract, let's talk about a specific example using a LGN-inspired model: has a center-surround filter (difference of Gaussians, bandpass, unoriented), with local divisive normalization and rectification. 
+#note: now that was very abstract, let's talk about a specific example using a LGN-inspired model: has a center-surround filter (difference of Gaussians, bandpass, unoriented), with local divisive normalization and rectification.
 - if you apply this model to an image like Einstein
 - you end up with an output that looks like this: the model is sensitive to contrast, highlighting the edges (which have a middling frequency, in that bandpass range) and ignoring local luminance, both because of that normalization and because it's low frequency
 - we can start with some other image, like this patch of white noise, and similarly run it through the model, to get a very different output
@@ -228,7 +228,7 @@ now this was a relatively simple model, those of you who are used to thinking ab
   <video style="width:84%;top:58%;left:56%" class="overlap-item" data-src="assets/textures_workstation_gpu.mp4"></video>
 </div>
 
-#note: 
+#note:
 - watch the video
 
 ---
@@ -245,7 +245,7 @@ now this was a relatively simple model, those of you who are used to thinking ab
   </div>
 </div>
 
-#note: 
+#note:
 - and again, we've ended up in a situation where these plots on the right match
 - and so these images on the left are model metamers
 - to emphasize what Ruth talked about in her talk, the process of modifying the model and synthesizing model metamers to see the effect adding or removing or changing different computations had, this was how this model was developed.
@@ -266,7 +266,7 @@ now this was a relatively simple model, those of you who are used to thinking ab
   </div>
 </div>
 
-#note: 
+#note:
 - to visualize how we do that, let's go back to our initial starting point
 - we ran both images through the model and got the model responses to each fo them
 - if we take the mean squared error between these two, we end up with our loss. the goal of metamer synthesis is to minimize this loss, make it as small as possible
@@ -314,7 +314,7 @@ model = po.simul.LuminanceGainControl(
 )
 po.tools.remove_grad(model)
 met = po.synth.Metamer(img, model)
-met.synthesize(max_iter=1300, 
+met.synthesize(max_iter=1300,
                stop_criterion=1e-11)
 ```
 
@@ -364,7 +364,7 @@ met.synthesize(max_iter=1300,
 
 #note:
 - plenoptic contains more than just metamers.
-- I'm going to talk briefly through one more synthesis method that we include, eigendistortions.  
+- I'm going to talk briefly through one more synthesis method that we include, eigendistortions.
 - metamers are about investigating what information the model considers unimportant in a global manner, so that you can end up with a very different image
 - eigendistortions ask the question: what small changes can I make to this image that my model thinks are really noticeable or really *un*-noticeable. in this sense, it's "local" -- we're not changing the pixels much
 
@@ -421,15 +421,26 @@ met.synthesize(max_iter=1300,
 <div style="display:flex;flex-direction:column">
 <div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
 
-Example projects: <!-- .element: style="margin-top:1%;font-size:1.3em" --> 
-- <!-- .element: class="fragment appear"  --> Understanding human peripheral sensitivity  to summary stats (Freeman and Simoncelli, 2011; Wallis et al., 2016; Ziemba and Simoncelli, 2021; Broderick et al., 2025)
-- <!-- .element: class="fragment appear"  --> Distinguish primate V1 from V2 (Freeman et al., 2013)
-- <!-- .element: class="fragment appear"  --> Distinguish between object and summary statistics representation in human ventral stream (Long et al., 2018)
-- <!-- .element: class="fragment appear"  --> Modulate responses in macaque V1, V2, V4 (Ziemba et al., 2018; Lieber et al., ongoing; Agarwal et al., ongoing)
-- <!-- .element: class="fragment appear"  --> Compare human and deep net representations (Berardino et al., 2017; Feather et al., 2019)
-- <!-- .element: class="fragment appear"  --> Understand cuttlefish camoflage (Woo, 2024; Shook et al., ongoing)
-- <!-- .element: class="fragment appear"  --> Compare model of amblyopic perceptual distortions to human drawings (Olianezhad et al., 2025)
-- <!-- .element: class="fragment appear"  --> Determine dimensionality of human color vision (Helmholtz, 1852)
+<div style="margin-top:1%;margin-bottom:20px;font-size:1.3em">
+Example projects (<strong>pp</strong>: psychophysics, <strong>ep</strong>: electrophysiology):
+</div>
+
+- <!-- .element: class="fragment appear"  -->
+Understanding human peripheral sensitivity  to summary stats (Freeman and Simoncelli, 2011; Wallis et al., 2016; Ziemba and Simoncelli, 2021; Broderick et al., 2025) **pp**
+- <!-- .element: class="fragment appear"  -->
+Distinguish primate V1 from V2 (Freeman et al., 2013) **ep,fMRI**
+- <!-- .element: class="fragment appear"  -->
+Distinguish between object and summary statistics representation in human ventral stream (Long et al., 2018) **fMRI**
+- <!-- .element: class="fragment appear"  -->
+Modulate responses in macaque V1, V2, V4 (Ziemba et al., 2018; Lieber et al., ongoing; Agarwal et al., ongoing) **ep**
+- <!-- .element: class="fragment appear"  -->
+Compare human and deep net representations (Berardino et al., 2017; Feather et al., 2019) **pp**
+- <!-- .element: class="fragment appear"  -->
+Understand cuttlefish camoflage (Woo, 2024; Shook et al., ongoing) **ep,pp**
+- <!-- .element: class="fragment appear"  -->
+Compare model of amblyopic perceptual distortions to human drawings (Olianezhad et al., 2025) **pp**
+- <!-- .element: class="fragment appear"  -->
+Determine dimensionality of human color vision (Helmholtz, 1852) **pp**
 
 <!-- .element: class="two-columns-text" -->
 </div>
@@ -449,24 +460,24 @@ Example projects: <!-- .element: style="margin-top:1%;font-size:1.3em" -->
 <div style="display:flex;flex-direction:column">
 <div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
 
-Goal: understand, compare, and improve computational models <!-- .element: style="margin-top:1%;font-size:1.3em" --> 
-- <!-- .element: class="fragment appear"  --> 
+Goal: understand, compare, and improve computational models <!-- .element: style="margin-top:1%;font-size:1.3em" -->
+- <!-- .element: class="fragment appear"  -->
 Facilitate synthesis of **model-optimized stimuli**.
 - <!-- .element: class="fragment appear"  -->
-Be compatible with **any PyTorch model**: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [brainscore](https://www.brain-score.org/vision/), custom models. 
-- <!-- .element: class="fragment appear"  --> 
-Provide selection of useful vision science **metrics, models, tools**. 
-- <!-- .element: class="fragment appear"  --> 
-Do all of the above in (optional) **GPU-accelerated manner**. 
-- <!-- .element: class="fragment appear"  --> 
+Be compatible with **any PyTorch model**: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [brainscore](https://www.brain-score.org/vision/), custom models.
+- <!-- .element: class="fragment appear"  -->
+Provide selection of useful vision science **metrics, models, tools**.
+- <!-- .element: class="fragment appear"  -->
+Do all of the above in (optional) **GPU-accelerated manner**.
+- <!-- .element: class="fragment appear"  -->
 Provide thorough **documentation** and detailed **examples**.
 - <!-- .element: class="fragment appear"  -->
-Well-tested, easy-to-install, modular, and open source. 
+Well-tested, easy-to-install, modular, and open source.
 
 <!-- .element: style="font-size:1.3em" -->
 </div>
 
-#note: 
+#note:
 - as I talked about today, plenoptic aims to help researchers better understand, compare, and improve their models
 - and we do this by facilitating synthesis of model-optimized stimuli
 - we are compatible with any pytorch model. in this talk, I only showed you examples using built-in models, but you can swap in any pytorch model, including those from existing model zoos, or of course, your own
