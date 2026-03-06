@@ -7,6 +7,41 @@
 
 ---
 
+## CITE YOUR SOFTWARE!
+
+---
+
+<img data-src="/assets/defense-blackhole.svg"></img>
+
+#note: To take one particularly illustrative example: I'm sure many of you recognize this picture. It's an image of supermassive black hole M87, captured by the Event Horizon Telescope Collaboration in April 2019
+
+---
+
+<img data-src="/assets/defense-blackhole-headlines.svg"></img>
+
+#note: this hit the headlines of every major news outlet, with the image eventually reaching more than 4.5 billion people around the world
+
+the work that went into this was done with a variety of packages from the open-source python scientific ecosystem, such as numpy and matplotlib, which was credited by some of the scientists involved as making the work possible, preventing them from having to reinvent everything from scratch
+
+---
+
+<img data-src="/assets/defense-blackhole-headlines-impact.svg"></img>
+
+#note: yet five days after this announcement, the US National Science Foundation denied a grant to support that ecosystem, saying the software didn't have "sufficient impact"
+
+---
+
+## CITE YOUR SOFTWARE!
+
+---
+
+![](/assets/plenoptic_logo_wide.svg) <!-- .element: style="height:70%" -->
+
+## A python library for synthesizing model-optimized visual stimuli
+## Billy Broderick  <!-- .element: style="height:50%" -->
+
+---
+
 ## Big picture goal
 
 What do you do after you fit your model to your data? <!-- .element: style="font-size:1.5em" -->
