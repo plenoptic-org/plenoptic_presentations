@@ -430,14 +430,14 @@ Well-tested, easy-to-install, modular, and open source.
 
 ---
 
-## Flatiron CCN Software
+## Flatiron Institute Center for Computational Neuroscience Software
 
 <div class='column' style="float:left;width:47%">
 
 <img data-src="/assets/pynapple_logo.svg">
 
 - [https://github.com/pynapple-org/pynapple/](https://github.com/pynapple-org/pynapple/)
-- light-weight python library for neurophysiological data analysis
+- light-weight python library for time series representation and neurophysiological data analysis
 
 <img style="margin-top:3%" data-src="/assets/nemos_logo.svg">
 
