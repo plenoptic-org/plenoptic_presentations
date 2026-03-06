@@ -9,6 +9,8 @@
 
 ## Big picture goal
 
+What do you do after you fit your model to your data? <!-- .element: style="font-size:1.5em" -->
+
 - Better understand computational visual models. <!-- .element: class="fragment" data-fragment-index="1" -->
 - Compare models. <!-- .element: class="fragment" data-fragment-index="2" -->
 - Improve models. <!-- .element: class="fragment" data-fragment-index="3" -->
