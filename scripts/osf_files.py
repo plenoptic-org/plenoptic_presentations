@@ -180,7 +180,8 @@ def check_assets(dir_path: str):
     for dir_p in dir_path:
         with open(op.join(dir_p, 'slides.md')) as f:
             slides = f.read()
-        slides_assets = re.findall('assets/[A-Za-z0-9_.-]+', slides)
+        slides_global_assets = re.findall('/assets/[A-Za-z0-9_.-]+', slides)
+        slides_assets = re.findall('(?<!/)assets/[A-Za-z0-9_.-]+', slides)
         for p in pathlib.Path(dir_p).glob("assets/*.svg"):
             with open(p) as f:
                 svg = f.read()
@@ -191,6 +192,13 @@ def check_assets(dir_path: str):
         if len(only_slides):
             only_slides = '\n'.join(only_slides)
             raise Exception(f"The following assets (for {dir_p}) are only in slides file (not in assets folder)!"
+                            f"\n{only_slides}")
+        global_assets = os.listdir(op.join(dir_p, "..", "assets"))
+        slides_global_assets = [a.replace('/assets/', '') for a in slides_global_assets]
+        only_slides = [a for a in slides_global_assets if a not in global_assets]
+        if len(only_slides):
+            only_slides = '\n'.join(only_slides)
+            raise Exception(f"The following assets (for {dir_p}) are only in slides file (not in global assets folder)!"
                             f"\n{only_slides}")
         only_local = [a for a in local_assets if a not in slides_assets]
         if len(only_local):

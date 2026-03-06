@@ -1,4 +1,4 @@
-![](assets/plenoptic_logo_wide.svg) <!-- .element: style="height:70%" -->
+![](/assets/plenoptic_logo_wide.svg) <!-- .element: style="height:70%" -->
 
 ## A python library for synthesizing model-optimized visual stimuli
 ## Billy Broderick  <!-- .element: style="height:50%" -->
@@ -341,7 +341,7 @@ now this was a relatively simple model, those of you who are used to thinking ab
 ---
 
 <div style="display:flex;flex-direction:column">
-<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
+<div class="logo-title" data-load="/assets/plenoptic_logo_wide.svg"></div>
 <div data-animate data-load="assets/contents.svg">
 <!-- {"setup": [
 {"element": "#g4", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
@@ -363,7 +363,7 @@ now this was a relatively simple model, those of you who are used to thinking ab
 ---
 
 <div style="display:flex;flex-direction:column">
-<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
+<div class="logo-title" data-load="/assets/plenoptic_logo_wide.svg"></div>
 
 Goal: understand, compare, and improve computational models <!-- .element: style="margin-top:1%;font-size:1.3em" -->
 - <!-- .element: class="fragment appear"  -->
@@ -393,16 +393,16 @@ Well-tested, easy-to-install, modular, and open source.
 
 ---
 
-## CCN Software
+## Flatiron CCN Software
 
 <div class='column' style="float:left;width:47%">
 
-<img data-src="assets/pynapple_logo.svg">
+<img data-src="/assets/pynapple_logo.svg">
 
 - [https://github.com/pynapple-org/pynapple/](https://github.com/pynapple-org/pynapple/)
 - light-weight python library for neurophysiological data analysis
 
-<img style="margin-top:3%" data-src="assets/nemos_logo.svg">
+<img style="margin-top:3%" data-src="/assets/nemos_logo.svg">
 
 - [https://github.com/flatironinstitute/nemos](https://github.com/flatironinstitute/nemos)
 - statistical modeling framework for systems neuroscience
@@ -411,7 +411,7 @@ Well-tested, easy-to-install, modular, and open source.
 
 <div class='column' style="float:right;width:47%">
 
-<img style="margin-bottom:3%" data-src="assets/plenoptic_logo_wide.svg">
+<img style="margin-bottom:3%" data-src="/assets/plenoptic_logo_wide.svg">
 
 - [https://github.com/plenoptic-org/plenoptic/](https://github.com/plenoptic-org/plenoptic/)
 - model-based synthesis of perceptual stimuli
