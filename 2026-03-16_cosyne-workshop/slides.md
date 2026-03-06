@@ -328,7 +328,7 @@ now this was a relatively simple model, those of you who are used to thinking ab
 - with pytorch, if we have a model that accepts and returns a torch tensor, and does the transofmration between the two in a torch-differentiable way (i.e., using functions from the pytorch library), pytorch can automatically compute the gradients we need.
 - the upshot is: plenoptic can compute the necessary gradients for any model, as long as it's written in pytorch
 
----
+--
 
 ## Plenoptic also includes "eigendistortions"
 
@@ -349,7 +349,7 @@ now this was a relatively simple model, those of you who are used to thinking ab
 - metamers are about investigating what information the model considers unimportant in a global manner, so that you can end up with a very different image
 - eigendistortions ask the question: what small changes can I make to this image that my model thinks are really noticeable or really *un*-noticeable. in this sense, it's "local" -- we're not changing the pixels much
 
----
+--
 
 ## LGN-inspired model eigendistortion
 
