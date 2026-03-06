@@ -10,9 +10,7 @@ import torch
 plt.rcParams["text.usetex"] = True
 
 
-def synth_texture(max_iter=500, store_progress=True,
-                  change_scale_criterion=None,
-                  ctf_iters_to_check=3,
+def synth_texture(max_iter=100, store_progress=True,
                   device=None,
                   **synth_kwargs):
     if device is None:
@@ -21,12 +19,18 @@ def synth_texture(max_iter=500, store_progress=True,
     ps = po.simul.PortillaSimoncelli(img.shape[-2:])
     ps.to(device)
     im_init = torch.rand_like(img) * .2 + img.mean()
-    met = po.synth.MetamerCTF(img, ps, loss_function=po.tools.optim.l2_norm)
-    met.setup(im_init)
+    loss = po.tools.optim.portilla_simoncelli_loss_factory(ps, img)
+    met = po.synth.Metamer(img, ps, loss_function=loss)
+    opt_kwargs = {
+        "max_iter": 10,
+        "max_eval": 10,
+        "history_size": 100,
+        "line_search_fn": "strong_wolfe",
+        "lr": 1,
+    }
+    met.setup(optimizer=torch.optim.LBFGS, optimizer_kwargs=opt_kwargs)
     start = time.time()
-    met.synthesize(max_iter=max_iter, store_progress=store_progress,
-                   change_scale_criterion=change_scale_criterion,
-                   ctf_iters_to_check=ctf_iters_to_check)
+    met.synthesize(max_iter=max_iter, store_progress=store_progress)
     stop = time.time()
     return met, stop - start
 
@@ -103,6 +107,7 @@ if args["device"] == "None":
     args["device"] = None
 met, duration = synth_texture(device=args["device"])
 met.to("cpu")
+met.save(args["save_path"].replace(".mp4", ".pt"))
 n_frames = animate(met, save_path=args["save_path"])
 txt_path = args["save_path"].replace('.mp4', '-time.txt')
 with open(txt_path, 'w') as f:
