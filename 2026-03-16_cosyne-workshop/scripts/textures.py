@@ -15,7 +15,7 @@ def synth_texture(max_iter=100, store_progress=True,
                   **synth_kwargs):
     if device is None:
         device = DEVICE
-    img = po.data.reptile_skin().to(device)
+    img = po.data.reptile_skin().to(device).to(torch.float64)
     ps = po.simul.PortillaSimoncelli(img.shape[-2:])
     ps.to(device)
     im_init = torch.rand_like(img) * .2 + img.mean()
@@ -106,8 +106,9 @@ args = vars(parser.parse_args())
 if args["device"] == "None":
     args["device"] = None
 met, duration = synth_texture(device=args["device"])
-met.to("cpu")
+# in case we want to change how we plot/animate after the fact
 met.save(args["save_path"].replace(".mp4", ".pt"))
+met.to("cpu")
 n_frames = animate(met, save_path=args["save_path"])
 txt_path = args["save_path"].replace('.mp4', '-time.txt')
 with open(txt_path, 'w') as f:
