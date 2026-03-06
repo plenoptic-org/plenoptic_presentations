@@ -293,62 +293,6 @@ now this was a relatively simple model, those of you who are used to thinking ab
 
 ---
 
-## Example code: synthesize metamer
-
-<div data-load="assets/lgn-metamers.svg"></div>
-
-#note:
-- to show you what that looks like, I'm going to show you one simple bit of code
-- the code I'm going to show you was used to generate this example from earlier
-
----
-
-## Example code: synthesize metamer
-
-```python data-line-numbers="|1|2|3-6|7|8|9-10"
-import plenoptic as po
-img = po.data.einstein()
-model = po.simul.LuminanceGainControl(
-    kernel_size=(31, 31), pad_mode="circular",
-    pretrained=True, cache_filt=True
-)
-po.tools.remove_grad(model)
-met = po.synth.Metamer(img, model)
-met.synthesize(max_iter=1300,
-               stop_criterion=1e-11)
-```
-
-<div class="overlap-item overlap-center" data-animate data-load="assets/code-overlay.svg">
-<!-- {"setup": [
-{"element": "#g6", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]},
-{"element": "#g7", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "1"} ]},
-{"element": "#g9", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "2"} ]},
-{"element": "#g8", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "3"} ]},
-{"element": "#g10", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "4"} ]},
-{"element": "#g11", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "5"} ]},
-{"element": "#g19", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "6"} ]},
-{"element": "#g20", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "7"} ]}
-]} -->
-</img>
-
-#note:
-- you don't need to understand this code in detail, for those of you who aren't python gurus, but I want you see that it's compact and that the way the process is broken up is reasonable.
-- and again, this is the actual code I ran for this presentation -- if you install plenoptic and run this code, you'll get that metamer
-- (I'm not showing you the code for creating the figures and animation -- as those of you who use matplotlib know, it can take some fiddling to make things look nice)
-- first, as should be familiar to all of you familiar with python, you import your library
-- you then need to load your image. there are many ways to do that: plenoptic has some built-in images we use for tests and examples, we have a helper function from loading images from disk.
-- then we need to initialize your model. here, we're using the LGN-like model I showed earlier, called luminance gain control. we have some built-in models you can use, or you can grab a model from any of the many pytorch model zoos that exist, or you can write your own. as long as it's in pytorch, it will work
-- now, we need to detach the gradients with respect to the model parameters -- most people are fitting pytorch models and so they want to update model parameters. for plenoptic, models are *fixed*, and so we remove those gradients, which saves computation. we only need to compute the gradients with respect to the image pixels
-- now we initialize the metamer object. this only requires the target image and the model, though there are additional arguments you can specify here, for example, changing the loss function
-- and finally, we call synthesize, which implements the gradient descent algorithm that I just talked you through. these arguments here specify how long to run the optimization for and the threshold we use for determining if it looks like the optimization has converged, i.e., the loss has stopped changing. neither of these arguments are necessary, we have defaults, but, depending on your model, you'll need to play around with them.
-- if you wanted to change the initial image, the optimization parameters, or the optimization algorithm, you can do that as well
-- but this is all you *need*, six lines of code.
-- generally speaking, this last step, synthesize, is the most resource and time-intensive
-- to give you a sense for how long this took, the synthesize step here took 7 seconds using the GPU on the workstation I have in my office, 3.5 minutes on that machine without using the GPU, and 7 min on this laptop
-- the texture example I showed you earlier took 40sec using the GPU, about 1min without, or 3.5 min on this laptop
-
----
-
 ## Plenoptic also includes "eigendistortions"
 
 <div data-animate data-load="assets/image_space-eigendistortion.svg">
@@ -425,7 +369,7 @@ Goal: understand, compare, and improve computational models <!-- .element: style
 - <!-- .element: class="fragment appear"  -->
 Facilitate synthesis of **model-optimized stimuli**.
 - <!-- .element: class="fragment appear"  -->
-Be compatible with **any PyTorch model**: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [brainscore](https://www.brain-score.org/vision/), custom models.
+Be compatible with **any PyTorch model**: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [brainscore](https://www.brain-score.org/vision/), [openretina](https://open-retina.org/), custom models.
 - <!-- .element: class="fragment appear"  -->
 Provide selection of useful vision science **metrics, models, tools**.
 - <!-- .element: class="fragment appear"  -->
@@ -446,6 +390,33 @@ Well-tested, easy-to-install, modular, and open source.
 - and all of this GPU-accelerated and differentiable. if you have a GPU, things will be faster, but you don't need to -- they all work as well on CPUs, just slower
 - finally, I want to make some points that I think are generally under-valued in scientific software: we aim to provide thorough documentation and detailed examples, so that you can understand how to use the software and see some practical examples. we're always looking to improve the documentation, and I'm going to do a big push this summer
 - we're also well-tested, with about 90% coverage, easy-to-install on any OS using either pip or conda, modular (so you can use any of these components separately), and of course open source (under MIT).
+
+---
+
+## CCN Software
+
+<div class='column' style="float:left;width:47%">
+
+<img data-src="assets/pynapple_logo.svg">
+
+- [https://github.com/pynapple-org/pynapple/](https://github.com/pynapple-org/pynapple/)
+- light-weight python library for neurophysiological data analysis
+
+<img style="margin-top:3%" data-src="assets/nemos_logo.svg">
+
+- [https://github.com/flatironinstitute/nemos](https://github.com/flatironinstitute/nemos)
+- statistical modeling framework for systems neuroscience
+
+</div>
+
+<div class='column' style="float:right;width:47%">
+
+<img style="margin-bottom:3%" data-src="assets/plenoptic_logo_wide.svg">
+
+- [https://github.com/plenoptic-org/plenoptic/](https://github.com/plenoptic-org/plenoptic/)
+- model-based synthesis of perceptual stimuli
+
+</div>
 
 ---
 
