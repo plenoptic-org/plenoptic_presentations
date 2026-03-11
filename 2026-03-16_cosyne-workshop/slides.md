@@ -3,7 +3,9 @@
 ## A python library for synthesizing model-optimized visual stimuli
 ## Billy Broderick  <!-- .element: style="height:50%" -->
 
-#note: today I'm going to talk about plenoptic, a python library for synthesizing the model-optimized visual stimuli we're talking about it in this session.
+#note: hi I'm Billy, from the Flatiron Institute's Center for Computational neuroscience
+
+today I'm going to talk about plenoptic, a python library for synthesizing model-optimized visual stimuli, a complicated term that I'll explain shortly
 
 ---
 
@@ -413,12 +415,12 @@ Well-tested, easy-to-install, modular, and open source.
 <img data-src="/assets/pynapple_logo.svg">
 
 - [https://github.com/pynapple-org/pynapple/](https://github.com/pynapple-org/pynapple/)
-- light-weight python library for time series representation and neurophysiological data analysis
+- NWB-compatible, light-weight python library for time series representation and neurophysiological data analysis
 
 <img style="margin-top:3%" data-src="/assets/nemos_logo.svg">
 
 - [https://github.com/flatironinstitute/nemos](https://github.com/flatironinstitute/nemos)
-- statistical modeling framework for systems neuroscience
+- scikit-learn compatible statistical modeling framework for systems neuroscience
 
 </div>
 
@@ -435,7 +437,9 @@ Well-tested, easy-to-install, modular, and open source.
 
 <img data-src="/assets/defense-blackhole.svg"></img>
 
-#note: To take one particularly illustrative example: I'm sure many of you recognize this picture. It's an image of supermassive black hole M87, captured by the Event Horizon Telescope Collaboration in April 2019
+#note: to finish up, I'd like to tell you a brief parable about the importance of open source software for science.
+
+I'm sure many of you recognize this picture. It's an image of supermassive black hole M87, captured by the Event Horizon Telescope Collaboration in April 2019
 
 ---
 
@@ -455,6 +459,10 @@ the work that went into this was done with a variety of packages from the open-s
 
 ## CITE YOUR SOFTWARE!
 
+#note: so please, when you write up your results, cite the software that you used. it makes it easier for people like us, maintainers of scientific software packages, to go to our bosses and scientific funding bodies and argue for the value of the work in developing and maintaining these packages.
+
 ---
 
 <div data-load="assets/advertisement_slide.svg"></div>
+
+#note: thank you
