@@ -420,7 +420,7 @@ Well-tested, easy-to-install, modular, and open source.
 <img style="margin-top:3%" data-src="/assets/nemos_logo.svg">
 
 - [https://github.com/flatironinstitute/nemos](https://github.com/flatironinstitute/nemos)
-- scikit-learn compatible statistical modeling framework for systems neuroscience
+- scikit-learn compatible statistical modeling framework for systems neuroscience, built on top of jax
 
 </div>
 
@@ -429,7 +429,7 @@ Well-tested, easy-to-install, modular, and open source.
 <img style="margin-bottom:3%" data-src="/assets/plenoptic_logo_wide.svg">
 
 - [https://github.com/plenoptic-org/plenoptic/](https://github.com/plenoptic-org/plenoptic/)
-- model-based synthesis of perceptual stimuli
+- model-based synthesis of perceptual stimuli, built on top of pytorch
 
 </div>
 
