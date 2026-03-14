@@ -373,7 +373,7 @@ Goal: understand, compare, and improve computational models <!-- .element: style
 - <!-- .element: class="fragment appear"  -->
 Facilitate synthesis of **model-optimized stimuli**.
 - <!-- .element: class="fragment appear"  -->
-Be compatible with **any PyTorch model**: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [brainscore](https://www.brain-score.org/vision/), [openretina](https://open-retina.org/), custom models.
+Be compatible with **any PyTorch model**: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [openretina](https://open-retina.org/), custom models.
 - <!-- .element: class="fragment appear"  -->
 Provide selection of useful vision science **metrics, models, tools**.
 - <!-- .element: class="fragment appear"  -->
