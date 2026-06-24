@@ -3,13 +3,15 @@
 ## A python library for synthesizing model-optimized visual stimuli
 ## Billy Broderick  <!-- .element: style="height:50%" -->
 
-#note: today I'm going to talk about plenoptic, a python library for synthesizing the model-optimized visual stimuli we're talking about it in this session.
+#note: today I'm going to talk about plenoptic, a python library for synthesizing the model-optimized visual stimuli.
+
+plenoptic is focused on better understanding perceptual systems, especially the visual system. throughout this talk I'm going to give visual examples, methods also work well for auditory system
 
 ---
 
 ## Big picture goal
 
-What do you do after you fit your model to your data? <!-- .element: style="font-size:1.5em" -->
+What do you do after you fit your model to your data? How to design follow-up experiments? <!-- .element: style="font-size:1.5em" -->
 
 - Better understand computational visual models. <!-- .element: class="fragment" data-fragment-index="1" -->
 - Compare models. <!-- .element: class="fragment" data-fragment-index="2" -->
@@ -17,7 +19,11 @@ What do you do after you fit your model to your data? <!-- .element: style="font
 
 <!-- .element: style="font-size:1.5em" -->
 
-#note: big picture goal of plenoptic, of using model-optimized stimulus is to better understand computational visual models, the information they consider important and unimportant. these methods can also help you compare among competing models and improve your existing models.
+#note: big picture goal of plenoptic:
+
+you've fit your model to data, done some model comparison, and are convinced that it does a decent job on the data you've collected. but you want to move forward, you want to design follow-up experiments that stress-test you model, to ensure that the data you collected wasn't a fluke, and to test your model on what machine-learning folks often call "out-of-distribution data", of the sort it hasn't seen before.
+
+plenoptic provides tools to do this, which allow you to better understand computational visual models, the information they consider important and unimportant. these methods can also help you compare among competing models and improve your existing models.
 
 with plenoptic, we seek to do all this with model-optimized stimuli
 
