@@ -1,4 +1,4 @@
-![](assets/plenoptic_logo_wide.svg) <!-- .element: style="height:70%" -->
+![](/assets/plenoptic_logo_wide.svg) <!-- .element: style="height:70%" -->
 
 ## A python library for synthesizing model-optimized visual stimuli
 ## Billy Broderick  <!-- .element: style="height:50%" -->
@@ -8,6 +8,8 @@
 ---
 
 ## Big picture goal
+
+What do you do after you fit your model to your data? <!-- .element: style="font-size:1.5em" -->
 
 - Better understand computational visual models. <!-- .element: class="fragment" data-fragment-index="1" -->
 - Compare models. <!-- .element: class="fragment" data-fragment-index="2" -->
@@ -308,12 +310,12 @@ now this was a relatively simple model, those of you who are used to thinking ab
 ```python data-line-numbers="|1|2|3-6|7|8|9-10"
 import plenoptic as po
 img = po.data.einstein()
-model = po.simul.LuminanceGainControl(
+model = po.models.LuminanceGainControl(
     kernel_size=(31, 31), pad_mode="circular",
     pretrained=True, cache_filt=True
 )
-po.tools.remove_grad(model)
-met = po.synth.Metamer(img, model)
+po.remove_grad(model)
+met = po.Metamer(img, model)
 met.synthesize(max_iter=1300,
                stop_criterion=1e-11)
 ```
@@ -397,13 +399,13 @@ met.synthesize(max_iter=1300,
 ---
 
 <div style="display:flex;flex-direction:column">
-<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
+<div class="logo-title" data-load="/assets/plenoptic_logo_wide.svg"></div>
 <div data-animate data-load="assets/contents.svg">
 <!-- {"setup": [
 {"element": "#g4", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
 {"element": "#g5", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "1"} ]},
 {"element": "#text1-3-6", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "2"} ]},
-{"element": "#g1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]},
+{"element": "#g2-6", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "3"} ]},
 {"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "4"} ]},
 {"element": "#g6", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "5"} ]}
 ]} -->
@@ -419,7 +421,7 @@ met.synthesize(max_iter=1300,
 ---
 
 <div style="display:flex;flex-direction:column">
-<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
+<div class="logo-title" data-load="/assets/plenoptic_logo_wide.svg"></div>
 
 <div style="margin-top:1%;margin-bottom:20px;font-size:1.3em">
 Example projects (<strong>pp</strong>: psychophysics, <strong>ep</strong>: electrophysiology):
@@ -458,13 +460,13 @@ Determine dimensionality of human color vision (Helmholtz, 1852) **pp**
 ---
 
 <div style="display:flex;flex-direction:column">
-<div class="logo-title" data-load="assets/plenoptic_logo_wide.svg"></div>
+<div class="logo-title" data-load="/assets/plenoptic_logo_wide.svg"></div>
 
 Goal: understand, compare, and improve computational models <!-- .element: style="margin-top:1%;font-size:1.3em" -->
 - <!-- .element: class="fragment appear"  -->
 Facilitate synthesis of **model-optimized stimuli**.
 - <!-- .element: class="fragment appear"  -->
-Be compatible with **any PyTorch model**: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [brainscore](https://www.brain-score.org/vision/), custom models.
+Be compatible with **any PyTorch model**: e.g., [torchvision](https://docs.pytorch.org/vision/stable/models.html), [timm](https://huggingface.co/docs/timm/index), [openretina](https://open-retina.org/), custom models.
 - <!-- .element: class="fragment appear"  -->
 Provide selection of useful vision science **metrics, models, tools**.
 - <!-- .element: class="fragment appear"  -->
