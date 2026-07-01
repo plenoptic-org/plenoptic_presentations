@@ -504,3 +504,17 @@ Well-tested, easy-to-install, modular, and open source.
 - if you have any questions about the package, you can find me here to ask (also on the discord). after the conference, you can post on the github -- I will respond
 - this package has been the work of many people over many years, so I'd like to thank all of my contributors.
 - thank you all
+
+---
+
+## Tutorials online
+
+<p style="margin-top:1%;margin-bottom:2%;text-align:center">
+<a href="https://workshops.plenoptic.org/workshops/CSHL-vision-course-2026/">https://workshops.plenoptic.org/workshops/CSHL-vision-course-2026</a>
+</p>
+
+![https://workshops.plenoptic.org/workshops/CSHL-vision-course-2026/](assets/cshl-workshop-qr.png)
+
+#note:
+
+finally, I have some materials that I put together for a workshop I'm running later this summer at the CSHL computational vision course. If you're interested in learning more about plenoptic, there is a long introductory notebook to work through and some exercises at this site.
