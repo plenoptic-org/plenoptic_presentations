@@ -1,3 +1,128 @@
+## NeuroRSE: research software engineering for neuroscience
+## Billy Broderick and Edoardo Balzani <!-- .element: style="height:50%" -->
+
+#note: today, Edoardo and I are going to talk to you about some software packages that we work on for neuroscientists, which are relevant for this course and we hope will be helpful for you.
+
+but first, I want to talk a bit about who we are and what we do. we are both members of a team at the Flatiron Institute called "NeuroRSE", and we do research software engineering for neuroscience. I'm going to explain what the Flatiron Institute is and where we sit in it, and what it is we work on.
+
+---
+
+## What is Flatiron?
+
+<div data-animate data-load="assets/flatiron.svg" crossorigin="anonymous">
+<!-- {"setup": [
+{"element": "#g715", "modifier": "attr", "parameters": [ {"class": "fragment appear-disappear", "data-fragment-index": "0"} ]}
+]} -->
+</div>
+
+#note: so apologies to those who know already, but I thought I'd take a moment to explain who we are. We are employees of the Flatiron Institute. If you've heard "Flatiron" before, you're probably thinking of this iconic building in Manhattan, the Flatiron Building
+
+**click**. unfortunately, we're not in that building. we're about 2 blocks from there -- the neighborhood around this building is known as the Flatiron district, hence the name. I think every employee goes through a moment of disappointment when they realize they won't be working here. we have interns every summer, and a fair number of the interns every summer show up at the Flatiron building and were very confused. especially because the building is currently empty, due to some weirdness over the ownership
+
+---
+
+## The Real Flatiron Institute
+
+![image](assets/flatiron-institute.png)
+
+#note: we are part of this Flatiron institute, which is part of the Simons Foundation. the Simons Foundation is a private foundation whose money comes from Jim Simons, a mathematician and hedge fund billionaire who recnetly passed away. it funds a variety of projects in the maths and sciences, especially computational research, and the Flatiron institute is the in-house research center.
+
+---
+## The Real Flatiron Institute
+
+![image](assets/flatiron-centers.png)
+
+#note: Flatiron has five centers, one each for computational astrophysics, biology, mathematics, neuroscience, and quantum physics, plus the scientific computing core, who supports the cluster and other computational infrastructure that the other centers use.
+
+---
+## The Real Flatiron Institute
+
+![image](assets/flatiron-ccn.png)
+
+#note: Mots of the speakers and TAs here are part of the Center for Computational Neuroscience, the newest center at Flatiron, which has four research groups doing different types of computational neuroscience work, with grad students from NYU, postdocs and research scientists, along with summer interns.
+
+---
+## The Real Flatiron Institute
+
+![image](assets/neurorse.png)
+
+#note: And most of the speakers you're going to hear from over the next two days are from the neuroRSE, or research software engineering, group within CCN. We're a group of full time research scientists whose only job is to build and maintain open source python packages for neuroscience research, including pynapple and nemos.
+
+---
+
+## CCN Software
+
+<div class='column' style="float:left;width:47%">
+
+<img data-src="assets/pynapple_logo.svg">
+
+- [https://github.com/pynapple-org/pynapple/](https://github.com/pynapple-org/pynapple/)
+- light-weight python library for neurophysiological data analysis
+
+<img style="margin-top:3%" data-src="assets/nemos_logo.svg">
+
+- [https://github.com/flatironinstitute/nemos](https://github.com/flatironinstitute/nemos)
+- statistical modeling framework for systems neuroscience
+
+</div>
+
+<div class='column' style="float:right;width:47%">
+
+<img style="margin-bottom:3%" data-src="/assets/plenoptic_logo_wide.svg">
+
+- [https://github.com/plenoptic-org/plenoptic/](https://github.com/plenoptic-org/plenoptic/)
+- model-based synthesis of perceptual stimuli
+
+</div>
+
+<div class="overlap-item overlap-center" data-animate data-load="assets/unix.svg">
+<!-- {"setup": [
+{"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
+{"element": "#rect1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]}
+]} -->
+</div>
+
+---
+
+<img data-src="assets/defense-blackhole.svg"></img>
+
+#note: to finish up, I'd like to tell you a brief parable about the importance of open source software for science.
+
+I'm sure many of you recognize this picture. It's an image of supermassive black hole M87, captured by the Event Horizon Telescope Collaboration in April 2019
+
+---
+
+<img data-src="assets/defense-blackhole-headlines.svg"></img>
+
+#note: this hit the headlines of every major news outlet, with the image eventually reaching more than 4.5 billion people around the world
+
+the work that went into this was done with a variety of packages from the open-source python scientific ecosystem, such as numpy and matplotlib, which was credited by some of the scientists involved as making the work possible, preventing them from having to reinvent everything from scratch
+
+while this was happening, the packages in that ecosystem had put submitted a grant to the US National Science Foundation to ask for funding to support the ongoing maintenance and development of those packages.
+
+and five days after these headlines...
+
+---
+
+<img data-src="assets/defense-blackhole-headlines-impact.svg"></img>
+
+#note: the US National Science Foundation denied a grant to support that ecosystem, saying the software didn't have "sufficient impact"
+
+I hope that strikes you as as absurd as it struck me. it points at a braoder problem, which is that open source software is often underappreciated in science because it doesn't neatly slot into the existing system.
+
+solving this is difficult, but one way you can help is...
+
+---
+
+## CITE YOUR SOFTWARE!
+
+#note: to cite your software
+
+please, when you write up your results, cite the software that you used. add a little paragraph in the methods section that says "this work was done with numpy, matplotlib, etc". each of those packages has a section on their website that says how they'd like to be cited.
+
+it makes it easier for people like us, maintainers of scientific software packages, to go to our bosses and scientific funding bodies and argue for the value of the work in developing and maintaining these packages. if you take nothing else from this talk, please cite your software when you write up your papers.
+
+---
 ![](/assets/plenoptic_logo_wide.svg) <!-- .element: style="height:70%" -->
 
 ## A python library for synthesizing model-optimized visual stimuli
