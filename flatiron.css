@@ -574,3 +574,16 @@ div:has(> svg).logo-title {
   height: fit-content;
   margin: 0;
 }
+
+.reference {
+  font-size: 25px;
+}
+
+.three-columns-text {
+  column-count: 3;
+  column-gap: 3em;
+}
+
+.reference.three-columns-text {
+  column-gap: 12em;
+}
