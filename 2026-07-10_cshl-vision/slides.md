@@ -75,7 +75,7 @@ but first, I want to talk a bit about who we are and what we do. we are both mem
 
 </div>
 
-<div class="overlap-item overlap-center" data-animate data-load="assets/unix.svg">
+<div class="overlap-item overlap-center overlap-full" data-animate data-load="assets/unix.svg">
 <!-- {"setup": [
 {"element": "#g2", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]},
 {"element": "#rect1", "modifier": "attr", "parameters": [ {"class": "fragment appear", "data-fragment-index": "0"} ]}

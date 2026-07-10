@@ -543,6 +543,8 @@ div.two-column {
   background: none;
   position: absolute;
   transform: translate(-50%, -50%);
+}
+.reveal .overlap-full {
   height: 100%;
 }
 .reveal .overlap-center {
